@@ -1,7 +1,14 @@
 import './App.css';
+import Header from './companets/header/Header';
+import Welcome from './companets/welcome/Welcome';
 
 function App() {
-  return <h1>GraphQL</h1>;
+  return (
+    <>
+      <Header />
+      <Welcome />
+    </>
+  );
 }
 
 export default App;

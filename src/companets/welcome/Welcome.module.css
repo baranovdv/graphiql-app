@@ -1,0 +1,45 @@
+.wrapper {
+    position: relative;
+    z-index: 1;
+}
+
+.aboutProject {
+    max-width: 1440px;
+    padding: 0 40px;
+    margin: 0 auto;
+    height: 1300px;
+    background-image: url('../../../public/background5.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.mainLog {
+    position: absolute;
+    color: white;
+    top: 50px;
+    right: 50px;
+}
+
+.aboutTeam {
+    max-width: 1440px;
+    padding: 0 40px;
+    margin: 0 auto;
+    min-height: 600px;
+    background-color: lightblue;
+}
+
+.mainInfo {
+    position: absolute;
+    bottom: 40px;
+    max-width: 1300px;
+}
+
+.mainTitle {
+    font-size: 34px;
+    color: white;
+}
+
+.mainText {
+    font-size: 20px;
+    color: white;
+}

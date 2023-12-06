@@ -1,0 +1,11 @@
+.mainBlock{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.mainDiv{
+  display: flex;
+  flex-direction: column;
+  
+}

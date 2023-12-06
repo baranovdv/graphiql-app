@@ -7,10 +7,6 @@ import App from '../App';
 describe('App', () => {
   it('Renders GraphQL', () => {
     render(<App />);
-    expect(
-      screen.getByRole('heading', {
-        level: 1,
-      })
-    ).toHaveTextContent('GraphQL');
+    expect(screen.getByText('This is Welcome Page')).toBeInTheDocument();
   });
 });

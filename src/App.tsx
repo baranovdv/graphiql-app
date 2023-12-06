@@ -1,7 +1,13 @@
+import { Outlet } from 'react-router-dom';
 import './App.css';
+import styles from './styles/main.module.css';
 
 function App() {
-  return <h1>GraphQL</h1>;
+  return (
+    <main className={styles.mainBlock}>
+      <Outlet />
+    </main>
+  );
 }
 
 export default App;

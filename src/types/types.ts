@@ -1,9 +1,9 @@
 import React from 'react';
 
-export interface Props {
+export interface IErrorBoundaryProps {
   children: React.ReactNode;
 }
 
-export interface State {
+export interface IErrorBoundaryState {
   hasError: boolean;
 }

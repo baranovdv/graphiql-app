@@ -8,9 +8,9 @@ describe('App', () => {
   it('Renders GraphQL', () => {
     render(<App />);
     expect(
-      screen.getByRole('heading', {
-        level: 1,
+      screen.getByRole('button', {
+        name: /выйти/i,
       })
-    ).toHaveTextContent('GraphQL');
+    ).toHaveTextContent('выйти');
   });
 });

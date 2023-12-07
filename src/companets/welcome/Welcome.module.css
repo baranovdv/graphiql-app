@@ -7,7 +7,7 @@
     max-width: 1440px;
     padding: 0 40px;
     margin: 0 auto;
-    height: 1300px;
+    height: 1000px;
     background-image: url('../../../public/background5.jpg');
     background-repeat: no-repeat;
     background-size: cover;
@@ -20,18 +20,20 @@
     right: 50px;
 }
 
-.aboutTeam {
-    max-width: 1440px;
-    padding: 0 40px;
-    margin: 0 auto;
-    min-height: 600px;
-    background-color: lightblue;
+.link {
+    cursor: pointer;
 }
 
 .mainInfo {
     position: absolute;
-    bottom: 40px;
+    top: 640px;
     max-width: 1300px;
+    @media screen and (width <= 820px) {
+        top: 540px;
+    }
+    @media screen and (width <= 620px) {
+        top: 440px;
+    }
 }
 
 .mainTitle {
@@ -42,4 +44,15 @@
 .mainText {
     font-size: 20px;
     color: white;
+    @media screen and (width <= 500px) {
+        font-size: 14px;
+    }
+}
+
+.aboutTeam {
+    max-width: 1440px;
+    padding: 20px 40px;
+    margin: auto;
+    min-height: 500px;
+    background-color: lightblue;
 }

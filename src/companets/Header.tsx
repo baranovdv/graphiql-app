@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import classes from './Header.module.css';
+import classes from '../styles/Header.module.css';
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -18,7 +18,7 @@ export default function Header() {
     <header className={isScrolled ? classes.scrolled : ''}>
       <img
         className={classes.headerLogo}
-        src="../../../public/logo.png"
+        src="../../public/logo.png"
         alt="logo"
       />
       <div className={classes.headerTool}>

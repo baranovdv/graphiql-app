@@ -8,7 +8,7 @@
     padding: 0 40px;
     margin: 0 auto;
     height: 1000px;
-    background-image: url('../../../public/background5.jpg');
+    background-image: url('../../public/background5.jpg');
     background-repeat: no-repeat;
     background-size: cover;
 }

@@ -1,11 +1,11 @@
-import classes from './InfoPerson.module.css';
+import classes from '../styles/InfoPerson.module.css';
 
 export default function InfoPerson() {
   return (
     <div className={classes.personCard}>
       <img
         className={classes.personImg}
-        src="../../../public/avatar.png"
+        src="../../public/avatar.png"
         alt="avatar"
       />
       <div>

@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import classes from '../styles/Welcome.module.css';
 import InfoPerson from '../companets/InfoPerson';
 import Header from '../companets/Header';
@@ -11,8 +12,12 @@ export default function Welcome() {
         <div className={classes.aboutProject}>
           <div className={classes.wrapper}>
             <div className={classes.mainLog}>
-              <p className={classes.link}>Регестрация</p>
-              <p className={classes.link}>Вход</p>
+              <Link to="SignIn" className={classes.link}>
+                Регестрация
+              </Link>
+              <Link to="SignUp" className={classes.link}>
+                Вход
+              </Link>
             </div>
           </div>
           <div className={classes.wrapper}>

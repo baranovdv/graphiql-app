@@ -4,6 +4,7 @@ import SignInPage from '../pages/SignInPage';
 import Page404 from '../pages/404Page';
 import PrivateRoute from './PrivateRoute';
 import Welcome from '../pages/Welcome';
+import SignUpPage from '../pages/SignUpPage';
 
 const routes = [
   {
@@ -17,6 +18,10 @@ const routes = [
       {
         path: 'SignIn',
         element: <SignInPage />,
+      },
+      {
+        path: 'SignUp',
+        element: <SignUpPage />,
       },
       {
         path: 'MainPage',

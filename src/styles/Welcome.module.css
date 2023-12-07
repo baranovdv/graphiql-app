@@ -14,13 +14,19 @@
 }
 
 .mainLog {
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
     position: absolute;
     color: white;
     top: 50px;
     right: 50px;
 }
 
-.link {
+.link:link, .link:visited  {
+    color: white;
+    list-style: none;
+    text-decoration: none;
     cursor: pointer;
 }
 

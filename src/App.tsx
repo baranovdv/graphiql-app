@@ -1,11 +1,12 @@
 import { Outlet } from 'react-router-dom';
 import './App.css';
+import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
 
 function App() {
   return (
-    <div>
+    <ErrorBoundary>
       <Outlet />
-    </div>
+    </ErrorBoundary>
   );
 }
 

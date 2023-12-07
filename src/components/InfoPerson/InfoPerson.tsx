@@ -1,4 +1,4 @@
-import classes from '../styles/InfoPerson.module.css';
+import classes from './InfoPerson.module.css';
 
 export default function InfoPerson() {
   return (

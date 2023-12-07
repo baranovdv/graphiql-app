@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import classes from '../styles/Welcome.module.css';
-import InfoPerson from '../companets/InfoPerson';
-import Header from '../companets/Header';
+import InfoPerson from '../components/InfoPerson/InfoPerson';
+import Header from '../components/Header/Header';
 
 export default function Welcome() {
   const array = [1, 2, 3];

@@ -7,3 +7,12 @@ export interface IErrorBoundaryProps {
 export interface IErrorBoundaryState {
   hasError: boolean;
 }
+
+interface Client {
+  username: string;
+  email: string;
+  firstPassword: string;
+  secondPassword: string;
+}
+
+export type { Client };

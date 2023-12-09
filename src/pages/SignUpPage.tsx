@@ -35,7 +35,7 @@ function SignUpPage() {
 
   useEffect(() => {
     if (loading) return;
-    if (user) navigate('/');
+    if (user) navigate('/MainPage');
   }, [user, loading]);
   return (
     <>

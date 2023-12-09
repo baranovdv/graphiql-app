@@ -1,0 +1,14 @@
+.input {
+    border-radius: 20px;
+    height: 40px;
+    width: 420px;
+
+    @media screen and (width <= 620px) {
+        height: 30px;
+        max-width: 320px;
+    }
+    @media screen and (width <= 470px) {
+        height: 30px;
+        max-width: 210px;
+    }
+}

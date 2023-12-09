@@ -12,10 +12,10 @@ export default function Welcome() {
         <div className={classes.aboutProject}>
           <div className={classes.wrapper}>
             <div className={classes.mainLog}>
-              <Link to="SignIn" className={classes.link}>
+              <Link to="SignUp" className={classes.link}>
                 Регестрация
               </Link>
-              <Link to="SignUp" className={classes.link}>
+              <Link to="SignIn" className={classes.link}>
                 Вход
               </Link>
             </div>

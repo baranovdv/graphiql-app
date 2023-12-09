@@ -1,0 +1,50 @@
+.main {
+    max-width: 800px;
+    margin: auto;
+    text-align: center;
+}
+
+.field {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-size: 28px;
+    column-gap: 10px;
+    text-align: left;
+
+    @media screen and (width <= 620px) {
+        font-size: 20px;
+    }
+
+    @media screen and (width <= 470px) {
+        font-size: 14px;
+    }
+}
+
+.button {
+    border-radius: 20px;
+    width: 240px;
+    height: 50px;
+}
+
+.error {
+    margin: 0;
+    color: red;
+    font-size: 12px;
+    text-align: left;
+}
+
+.wrapperInput {
+    height: 100px;
+    max-width: 410px;
+}
+
+.title {
+    font-size: 48px;
+    padding: 80px 0 60px;
+
+    @media screen and (width <= 470px) {
+        padding: 40px 0 30px;
+        font-size: 32px;
+    }
+}

@@ -1,12 +1,28 @@
 import { useEffect, useState } from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { query, collection, getDocs, where } from 'firebase/firestore';
+import { auth, db, logout } from '../../firebase';
 import classes from './Header.module.css';
 
 export default function Header() {
+  const [name, setName] = useState('');
   const [isScrolled, setIsScrolled] = useState(false);
   const checkScroll = () => {
     setIsScrolled(window.scrollY > 0);
   };
+  const [user, loading] = useAuthState(auth);
 
+  const fetchUserName = async () => {
+    try {
+      const q = query(collection(db, 'users'), where('uid', '==', user?.uid));
+      const doc = await getDocs(q);
+      const data = doc.docs[0].data();
+      setName(data.name);
+    } catch (err) {
+      console.error(err);
+      alert('An error occured while fetching user data');
+    }
+  };
   useEffect(() => {
     window.addEventListener('scroll', checkScroll);
     return () => {
@@ -14,6 +30,11 @@ export default function Header() {
     };
   }, []);
 
+  useEffect(() => {
+    if (loading) return;
+    if (!user) return;
+    fetchUserName();
+  }, [user, loading]);
   return (
     <header className={isScrolled ? classes.scrolled : ''}>
       <img
@@ -22,10 +43,22 @@ export default function Header() {
         alt="logo"
       />
       <div className={classes.headerTool}>
-        {/* будет скрываться в будущем если user вошёл в систему */}
-        <button type="button" className={classes.headerExit}>
-          выйти
-        </button>
+        {user ? (
+          <>
+            <div>{name}</div>
+            <div>{user?.email}</div>
+            <button
+              type="button"
+              className={classes.headerExit}
+              onClick={logout}
+            >
+              выйти
+            </button>
+          </>
+        ) : (
+          <div>Not logged In</div>
+        )}
+
         <select
           className={classes.headerSelect}
           aria-label="label to select language"

@@ -1,7 +1,10 @@
 import { useNavigate } from 'react-router-dom';
+import { useLocale } from '../context/StoreContext';
 import styles from '../styles/main.module.css';
 
 function SignInPage() {
+  const { strings } = useLocale();
+
   const LoggedIn = localStorage.getItem('LoggedInStatus');
   const navigate = useNavigate();
   const handleClick = () => {
@@ -15,7 +18,7 @@ function SignInPage() {
     <div className={styles.mainDiv}>
       <p>This is Sign in Page</p>
       <button type="button" onClick={handleClick}>
-        {LoggedIn === 'true' ? 'SignOut' : 'SignIn'}
+        {LoggedIn === 'true' ? strings.logout : strings.signin_button}
       </button>
     </div>
   );

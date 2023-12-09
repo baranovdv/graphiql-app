@@ -1,4 +1,8 @@
+import { useLocale } from '../context/StoreContext';
+
 function Page404() {
-  return <p>This is 404 Page</p>;
+  const { strings } = useLocale();
+
+  return <p>{strings.page404_message}</p>;
 }
 export default Page404;

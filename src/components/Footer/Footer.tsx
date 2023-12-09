@@ -1,8 +1,14 @@
 import classes from './footer.module.css';
 
 export default function Footer() {
+  const page: string = window.location.pathname.split('/')[1];
   return (
-    <footer className={classes.footer}>
+    <footer
+      className={classes.footer}
+      style={{
+        maxWidth: page === 'SignUp' || page === 'SignIn' ? 800 : 1520,
+      }}
+    >
       <a href="https://github.com/baranovdv" className={classes.link}>
         <img
           className={classes.footerGithubLink}

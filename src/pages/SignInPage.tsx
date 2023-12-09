@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
-import styles from '../styles/main.module.css';
+import styles from '../styles/SingUp.module.css';
+import Footer from '../components/Footer/Footer';
 
 function SignInPage() {
   const LoggedIn = localStorage.getItem('LoggedInStatus');
@@ -12,12 +13,15 @@ function SignInPage() {
   };
 
   return (
-    <div className={styles.mainDiv}>
-      <p>This is Sign in Page</p>
-      <button type="button" onClick={handleClick}>
-        {LoggedIn === 'true' ? 'SignOut' : 'SignIn'}
-      </button>
-    </div>
+    <>
+      <main className={styles.main}>
+        <p>This is Sign in Page</p>
+        <button type="button" onClick={handleClick}>
+          {LoggedIn === 'true' ? 'SignOut' : 'SignIn'}
+        </button>
+      </main>
+      <Footer />
+    </>
   );
 }
 

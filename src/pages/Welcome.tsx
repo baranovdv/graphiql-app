@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import classes from '../styles/Welcome.module.css';
 import InfoPerson from '../components/InfoPerson/InfoPerson';
 import Header from '../components/Header/Header';
+import Footer from '../components/Footer/Footer';
 
 export default function Welcome() {
   const array = [1, 2, 3];
@@ -49,6 +50,7 @@ export default function Welcome() {
           })}
         </div>
       </main>
+      <Footer />
     </>
   );
 }

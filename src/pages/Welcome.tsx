@@ -8,7 +8,7 @@ import { auth } from '../firebase';
 
 export default function Welcome() {
   const array = [1, 2, 3];
-  const [user] = useAuthState(auth);
+  const [user, loading] = useAuthState(auth);
   return (
     <>
       <Header />
@@ -16,20 +16,22 @@ export default function Welcome() {
         <div className={classes.aboutProject}>
           <div className={classes.wrapper}>
             <div className={classes.mainLog}>
-              {!user ? (
+              {!user && !loading && (
                 <>
                   <Link to="SignUp" className={classes.link}>
-                    Регестрация
+                    Регистрация
                   </Link>
                   <Link to="SignIn" className={classes.link}>
                     Вход
                   </Link>
                 </>
-              ) : (
+              )}{' '}
+              {user && !loading && (
                 <Link to="MainPage" className={classes.link}>
                   Главная
                 </Link>
               )}
+              {loading}
             </div>
           </div>
           <div className={classes.wrapper}>

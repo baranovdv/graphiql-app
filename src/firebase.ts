@@ -5,8 +5,8 @@ import {
   signInWithPopup,
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
-  sendPasswordResetEmail,
   signOut,
+  updateProfile,
 } from 'firebase/auth';
 import {
   getFirestore,
@@ -48,8 +48,7 @@ const signInWithGoogle = async () => {
       });
     }
   } catch (err) {
-    console.error(err);
-    if (err instanceof Error) alert(err.message);
+    if (err instanceof Error) throw new Error(err.message);
   }
 };
 
@@ -57,8 +56,7 @@ const logInWithEmailAndPassword = async (email: string, password: string) => {
   try {
     await signInWithEmailAndPassword(auth, email, password);
   } catch (err) {
-    console.error(err);
-    if (err instanceof Error) alert(err.message);
+    if (err instanceof Error) throw new Error(err.message);
   }
 };
 
@@ -70,6 +68,7 @@ const registerWithEmailAndPassword = async (
   try {
     const res = await createUserWithEmailAndPassword(auth, email, password);
     const { user } = res;
+    updateProfile(user, { displayName: name });
     await addDoc(collection(db, 'users'), {
       uid: user.uid,
       name,
@@ -77,18 +76,7 @@ const registerWithEmailAndPassword = async (
       email,
     });
   } catch (err) {
-    console.error(err);
-    if (err instanceof Error) alert(err.message);
-  }
-};
-
-const sendPasswordReset = async (email: string) => {
-  try {
-    await sendPasswordResetEmail(auth, email);
-    alert('Password reset link sent!');
-  } catch (err) {
-    console.error(err);
-    if (err instanceof Error) alert(err.message);
+    if (err instanceof Error) throw new Error(err.message);
   }
 };
 
@@ -102,6 +90,5 @@ export {
   signInWithGoogle,
   logInWithEmailAndPassword,
   registerWithEmailAndPassword,
-  sendPasswordReset,
   logout,
 };

@@ -37,6 +37,7 @@ function SignUpPage() {
     if (loading) return;
     if (user) navigate('/MainPage');
   }, [user, loading]);
+
   return (
     <>
       <main className={classes.main}>

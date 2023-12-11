@@ -33,6 +33,7 @@ module.exports = {
   rules: {
     'react/react-in-jsx-scope': 0,
     'no-param-reassign': ['error', { props: false }],
-    "react/jsx-props-no-spreading": "off",
+    'react/jsx-props-no-spreading': 'off',
+    'react-hooks/exhaustive-deps': 'warn',
   },
 };

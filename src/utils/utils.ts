@@ -30,7 +30,7 @@ const userSchema = object().shape({
     .required('поле не долно быть пустым')
     .matches(
       /^(?=.*\p{Ll})(?=.*\p{Lu})(?=.*\d)(?=.*[@$!%*?&])[\p{L}\d@$!%*?&."']{8,}$/u,
-      'пороль должен содержать 8 символов: одну заглавную букву, одну строчную букву, одну цифру и один символ специального регистра.'
+      'пароль должен содержать 8 символов: одну заглавную букву, одну строчную букву, одну цифру и один символ специального регистра.'
     ),
   secondPassword: string()
     .required('поле не долно быть пустым')
@@ -45,15 +45,43 @@ const fieldsForRegistration = [
   {
     id: 'firstPassword',
     type: 'password',
-    label: 'ПОРОЛЬ:',
+    label: 'ПАРОЛЬ:',
     autoComplete: 'false',
   },
   {
     id: 'secondPassword',
     type: 'password',
-    label: 'ПОВТОРИТЕ ПОРОЛЬ:',
+    label: 'ПОВТОРИТЕ ПАРОЛЬ:',
     autoComplete: 'false',
   },
 ];
 
-export { fieldsForRegistration, userSchema };
+const fieldsForLogin = [
+  { id: 'email', type: 'text', label: 'ЭМЕЙЛ:', autoComplete: 'true' },
+  {
+    id: 'firstPassword',
+    type: 'password',
+    label: 'ПАРОЛЬ:',
+    autoComplete: 'false',
+  },
+];
+
+const loginSchema = object().shape({
+  email: string()
+    .required('поле не долно быть пустым')
+    .email(
+      'электронная почта должна быть действительным адресом электронной почты.'
+    )
+    .test(
+      'has-domain',
+      'электронная почта должна содержать доменное имя.',
+      (value) => {
+        if (!value) return true;
+        const domain = value.split('@')[1];
+        return Boolean(domain && domain.includes('.'));
+      }
+    ),
+  firstPassword: string().required('поле не должно быть пустым'),
+});
+
+export { fieldsForRegistration, userSchema, loginSchema, fieldsForLogin };

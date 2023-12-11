@@ -1,11 +1,15 @@
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Client } from '../types/types';
 import Label from '../components/label/Label';
 import Input from '../components/input/Input';
 import { fieldsForRegistration, userSchema } from '../utils/utils';
 import classes from '../styles/SingUp.module.css';
 import Footer from '../components/Footer/Footer';
+import { registerWithEmailAndPassword, auth } from '../firebase';
 
 function SignUpPage() {
   const form = useForm({
@@ -23,10 +27,16 @@ function SignUpPage() {
 
   const { register, handleSubmit, formState } = form;
   const { errors, isValid } = formState;
-
-  const onSubmit = (data: Client) => {
-    console.log(data);
+  const [user, loading] = useAuthState(auth);
+  const registerUser = (data: Client) => {
+    registerWithEmailAndPassword(data.username, data.email, data.firstPassword);
   };
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (loading) return;
+    if (user) navigate('/MainPage');
+  }, [user, loading]);
 
   return (
     <>
@@ -34,7 +44,7 @@ function SignUpPage() {
         <h1 className={classes.title}>Регистрация</h1>
         <form
           className={classes.form}
-          onSubmit={handleSubmit(onSubmit)}
+          onSubmit={handleSubmit(registerUser)}
           noValidate
         >
           {fieldsForRegistration.map((field) => (

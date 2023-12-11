@@ -1,11 +1,14 @@
 import { Link } from 'react-router-dom';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import classes from '../styles/Welcome.module.css';
 import InfoPerson from '../components/InfoPerson/InfoPerson';
 import Header from '../components/Header/Header';
 import Footer from '../components/Footer/Footer';
+import { auth } from '../firebase';
 
 export default function Welcome() {
   const array = [1, 2, 3];
+  const [user, loading] = useAuthState(auth);
   return (
     <>
       <Header />
@@ -13,12 +16,22 @@ export default function Welcome() {
         <div className={classes.aboutProject}>
           <div className={classes.wrapper}>
             <div className={classes.mainLog}>
-              <Link to="SignUp" className={classes.link}>
-                Регестрация
-              </Link>
-              <Link to="SignIn" className={classes.link}>
-                Вход
-              </Link>
+              {!user && !loading && (
+                <>
+                  <Link to="SignUp" className={classes.link}>
+                    Регистрация
+                  </Link>
+                  <Link to="SignIn" className={classes.link}>
+                    Вход
+                  </Link>
+                </>
+              )}{' '}
+              {user && !loading && (
+                <Link to="MainPage" className={classes.link}>
+                  Главная
+                </Link>
+              )}
+              {loading}
             </div>
           </div>
           <div className={classes.wrapper}>

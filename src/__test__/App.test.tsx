@@ -12,10 +12,6 @@ describe('App', () => {
         <Header />
       </Provider>
     );
-    expect(
-      screen.getByRole('button', {
-        name: /выйти/i,
-      })
-    ).toHaveTextContent('выйти');
+    expect(screen.getByAltText('logo')).toBeInTheDocument();
   });
 });

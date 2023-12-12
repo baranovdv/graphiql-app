@@ -4,6 +4,8 @@ export type ActionType = 'change_language';
 
 export type LocaleData = Record<StringsTypes, string>;
 
+export type MainPageGridAreas = 'navbar' | 'editor' | 'viewer' | 'vars';
+
 export type StringsTypes =
   | 'signin_button'
   | 'signup_button'

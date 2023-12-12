@@ -8,7 +8,7 @@ import Footer from '../components/Footer/Footer';
 import classes from '../styles/SingIn.module.css';
 import { fieldsForLogin, loginSchema } from '../utils/utils';
 import Label from '../components/label/Label';
-import { Client } from '../types/types';
+import { Client } from '../interfaces/interfaces';
 import LoginInput from '../components/input/LoginInput';
 
 function SignInPage() {

@@ -1,10 +1,17 @@
 import { useEffect, useState } from 'react';
+import { useLocale, useLocaleDispatch } from '../../context/StoreContext';
+import { AppLanguages } from '../../types/types';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth, logout } from '../../firebase';
 import classes from './Header.module.css';
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
+
+  const { strings, currentLanguage } = useLocale();
+
+  const dispatch = useLocaleDispatch();
+
   const checkScroll = () => {
     setIsScrolled(window.scrollY > 0);
   };
@@ -47,7 +54,14 @@ export default function Header() {
 
         <select
           className={classes.headerSelect}
+          onChange={(event: React.ChangeEvent<HTMLSelectElement>): void =>
+            dispatch({
+              type: 'change_language',
+              payload: event.target.value as AppLanguages,
+            })
+          }
           aria-label="label to select language"
+          value={currentLanguage}
         >
           <option value="ru">russian</option>
           <option value="en">english</option>

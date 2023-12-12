@@ -3,15 +3,18 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Client } from '../types/types';
+import { Client } from '../interfaces/interfaces';
 import Label from '../components/label/Label';
 import Input from '../components/input/Input';
-import { fieldsForRegistration, userSchema } from '../utils/utils';
+import { FieldsForRegistration, UserSchema } from '../utils/utils';
 import classes from '../styles/SingUp.module.css';
+import { useLocale } from '../context/StoreContext';
 import Footer from '../components/Footer/Footer';
 import { registerWithEmailAndPassword, auth } from '../firebase';
 
 function SignUpPage() {
+  const { strings } = useLocale();
+
   const form = useForm({
     defaultValues: async () => {
       return {
@@ -21,7 +24,7 @@ function SignUpPage() {
         secondPassword: '',
       };
     },
-    resolver: yupResolver(userSchema),
+    resolver: yupResolver(UserSchema()),
     mode: 'onChange',
   });
 
@@ -41,7 +44,7 @@ function SignUpPage() {
   return (
     <>
       <main className={classes.main}>
-        <h1 className={classes.title}>Регистрация</h1>
+        <h1 className={classes.title}>{strings.singup_page_title}</h1>
         <form
           className={classes.form}
           onSubmit={handleSubmit(registerUser)}
@@ -63,7 +66,7 @@ function SignUpPage() {
           <input
             className={classes.button}
             type="submit"
-            value="РЕГИСТРАЦИЯ"
+            value={strings.signup_button}
             disabled={!isValid}
           />
         </form>

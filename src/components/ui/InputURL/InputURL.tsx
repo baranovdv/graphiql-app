@@ -2,6 +2,9 @@ import { Fab, IconButton, TextField } from '@mui/material';
 import RefreshIcon from '@mui/icons-material/Refresh';
 import CleaningServicesIcon from '@mui/icons-material/CleaningServices';
 import ArticleIcon from '@mui/icons-material/Article';
+import PlayArrowIcon from '@mui/icons-material/PlayArrow';
+import PauseIcon from '@mui/icons-material/Pause';
+import { useState } from 'react';
 import classes from './InputURL.module.css';
 import { MainPageGridAreas } from '../../../types/types';
 
@@ -10,7 +13,11 @@ export default function InputURL({
 }: {
   gridAreaProp: MainPageGridAreas;
 }) {
+  const [isPlay, setisPlay] = useState<boolean>(true);
+
   const refreshHandler = () => console.log('refresh');
+
+  const playHandler = () => setisPlay(!isPlay);
 
   return (
     <nav
@@ -57,6 +64,22 @@ export default function InputURL({
         Docs&nbsp;
         <ArticleIcon />
       </Fab>
+      <IconButton
+        aria-label="play"
+        onClick={playHandler}
+        sx={{
+          position: 'absolute',
+          top: '7rem',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+          backgroundColor: 'rgba(0, 0, 0, 0.4)',
+          width: '4rem',
+          aspectRatio: '1',
+        }}
+        size="large"
+      >
+        {isPlay ? <PlayArrowIcon /> : <PauseIcon />}
+      </IconButton>
     </nav>
   );
 }

@@ -1,7 +1,7 @@
 import { object, string } from 'yup';
 import { useLocale } from '../context/StoreContext';
 
-function Schema() {
+function UserSchema() {
   const { strings } = useLocale();
 
   return object().shape({
@@ -33,6 +33,7 @@ function Schema() {
       }),
   });
 }
+
 function FieldsForRegistration() {
   const { strings } = useLocale();
 
@@ -59,4 +60,32 @@ function FieldsForRegistration() {
   ];
 }
 
-export { FieldsForRegistration, Schema };
+const fieldsForLogin = [
+  { id: 'email', type: 'text', label: 'ЭМЕЙЛ:', autoComplete: 'true' },
+  {
+    id: 'firstPassword',
+    type: 'password',
+    label: 'ПАРОЛЬ:',
+    autoComplete: 'false',
+  },
+];
+
+const loginSchema = object().shape({
+  email: string()
+    .required('поле не долно быть пустым')
+    .email(
+      'электронная почта должна быть действительным адресом электронной почты.'
+    )
+    .test(
+      'has-domain',
+      'электронная почта должна содержать доменное имя.',
+      (value) => {
+        if (!value) return true;
+        const domain = value.split('@')[1];
+        return Boolean(domain && domain.includes('.'));
+      }
+    ),
+  firstPassword: string().required('поле не должно быть пустым'),
+});
+
+export { FieldsForRegistration, UserSchema, loginSchema, fieldsForLogin };

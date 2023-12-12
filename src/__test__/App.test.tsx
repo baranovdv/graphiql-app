@@ -15,10 +15,6 @@ describe('App', () => {
         </LocaleProvider>
       </Provider>
     );
-    expect(
-      screen.getByRole('button', {
-        name: /выйти/i,
-      })
-    ).toHaveTextContent('Выйти');
+    expect(screen.getByAltText('logo')).toBeInTheDocument();
   });
 });

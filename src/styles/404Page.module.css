@@ -1,0 +1,80 @@
+.wrapperPage {
+    min-height: 100vh;
+}
+
+.wrapper {
+    background: #e5ecf3;
+    max-width: 1520px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    @media screen and (width <= 1050px) {
+        flex-direction: column;
+        align-items: center
+    }
+}
+
+.error404 {
+    font-size: 45px;
+    font-weight: 400;
+    line-height: 67px;
+    color: #343638;
+    letter-spacing: 2px;
+    @media screen and (width <= 1050px) {
+        font-size: 40px;
+        line-height: 0;
+    }
+}
+
+.title404 {
+    font-size: 250px;
+    font-weight: 600;
+    line-height: 102px;
+    color: #343638;
+    letter-spacing: 20px;
+
+    @media screen and (width <= 1050px) {
+        font-size: 150px;
+        font-weight: 600;
+        line-height: 0;
+    }
+}
+
+.description404 {
+    font-size: 28px;
+    font-weight: 400;
+    line-height: 42px;
+    color: #343638;
+    letter-spacing: 1.5px;
+
+    @media screen and (width <= 1050px) {
+        text-align: center;
+    }
+}
+
+.button404 {
+    border-radius: 20px;
+    width: 240px;
+    height: 50px;
+}
+
+.info404 {
+    padding-left: 20px;
+    padding-bottom: 300px;
+    @media screen and (width <= 1050px) {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-bottom: 100px;
+    }
+}
+
+.couch404{
+    padding-bottom: 300px;
+    @media screen and (width <= 1050px) {
+        padding-bottom: 100px;
+    }
+}
+
+

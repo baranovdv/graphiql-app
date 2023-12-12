@@ -4,7 +4,7 @@ import { useLocale } from '../context/StoreContext';
 
 function MainPage() {
   const { strings } = useLocale();
-  
+
   return (
     <>
       <main className={styles.main}>

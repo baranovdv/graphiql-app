@@ -50,7 +50,7 @@ function SignUpPage() {
           onSubmit={handleSubmit(registerUser)}
           noValidate
         >
-          {fieldsForRegistration.map((field) => (
+          {FieldsForRegistration().map((field) => (
             <Label className={classes.field} htmlFor={field.id} key={field.id}>
               {field.label}
               <div className={classes.wrapperInput}>

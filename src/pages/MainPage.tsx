@@ -1,17 +1,22 @@
 import Footer from '../components/Footer/Footer';
-import styles from '../styles/Welcome.module.css';
-import { useLocale } from '../context/StoreContext';
+import EditorView from '../components/ui/EditorView/EditorView';
+import InputURL from '../components/ui/InputURL/InputURL';
+import VarsHeaders from '../components/ui/VarsHeaders/VarsHeaders';
+import classes from '../styles/MainPage.module.css';
 
-function MainPage() {
-  const { strings } = useLocale();
-
+export function MainPage() {
   return (
     <>
-      <main className={styles.main}>
-        <p>{strings.main_page_title}</p>
-      </main>
+      {/* <Header /> */}
+      <section className={classes.container}>
+        <InputURL gridAreaProp="navbar" />
+        <EditorView gridAreaProp="editor" />
+        <EditorView gridAreaProp="viewer" />
+        <VarsHeaders gridAreaProp="vars" />
+      </section>
       <Footer />
     </>
   );
 }
+
 export default MainPage;

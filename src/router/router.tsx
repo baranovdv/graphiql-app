@@ -2,8 +2,9 @@ import { createBrowserRouter } from 'react-router-dom';
 import App from '../App';
 import SignInPage from '../pages/SignInPage';
 import Page404 from '../pages/404Page';
-import PrivateRoute from './PrivateRoute';
+// import PrivateRoute from './PrivateRoute';
 import Welcome from '../pages/Welcome';
+import MainPage1 from '../pages/MainPage';
 import SignUpPage from '../pages/SignUpPage';
 
 const routes = [
@@ -25,7 +26,7 @@ const routes = [
       },
       {
         path: 'MainPage',
-        element: <PrivateRoute />,
+        element: <MainPage1 />,
       },
       {
         path: '*',

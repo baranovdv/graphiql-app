@@ -7,6 +7,9 @@ import PauseIcon from '@mui/icons-material/Pause';
 import { useState } from 'react';
 import classes from './InputURL.module.css';
 import { MainPageGridAreas } from '../../../types/types';
+import { useLazyGetDataQuery } from '../../../store/api/api';
+import { useAppDispatch, useAppSelector } from '../../../store/store';
+import { setResponse, setUrl } from '../../../store/reducers/mainPageSlice';
 
 export default function InputURL({
   gridAreaProp,
@@ -14,10 +17,23 @@ export default function InputURL({
   gridAreaProp: MainPageGridAreas;
 }) {
   const [isPlay, setisPlay] = useState<boolean>(true);
-
   const refreshHandler = () => console.log('refresh');
-
-  const playHandler = () => setisPlay(!isPlay);
+  const dispatch = useAppDispatch();
+  const inputvalue = useAppSelector((state) => state.mainPage.input);
+  const url = useAppSelector((state) => state.mainPage.url);
+  const [triggerfn] = useLazyGetDataQuery();
+  const playHandler = async () => {
+    try {
+      const response = await triggerfn({
+        url,
+        query: `query{${inputvalue}}`,
+      });
+      dispatch(setResponse(JSON.stringify(response.data)));
+      setisPlay(true);
+    } catch (error) {
+      if (error instanceof Error) throw new Error(error.message);
+    }
+  };
 
   return (
     <nav
@@ -46,6 +62,8 @@ export default function InputURL({
         variant="outlined"
         size="small"
         sx={{ width: '100%' }}
+        value={url}
+        onChange={(e) => dispatch(setUrl(e.target.value))}
       />
       <IconButton aria-label="refresh" onClick={refreshHandler}>
         <RefreshIcon />
@@ -66,7 +84,10 @@ export default function InputURL({
       </Fab>
       <IconButton
         aria-label="play"
-        onClick={playHandler}
+        onClick={() => {
+          setisPlay(false);
+          playHandler();
+        }}
         sx={{
           position: 'absolute',
           top: '7rem',

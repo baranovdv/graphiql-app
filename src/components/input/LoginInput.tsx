@@ -1,6 +1,6 @@
 import { HTMLProps } from 'react';
 import { UseFormRegister } from 'react-hook-form';
-import { Client } from '../../types/types';
+import { Client } from '../../interfaces/interfaces';
 import classes from './Input.module.css';
 
 interface InputProps extends HTMLProps<HTMLInputElement> {

@@ -1,7 +1,9 @@
-import { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { useLayoutEffect, useRef } from 'react';
 import { PrismLight as SyntaxHighlighter } from 'react-syntax-highlighter';
 import prism from 'react-syntax-highlighter/dist/esm/styles/prism/prism';
 import graphql from 'react-syntax-highlighter/dist/esm/languages/prism/graphql';
+import { useAppDispatch, useAppSelector } from '../../../store/store';
+import { setInput, setResponse } from '../../../store/reducers/mainPageSlice';
 import { MainPageGridAreas } from '../../../types/types';
 import classes from './EditorView.module.css';
 
@@ -10,20 +12,11 @@ export default function EditorView({
 }: {
   gridAreaProp: MainPageGridAreas;
 }) {
-  const [text, setText] = useState('');
   const textareaRef = useRef<HTMLTextAreaElement>(null);
-
+  const dispatch = useAppDispatch();
+  const input = useAppSelector((state) => state.mainPage.input);
+  const response = useAppSelector((state) => state.mainPage.response);
   SyntaxHighlighter.registerLanguage('graphql', graphql);
-
-  useEffect(() => {
-    if (textareaRef.current) {
-      textareaRef.current.addEventListener('input', () => {
-        if (textareaRef.current) {
-          setText(textareaRef.current.value);
-        }
-      });
-    }
-  }, []);
 
   function adjustHeight() {
     if (textareaRef.current) {
@@ -32,8 +25,6 @@ export default function EditorView({
     }
   }
 
-  useLayoutEffect(adjustHeight, []);
-
   function handleKeyDown(e: React.KeyboardEvent<HTMLTextAreaElement>) {
     adjustHeight();
     if (e.key === 'Tab') {
@@ -41,6 +32,9 @@ export default function EditorView({
     }
   }
 
+  useLayoutEffect(() => {
+    adjustHeight();
+  }, [input, response]);
   return (
     <section
       className={classes.section}
@@ -63,7 +57,7 @@ export default function EditorView({
             },
           }}
         >
-          {text}
+          {gridAreaProp === 'editor' ? input : response}
         </SyntaxHighlighter>
       </pre>
       <textarea
@@ -71,9 +65,17 @@ export default function EditorView({
         className={classes.textarea}
         id="ev"
         name="ev"
-        cols={100}
-        defaultValue=""
+        rows={10}
+        cols={30}
+        onChange={(e) => {
+          if (gridAreaProp === 'editor') {
+            dispatch(setInput(e.target.value));
+          } else {
+            dispatch(setResponse(e.target.value));
+          }
+        }}
         onKeyDown={handleKeyDown}
+        value={gridAreaProp === 'editor' ? input : response}
       />
     </section>
   );

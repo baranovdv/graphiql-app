@@ -9,8 +9,8 @@ const initialState: {
 } = {
   url: 'https://rickandmortyapi.com/graphql',
   input:
-    'characters {\n            results {\n              id\n              name\n              status\n            }\n        }',
-  vars: '',
+    'query($page:Int, $filter:FilterCharacter){\n  characters(page:$page,filter:$filter) {\n            results {\n              id\n              name\n              status\n            }\n        }  \n}',
+  vars: '{\n "page": 1,\n  "filter": {\n  "name": "Rick"\n  }\n}',
   headers: '',
   response: '',
 };

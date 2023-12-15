@@ -20,13 +20,19 @@ export default function InputURL({
   const refreshHandler = () => console.log('refresh');
   const dispatch = useAppDispatch();
   const inputvalue = useAppSelector((state) => state.mainPage.input);
+  const vars = useAppSelector((state) => state.mainPage.vars);
+  const headers = useAppSelector((state) => state.mainPage.headers);
   const url = useAppSelector((state) => state.mainPage.url);
   const [triggerfn] = useLazyGetDataQuery();
   const playHandler = async () => {
     try {
       const response = await triggerfn({
         url,
-        query: `query{${inputvalue}}`,
+        query: `${inputvalue}`,
+        variables: JSON.parse(vars),
+        headersopt: Object.assign(JSON.parse(headers || '{}'), {
+          'Content-Type': 'application/json',
+        }),
       });
       dispatch(setResponse(JSON.stringify(response.data)));
       setisPlay(true);

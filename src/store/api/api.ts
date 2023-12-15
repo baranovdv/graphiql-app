@@ -13,6 +13,7 @@ type MainPageReq = {
   url: string;
   query: string;
   variables?: object;
+  headersopt?: Record<string, string>;
 };
 
 const createApi = buildCreateApi(
@@ -28,12 +29,10 @@ export const MainPageApi = createApi({
   endpoints: ({ query }) => ({
     getData: query<MainPageRes, MainPageReq>({
       // eslint-disable-next-line @typescript-eslint/no-shadow
-      query: ({ url, query, variables }) => ({
+      query: ({ url, query, variables, headersopt }) => ({
         url: `${url}`,
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: headersopt,
         body: JSON.stringify({
           query,
           variables,

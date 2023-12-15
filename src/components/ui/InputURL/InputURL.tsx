@@ -78,7 +78,11 @@ export default function InputURL({
         }}
         size="large"
       >
-        {isPlay ? <PlayArrowIcon /> : <PauseIcon />}
+        {isPlay ? (
+          <PlayArrowIcon fontSize="large" />
+        ) : (
+          <PauseIcon fontSize="large" />
+        )}
       </IconButton>
     </nav>
   );

@@ -51,6 +51,9 @@ export default function EditorView({
           showLineNumbers
           style={{
             ...prism,
+            'react-syntax-highlighter-line-number': {
+              minWidth: '2.25em',
+            },
             hljs: {
               ...prism.hljs,
               background: 'transparent',

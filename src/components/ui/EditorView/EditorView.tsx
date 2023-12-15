@@ -34,8 +34,11 @@ export default function EditorView({
 
   useLayoutEffect(adjustHeight, []);
 
-  function handleKeyDown() {
+  function handleKeyDown(e: React.KeyboardEvent<HTMLTextAreaElement>) {
     adjustHeight();
+    if (e.key === 'Tab') {
+      e.preventDefault();
+    }
   }
 
   return (
@@ -70,7 +73,7 @@ export default function EditorView({
         name="ev"
         cols={100}
         defaultValue=""
-        onChange={handleKeyDown}
+        onKeyDown={handleKeyDown}
       />
     </section>
   );

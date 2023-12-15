@@ -8,11 +8,14 @@ import { useState } from 'react';
 import classes from './InputURL.module.css';
 import { MainPageGridAreas } from '../../../types/types';
 
-export default function InputURL({
-  gridAreaProp,
-}: {
+interface InputURLProps {
   gridAreaProp: MainPageGridAreas;
-}) {
+  toggleDocs: () => void;
+}
+
+export default function InputURL(props: InputURLProps) {
+  const { gridAreaProp, toggleDocs } = props;
+
   const [isPlay, setisPlay] = useState<boolean>(true);
 
   const refreshHandler = () => console.log('refresh');
@@ -40,6 +43,21 @@ export default function InputURL({
         Prettify&nbsp;
         <CleaningServicesIcon />
       </Fab>
+      <Fab
+        variant="extended"
+        size="small"
+        color="primary"
+        aria-label="register"
+        onClick={toggleDocs}
+        sx={{
+          backgroundColor: 'rgba(0, 0, 0, 0.4)',
+          fontSize: '0.7rem',
+          p: '1rem',
+        }}
+      >
+        Docs&nbsp;
+        <ArticleIcon />
+      </Fab>
       <TextField
         id="url"
         label="Enter URL"
@@ -50,20 +68,6 @@ export default function InputURL({
       <IconButton aria-label="refresh" onClick={refreshHandler}>
         <RefreshIcon />
       </IconButton>
-      <Fab
-        variant="extended"
-        size="small"
-        color="primary"
-        aria-label="register"
-        sx={{
-          backgroundColor: 'rgba(0, 0, 0, 0.4)',
-          fontSize: '0.7rem',
-          p: '1rem',
-        }}
-      >
-        Docs&nbsp;
-        <ArticleIcon />
-      </Fab>
       <IconButton
         aria-label="play"
         onClick={playHandler}

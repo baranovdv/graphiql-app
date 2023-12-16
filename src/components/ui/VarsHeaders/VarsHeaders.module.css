@@ -4,7 +4,18 @@
 }
 
 .navbar {
+  display: flex;
+  justify-content: flex-start;
   margin-bottom: 1rem;
+}
+
+.content {
+  display: none;
+}
+
+.contentShow {
+  display: block;
+  height: 25vh;
 }
 
 .textarea {

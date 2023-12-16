@@ -1,5 +1,7 @@
-import { Button } from '@mui/material';
+import { Button, IconButton } from '@mui/material';
 import { useState } from 'react';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import { MainPageGridAreas } from '../../../types/types';
 import classes from './VarsHeaders.module.css';
 import { useAppDispatch, useAppSelector } from '../../../store/store';
@@ -11,6 +13,7 @@ export default function VarsHeaders({
   gridAreaProp: MainPageGridAreas;
 }) {
   const [menu, setMenu] = useState('variables');
+  const [isContentOpen, setIsContentOpen] = useState<boolean>(false);
 
   const clickHandler = (event: React.MouseEvent<HTMLElement>): void => {
     const { id } = event.target as HTMLElement;
@@ -19,6 +22,8 @@ export default function VarsHeaders({
   const dispatch = useAppDispatch();
   const vars = useAppSelector((state) => state.mainPage.vars);
   const headers = useAppSelector((state) => state.mainPage.headers);
+
+  const toggleContentHandler = () => setIsContentOpen(!isContentOpen);
 
   return (
     <section
@@ -46,33 +51,40 @@ export default function VarsHeaders({
         >
           HTTP HEADERS
         </Button>
+        <IconButton aria-label="show content" onClick={toggleContentHandler}>
+          {isContentOpen ? <KeyboardArrowDownIcon /> : <KeyboardArrowUpIcon />}
+        </IconButton>
       </nav>
-      {menu === 'variables' && (
-        <textarea
-          className={classes.textarea}
-          id="ev"
-          name="ev"
-          rows={3}
-          cols={30}
-          onChange={(e) => {
-            dispatch(setVars(e.target.value));
-          }}
-          value={vars}
-        />
-      )}
-      {menu === 'headers' && (
-        <textarea
-          className={classes.textarea}
-          id="ev"
-          name="ev"
-          rows={3}
-          cols={30}
-          onChange={(e) => {
-            dispatch(setHeaders(e.target.value));
-          }}
-          value={headers}
-        />
-      )}
+      <div
+        className={`${classes.content} ${isContentOpen && classes.contentShow}`}
+      >
+        {menu === 'variables' && (
+          <textarea
+            className={classes.textarea}
+            id="ev"
+            name="ev"
+            rows={3}
+            cols={30}
+            onChange={(e) => {
+              dispatch(setVars(e.target.value));
+            }}
+            value={vars}
+          />
+        )}
+        {menu === 'headers' && (
+          <textarea
+            className={classes.textarea}
+            id="ev"
+            name="ev"
+            rows={3}
+            cols={30}
+            onChange={(e) => {
+              dispatch(setHeaders(e.target.value));
+            }}
+            value={headers}
+          />
+        )}
+      </div>
     </section>
   );
 }

@@ -11,11 +11,14 @@ import { useLazyGetDataQuery } from '../../../store/api/api';
 import { useAppDispatch, useAppSelector } from '../../../store/store';
 import { setResponse, setUrl } from '../../../store/reducers/mainPageSlice';
 
-export default function InputURL({
-  gridAreaProp,
-}: {
+interface InputURLProps {
   gridAreaProp: MainPageGridAreas;
-}) {
+  toggleDocs: () => void;
+}
+
+export default function InputURL(props: InputURLProps) {
+  const { gridAreaProp, toggleDocs } = props;
+
   const [isPlay, setisPlay] = useState<boolean>(true);
   const refreshHandler = () => console.log('refresh');
   const dispatch = useAppDispatch();
@@ -62,6 +65,21 @@ export default function InputURL({
         Prettify&nbsp;
         <CleaningServicesIcon />
       </Fab>
+      <Fab
+        variant="extended"
+        size="small"
+        color="primary"
+        aria-label="register"
+        onClick={toggleDocs}
+        sx={{
+          backgroundColor: 'rgba(0, 0, 0, 0.4)',
+          fontSize: '0.7rem',
+          p: '1rem',
+        }}
+      >
+        Docs&nbsp;
+        <ArticleIcon />
+      </Fab>
       <TextField
         id="url"
         label="Enter URL"
@@ -74,20 +92,6 @@ export default function InputURL({
       <IconButton aria-label="refresh" onClick={refreshHandler}>
         <RefreshIcon />
       </IconButton>
-      <Fab
-        variant="extended"
-        size="small"
-        color="primary"
-        aria-label="register"
-        sx={{
-          backgroundColor: 'rgba(0, 0, 0, 0.4)',
-          fontSize: '0.7rem',
-          p: '1rem',
-        }}
-      >
-        Docs&nbsp;
-        <ArticleIcon />
-      </Fab>
       <IconButton
         aria-label="play"
         onClick={() => {
@@ -105,7 +109,11 @@ export default function InputURL({
         }}
         size="large"
       >
-        {isPlay ? <PlayArrowIcon /> : <PauseIcon />}
+        {isPlay ? (
+          <PlayArrowIcon fontSize="large" />
+        ) : (
+          <PauseIcon fontSize="large" />
+        )}
       </IconButton>
     </nav>
   );

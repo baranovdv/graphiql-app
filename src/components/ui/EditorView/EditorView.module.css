@@ -19,6 +19,7 @@
 
 
 .textarea {
+  min-width: 300px;
   position: absolute;
   background-color: transparent;
   color: transparent;

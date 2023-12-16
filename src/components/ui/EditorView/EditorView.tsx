@@ -29,9 +29,15 @@ export default function EditorView({
     for (let i = 0; i < text.length; i += 1) {
       const char = text[i];
       if (char === '{' || char === '[') {
-        formattedResponse += `\n${'  '.repeat(indent)}${char}\n${'  '.repeat(
-          (indent += 1)
-        )}`;
+        if (i !== 0) {
+          formattedResponse += `\n${'  '.repeat(indent)}${char}\n${'  '.repeat(
+            (indent += 1)
+          )}`;
+        } else {
+          formattedResponse += `${'  '.repeat(indent)}${char}\n${'  '.repeat(
+            (indent += 1)
+          )}`;
+        }
       } else if (char === '}' || char === ']') {
         formattedResponse += `\n${'  '.repeat((indent -= 1))}${char}`;
       } else if (char === ',') {

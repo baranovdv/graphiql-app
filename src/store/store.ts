@@ -1,9 +1,15 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
-import { welcomeSlice } from './reducers/welcomeSlice';
+import { MainPageDataSlice } from './reducers/mainPageSlice';
+import { MainPageApi } from './api/api';
 
 export const store = configureStore({
-  reducer: welcomeSlice.reducer,
+  reducer: {
+    mainPage: MainPageDataSlice.reducer,
+    [MainPageApi.reducerPath]: MainPageApi.reducer,
+  },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(MainPageApi.middleware),
 });
 
 export type RootState = ReturnType<typeof store.getState>;

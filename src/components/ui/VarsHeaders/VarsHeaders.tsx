@@ -4,6 +4,8 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import { MainPageGridAreas } from '../../../types/types';
 import classes from './VarsHeaders.module.css';
+import { useAppDispatch, useAppSelector } from '../../../store/store';
+import { setHeaders, setVars } from '../../../store/reducers/mainPageSlice';
 
 export default function VarsHeaders({
   gridAreaProp,
@@ -17,6 +19,9 @@ export default function VarsHeaders({
     const { id } = event.target as HTMLElement;
     setMenu(id);
   };
+  const dispatch = useAppDispatch();
+  const vars = useAppSelector((state) => state.mainPage.vars);
+  const headers = useAppSelector((state) => state.mainPage.headers);
 
   const toggleContentHandler = () => setIsContentOpen(!isContentOpen);
 
@@ -60,7 +65,10 @@ export default function VarsHeaders({
             name="ev"
             rows={3}
             cols={30}
-            defaultValue="QUERY VARIABLES"
+            onChange={(e) => {
+              dispatch(setVars(e.target.value));
+            }}
+            value={vars}
           />
         )}
         {menu === 'headers' && (
@@ -70,7 +78,10 @@ export default function VarsHeaders({
             name="ev"
             rows={3}
             cols={30}
-            defaultValue="HTTP HEADERS"
+            onChange={(e) => {
+              dispatch(setHeaders(e.target.value));
+            }}
+            value={headers}
           />
         )}
       </div>

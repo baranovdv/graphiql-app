@@ -115,6 +115,7 @@ export default function EditorView({
         id="ev"
         name="ev"
         rows={10}
+        readOnly={gridAreaProp !== 'editor'}
         onChange={(e) => {
           if (gridAreaProp === 'editor') {
             dispatch(setInput(e.target.value));

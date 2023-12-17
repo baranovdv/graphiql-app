@@ -9,7 +9,12 @@ import classes from './InputURL.module.css';
 import { MainPageGridAreas } from '../../../types/types';
 import { useLazyGetDataQuery } from '../../../store/api/api';
 import { useAppDispatch, useAppSelector } from '../../../store/store';
-import { setResponse, setUrl } from '../../../store/reducers/mainPageSlice';
+import {
+  setInput,
+  setResponse,
+  setUrl,
+} from '../../../store/reducers/mainPageSlice';
+import prettify from '../../../utils/prettify';
 
 interface InputURLProps {
   gridAreaProp: MainPageGridAreas;
@@ -20,13 +25,23 @@ export default function InputURL(props: InputURLProps) {
   const { gridAreaProp, toggleDocs } = props;
 
   const [isPlay, setisPlay] = useState<boolean>(true);
-  const refreshHandler = () => console.log('refresh');
+
   const dispatch = useAppDispatch();
   const inputvalue = useAppSelector((state) => state.mainPage.input);
   const vars = useAppSelector((state) => state.mainPage.vars);
   const headers = useAppSelector((state) => state.mainPage.headers);
   const url = useAppSelector((state) => state.mainPage.url);
+
   const [triggerfn] = useLazyGetDataQuery();
+
+  const refreshHandler = () => console.log('refresh');
+
+  const prettifyHandler = () => {
+    const prettifiedInput = prettify(inputvalue);
+
+    dispatch(setInput(prettifiedInput));
+  };
+
   const playHandler = async () => {
     try {
       const response = await triggerfn({
@@ -56,6 +71,7 @@ export default function InputURL(props: InputURLProps) {
         size="small"
         color="primary"
         aria-label="register"
+        onClick={prettifyHandler}
         sx={{
           backgroundColor: 'rgba(0, 0, 0, 0.4)',
           fontSize: '0.7rem',

@@ -2,7 +2,7 @@ const TAB_SIZE = '    ';
 
 function removeSpaces(str: string): string {
   return str
-    .replace(/\n/g, '')
+    .replace(/\n/g, ' ')
     .split(' ')
     .filter((item) => item.trim() !== '')
     .join(' ');

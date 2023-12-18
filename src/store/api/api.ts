@@ -40,7 +40,7 @@ export const MainPageApi = createApi({
         }),
       }),
     }),
-    getSchema: query<IntrospectionQuery, Pick<MainPageReq, 'url'>>({
+    getSchema: query<IntrospectionQuery, string>({
       query: (url) => ({
         url: `${url}`,
         method: 'POST',

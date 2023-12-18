@@ -1,9 +1,11 @@
 import { Navigate } from 'react-router-dom';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { MainPage } from '../pages/MainPage';
+import { auth } from '../firebase';
 
 function PrivateRoute() {
-  const LoggedIn = localStorage.getItem('LoggedInStatus');
+  const [, loading] = useAuthState(auth);
 
-  return LoggedIn === 'true' ? MainPage() : <Navigate to="/" replace />;
+  return loading ? <Navigate to="/" replace /> : MainPage();
 }
 export default PrivateRoute;

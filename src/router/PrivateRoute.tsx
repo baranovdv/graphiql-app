@@ -4,8 +4,17 @@ import { MainPage } from '../pages/MainPage';
 import { auth } from '../firebase';
 
 function PrivateRoute() {
-  const [, loading] = useAuthState(auth);
+  const [user, loading] = useAuthState(auth);
 
-  return loading ? <Navigate to="/" replace /> : MainPage();
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (!user) {
+    return <Navigate to="/" replace />;
+  }
+
+  return <MainPage />;
 }
+
 export default PrivateRoute;

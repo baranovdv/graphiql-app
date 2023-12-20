@@ -10,10 +10,9 @@ import { auth } from '../firebase';
 export default function Welcome() {
   const { strings } = useLocale();
 
-  console.log(strings);
-
   const array = [1, 2, 3];
   const [user, loading] = useAuthState(auth);
+
   return (
     <>
       <Header />

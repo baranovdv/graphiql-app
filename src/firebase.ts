@@ -7,6 +7,8 @@ import {
   createUserWithEmailAndPassword,
   signOut,
   updateProfile,
+  onIdTokenChanged,
+  Unsubscribe,
 } from 'firebase/auth';
 import {
   getFirestore,
@@ -16,6 +18,8 @@ import {
   where,
   addDoc,
 } from 'firebase/firestore';
+import { useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyBU1PjkGdYLjUPzXg1NPIu-G_op6BMP7Sc',
@@ -84,6 +88,34 @@ const logout = () => {
   signOut(auth);
 };
 
+const useTokenExpire = (): void => {
+  const TokenTimerRef = useRef<ReturnType<typeof setTimeout>>();
+  const navigate = useNavigate();
+  useEffect((): Unsubscribe => {
+    const unsubscribe = onIdTokenChanged(
+      auth,
+      async (firebaseUser): Promise<void> => {
+        if (!firebaseUser) return;
+
+        const { expirationTime } = await firebaseUser.getIdTokenResult();
+        console.log(expirationTime);
+        const logoutDuration = new Date(expirationTime).getTime() - Date.now();
+
+        const timer = setTimeout(() => {
+          logout();
+          navigate('/');
+        }, logoutDuration);
+
+        TokenTimerRef.current = timer;
+      }
+    );
+    return () => {
+      clearTimeout(TokenTimerRef.current);
+      unsubscribe();
+    };
+  }, [navigate]);
+};
+
 export {
   auth,
   db,
@@ -91,4 +123,5 @@ export {
   logInWithEmailAndPassword,
   registerWithEmailAndPassword,
   logout,
+  useTokenExpire,
 };

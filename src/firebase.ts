@@ -98,7 +98,6 @@ const useTokenExpire = (): void => {
         if (!firebaseUser) return;
 
         const { expirationTime } = await firebaseUser.getIdTokenResult();
-        console.log(expirationTime);
         const logoutDuration = new Date(expirationTime).getTime() - Date.now();
 
         const timer = setTimeout(() => {

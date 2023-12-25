@@ -26,10 +26,10 @@ export default function RootItem({ item }: RootItemProps) {
         </span>
       )}
       (
-      {item.args?.map((arg) => (
+      {item.args?.map((arg, index, array) => (
         <Fragment key={arg.name}>
           <ItemLink type={getArgType(arg)} title={arg.name} />
-          &#44;&nbsp;
+          {array.length > 1 && index < array.length - 1 && ', '}
         </Fragment>
       ))}
       ):&nbsp;
@@ -41,3 +41,5 @@ export default function RootItem({ item }: RootItemProps) {
     </div>
   );
 }
+
+// &#44;&nbsp;

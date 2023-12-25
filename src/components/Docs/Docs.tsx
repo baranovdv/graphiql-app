@@ -69,7 +69,6 @@ export default function Docs() {
     setItemsList(lastItemsList.current.pop() || []);
     levelName.current.pop();
     dispatch(setSearchName(''));
-    // if (levelName.current.length === 1) dispatch(setSearchName(''));
   };
 
   const getRootTypes = () => {

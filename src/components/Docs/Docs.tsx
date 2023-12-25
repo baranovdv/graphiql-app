@@ -48,8 +48,6 @@ export default function Docs() {
 
       isDocsValid = isJSONParse(parsedTypesToString);
 
-      console.log(JSON.parse(parsedTypesToString));
-
       const parsedItemsFromString = isDocsValid
         ? (JSON.parse(parsedTypesToString) as IntrospectionType[])
         : [];

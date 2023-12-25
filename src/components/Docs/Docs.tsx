@@ -20,7 +20,7 @@ import getTypesFromIntrospection from '../../utils/getTypesFromIntrospection';
 import parseSearchItemName from '../../utils/docsUtils/parseSearchItemName';
 
 const UPPER_LEVEL_NAME = 'Docs';
-const ROOT_TYPES = ['Query', 'Mutation'];
+const ROOT_TYPES = ['Query', 'Mutation', 'query_root'];
 
 export default function Docs() {
   const searchItemName = useAppSelector(selectSearchItemName);
@@ -47,6 +47,8 @@ export default function Docs() {
       const parsedTypesToString = getTypesFromIntrospection(response.data);
 
       isDocsValid = isJSONParse(parsedTypesToString);
+
+      console.log(JSON.parse(parsedTypesToString));
 
       const parsedItemsFromString = isDocsValid
         ? (JSON.parse(parsedTypesToString) as IntrospectionType[])

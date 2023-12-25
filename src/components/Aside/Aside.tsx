@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/dot-notation */
 import { useEffect } from 'react';
-import { buildClientSchema, printSchema } from 'graphql';
+// import { buildClientSchema, printSchema } from 'graphql';
 import { useAppDispatch, useAppSelector } from '../../store/store';
 import classes from './Aside.module.css';
 import { useLazyGetSchemaQuery } from '../../store/api/api';
@@ -16,10 +16,6 @@ export default function Aside({ isOpen }: { isOpen: boolean }) {
     try {
       const response = await triggerfn(url);
       if (!response.data) throw new Error();
-
-      const schema = printSchema(buildClientSchema(response.data));
-
-      console.log(schema);
 
       const docsData = getTypesFromIntrospection(response.data);
 

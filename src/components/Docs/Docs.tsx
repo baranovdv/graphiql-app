@@ -15,28 +15,47 @@ import { setSearchName } from '../../store/reducers/docsSlice';
 import parseItems from '../../utils/docsUtils/parseItems';
 import ItemLink from './ItemLink/ItemLink';
 import getType from '../../utils/docsUtils/getType';
+import { useLazyGetSchemaQuery } from '../../store/api/api';
+import getTypesFromIntrospection from '../../utils/getTypesFromIntrospection';
 
 const UPPER_LEVEL_NAME = 'Docs';
 const ROOT_TYPES = ['Query', 'Mutation'];
 
 export default function Docs() {
-  const docsString: string = useAppSelector((state) => state.mainPage.docs);
   const searchItemName = useAppSelector(selectSearchItemName);
+  const url = useAppSelector((state) => state.mainPage.url);
+  const [triggerfn] = useLazyGetSchemaQuery();
 
   const dispatch = useAppDispatch();
 
-  const isDocsValid: boolean = isJSONParse(docsString);
-
-  const initList = isDocsValid
-    ? (JSON.parse(docsString) as IntrospectionType[])
-    : [];
+  let isDocsValid: boolean = true;
 
   const rootTypes: RootTypesType[] = [];
 
+  const [initList, setInitList] = useState<IntrospectionType[]>([]);
   const [itemsList, setItemsList] = useState<ItemType2[]>([]);
 
   const lastItemsList = useRef<ItemType2[][]>([]);
   const levelName = useRef<string[]>([UPPER_LEVEL_NAME]);
+
+  const DocsHandler = async () => {
+    try {
+      const response = await triggerfn(url);
+      if (!response.data) throw new Error();
+
+      const parsedTypesToString = getTypesFromIntrospection(response.data);
+
+      isDocsValid = isJSONParse(parsedTypesToString);
+
+      const parsedItemsFromString = isDocsValid
+        ? (JSON.parse(parsedTypesToString) as IntrospectionType[])
+        : [];
+
+      setInitList(parsedItemsFromString);
+    } catch (error) {
+      if (error instanceof Error) console.log(error.message);
+    }
+  };
 
   const updateItemsList = (newItemsList: ItemType2[], itemName: string) => {
     lastItemsList.current.push(itemsList);
@@ -63,22 +82,14 @@ export default function Docs() {
     });
   };
 
-  // console.log(itemsList);
-
   useEffect(() => {
-    const newList = isDocsValid
-      ? (JSON.parse(docsString) as IntrospectionType[])
-      : [];
-
-    setItemsList(newList);
-  }, [docsString]);
+    DocsHandler();
+  }, [url]);
 
   useEffect(() => {
     const findedItem = initList.find((item) => item.name === searchItemName);
 
     if (!findedItem) return;
-
-    console.log(findedItem);
 
     const parsedItems = parseItems(findedItem);
 
@@ -89,7 +100,9 @@ export default function Docs() {
     };
   }, [searchItemName]);
 
-  if (!isDocsValid) return <div>{docsString}</div>;
+  if (initList.length === 0) return <div>Loading...</div>;
+
+  if (!isDocsValid) return <div>Error Data</div>;
 
   getRootTypes();
 
@@ -126,13 +139,3 @@ export default function Docs() {
     </div>
   );
 }
-
-// <DocsItem
-//   key={item.name}
-//   item={item}
-//   isUpperLevel={
-//     levelName.current[levelName.current.length - 1] ===
-//     UPPER_LEVEL_NAME
-//   }
-//   onClick={dispatch(setSearchName(item.name))}
-// />

@@ -6,7 +6,6 @@ const initialState: {
   vars: string;
   headers: string;
   response: string;
-  docs: string;
 } = {
   url: 'https://rickandmortyapi.com/graphql',
   input:
@@ -14,7 +13,6 @@ const initialState: {
   vars: '{\n "page": 1,\n  "filter": {\n  "name": "Rick"\n  }\n}',
   headers: '',
   response: '',
-  docs: 'Docs',
 };
 
 export const MainPageDataSlice = createSlice({
@@ -36,12 +34,9 @@ export const MainPageDataSlice = createSlice({
     setHeaders(state, action: PayloadAction<string>): void {
       state.headers = action.payload;
     },
-    setDocs(state, action: PayloadAction<string>): void {
-      state.docs = action.payload;
-    },
   },
 });
 
 export default MainPageDataSlice.reducer;
-export const { setUrl, setInput, setVars, setResponse, setHeaders, setDocs } =
+export const { setUrl, setInput, setVars, setResponse, setHeaders } =
   MainPageDataSlice.actions;

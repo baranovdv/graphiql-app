@@ -1,20 +1,29 @@
+/* eslint-disable consistent-return */
 import { Button } from '@mui/material';
 import { IntrospectionObjectType, IntrospectionType } from 'graphql';
 import { useEffect, useRef, useState } from 'react';
-import { ItemType2 } from '../../interfaces/interfaces';
-import { useAppSelector } from '../../store/store';
+import { ItemType2, RootTypesType } from '../../interfaces/interfaces';
+import {
+  selectSearchItemName,
+  useAppDispatch,
+  useAppSelector,
+} from '../../store/store';
 import isJSONParse from '../../utils/isJSONParse';
-import DocsItem from './DocsItem/DocsItem';
-
-// interface DocsStore {
-//   name: string;
-//   itemsList: ItemType2[];
-// }
+import RootType from './RootType/RootType';
+import classes from './Docs.module.css';
+import { setSearchName } from '../../store/reducers/docsSlice';
+import parseItems from '../../utils/docsUtils/parseItems';
+import ItemLink from './ItemLink/ItemLink';
+import getType from '../../utils/docsUtils/getType';
 
 const UPPER_LEVEL_NAME = 'Docs';
+const ROOT_TYPES = ['Query', 'Mutation'];
 
 export default function Docs() {
   const docsString: string = useAppSelector((state) => state.mainPage.docs);
+  const searchItemName = useAppSelector(selectSearchItemName);
+
+  const dispatch = useAppDispatch();
 
   const isDocsValid: boolean = isJSONParse(docsString);
 
@@ -22,7 +31,9 @@ export default function Docs() {
     ? (JSON.parse(docsString) as IntrospectionType[])
     : [];
 
-  const [itemsList, setItemsList] = useState<ItemType2[]>(initList);
+  const rootTypes: RootTypesType[] = [];
+
+  const [itemsList, setItemsList] = useState<ItemType2[]>([]);
 
   const lastItemsList = useRef<ItemType2[][]>([]);
   const levelName = useRef<string[]>([UPPER_LEVEL_NAME]);
@@ -35,51 +46,24 @@ export default function Docs() {
   };
 
   const breadcrumbHandler = () => {
-    setItemsList(lastItemsList.current.pop() || initList);
+    setItemsList(lastItemsList.current.pop() || []);
     levelName.current.pop();
+    if (levelName.current.length === 1) dispatch(setSearchName(''));
   };
 
-  console.log(itemsList);
-
-  const itemClickHandler = (item: ItemType2) => {
-    if (item.kind === 'OBJECT' && (item as IntrospectionObjectType).fields) {
-      const { fields } = item as IntrospectionObjectType;
-      updateItemsList(fields as ItemType2[], item.name);
-    }
-    if (item.kind === 'SCALAR' || item.type?.kind === 'SCALAR') {
-      updateItemsList([item], item.name);
-    }
-
-    if (item.type?.kind === 'OBJECT') {
-      const typeItem: ItemType2[] = initList.filter(
-        (element) => element.name === item.type?.name
-      );
-
-      console.log(typeItem);
-
-      if ((typeItem[0] as IntrospectionObjectType).fields) {
-        const { fields } = typeItem[0] as IntrospectionObjectType;
-        updateItemsList(fields as ItemType2[], typeItem[0].name);
-        return;
+  const getRootTypes = () => {
+    ROOT_TYPES.forEach((name) => {
+      const rootItem = initList.find((intro) => intro.name === name);
+      if (rootItem) {
+        rootTypes.push({
+          name: rootItem.name,
+          fields: (rootItem as IntrospectionObjectType).fields as ItemType2[],
+        });
       }
-
-      console.log(typeItem);
-
-      updateItemsList(typeItem, item.name);
-
-      // if (item.type?.name) {
-      //   console.log(
-      //     initList.filter((element) => element.name === item.type?.name)
-      //   );
-      // }
-    }
-    // console.log(item);
+    });
   };
 
-  // if (isDocsValid) {
-  //   // docsParsed = JSON.parse(docsString) as IntrospectionType[];
-  //   setItemsList(JSON.parse(docsString) as IntrospectionType[]);
-  // }
+  // console.log(itemsList);
 
   useEffect(() => {
     const newList = isDocsValid
@@ -89,36 +73,66 @@ export default function Docs() {
     setItemsList(newList);
   }, [docsString]);
 
+  useEffect(() => {
+    const findedItem = initList.find((item) => item.name === searchItemName);
+
+    if (!findedItem) return;
+
+    console.log(findedItem);
+
+    const parsedItems = parseItems(findedItem);
+
+    updateItemsList(parsedItems, findedItem?.name || 'notFound');
+
+    return () => {
+      dispatch(setSearchName(''));
+    };
+  }, [searchItemName]);
+
   if (!isDocsValid) return <div>{docsString}</div>;
 
+  getRootTypes();
+
   return (
-    <>
-      {levelName.current[levelName.current.length - 1] !== UPPER_LEVEL_NAME && (
-        <Button
-          onClick={breadcrumbHandler}
-          size="small"
-          sx={{
-            paddingRight: '8px',
-            justifyContent: 'start',
-            textTransform: 'none',
-          }}
-        >{`<--${levelName.current[levelName.current.length - 1]}`}</Button>
+    <div>
+      {levelName.current[levelName.current.length - 1] !== UPPER_LEVEL_NAME ? (
+        <div className={classes.itemsContainer}>
+          <Button
+            onClick={breadcrumbHandler}
+            size="small"
+            sx={{
+              paddingRight: '8px',
+              justifyContent: 'start',
+              textTransform: 'none',
+            }}
+          >{`<--${levelName.current[levelName.current.length - 2]}`}</Button>
+          <h4>{levelName.current[levelName.current.length - 1]}</h4>
+          <ul className={classes.itemsList}>
+            {itemsList.map((item) => {
+              const parsedType = getType(item);
+
+              return (
+                <div key={item.name}>
+                  <ItemLink type={parsedType} title={item.name} />
+                  <div className={classes.description}>{item.description}</div>
+                </div>
+              );
+            })}
+          </ul>
+        </div>
+      ) : (
+        rootTypes.map((item) => <RootType key={item.name} {...item} />)
       )}
-      <ul>
-        {itemsList.map((item) => {
-          return (
-            <DocsItem
-              key={item.name}
-              item={item}
-              isUpperLevel={
-                levelName.current[levelName.current.length - 1] ===
-                UPPER_LEVEL_NAME
-              }
-              onClick={itemClickHandler}
-            />
-          );
-        })}
-      </ul>
-    </>
+    </div>
   );
 }
+
+// <DocsItem
+//   key={item.name}
+//   item={item}
+//   isUpperLevel={
+//     levelName.current[levelName.current.length - 1] ===
+//     UPPER_LEVEL_NAME
+//   }
+//   onClick={dispatch(setSearchName(item.name))}
+// />

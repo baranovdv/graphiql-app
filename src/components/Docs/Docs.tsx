@@ -68,7 +68,8 @@ export default function Docs() {
   const breadcrumbHandler = () => {
     setItemsList(lastItemsList.current.pop() || []);
     levelName.current.pop();
-    if (levelName.current.length === 1) dispatch(setSearchName(''));
+    dispatch(setSearchName(''));
+    // if (levelName.current.length === 1) dispatch(setSearchName(''));
   };
 
   const getRootTypes = () => {

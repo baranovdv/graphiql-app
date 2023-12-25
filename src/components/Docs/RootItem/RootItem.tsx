@@ -41,5 +41,3 @@ export default function RootItem({ item }: RootItemProps) {
     </div>
   );
 }
-
-// &#44;&nbsp;

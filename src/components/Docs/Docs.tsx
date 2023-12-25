@@ -17,6 +17,7 @@ import ItemLink from './ItemLink/ItemLink';
 import getType from '../../utils/docsUtils/getType';
 import { useLazyGetSchemaQuery } from '../../store/api/api';
 import getTypesFromIntrospection from '../../utils/getTypesFromIntrospection';
+import parseSearchItemName from '../../utils/docsUtils/parseSearchItemName';
 
 const UPPER_LEVEL_NAME = 'Docs';
 const ROOT_TYPES = ['Query', 'Mutation'];
@@ -87,7 +88,11 @@ export default function Docs() {
   }, [url]);
 
   useEffect(() => {
-    const findedItem = initList.find((item) => item.name === searchItemName);
+    const parsedSearchItemName = parseSearchItemName(searchItemName);
+
+    const findedItem = initList.find(
+      (item) => item.name === parsedSearchItemName
+    );
 
     if (!findedItem) return;
 

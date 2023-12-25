@@ -5,16 +5,23 @@ import ArticleIcon from '@mui/icons-material/Article';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import PauseIcon from '@mui/icons-material/Pause';
 import { useState } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import classes from './InputURL.module.css';
 import { MainPageGridAreas } from '../../../types/types';
 import { useLazyGetDataQuery } from '../../../store/api/api';
 import { useAppDispatch, useAppSelector } from '../../../store/store';
+
 import {
   setInput,
   setResponse,
   setUrl,
 } from '../../../store/reducers/mainPageSlice';
 import prettify from '../../../utils/prettify';
+import {
+  isErrorWithMessage,
+  isFetchBaseQueryError,
+} from '../../../utils/errors';
 
 interface InputURLProps {
   gridAreaProp: MainPageGridAreas;
@@ -52,10 +59,41 @@ export default function InputURL(props: InputURLProps) {
           'Content-Type': 'application/json',
         }),
       });
-      dispatch(setResponse(JSON.stringify(response.data)));
+
+      if (isFetchBaseQueryError(response.error)) {
+        const errMsg =
+          'error' in response.error
+            ? response.error.error
+            : JSON.stringify(response.error.data);
+        if (
+          typeof JSON.parse(errMsg) === 'object' &&
+          'errors' in JSON.parse(errMsg)
+        )
+          toast(
+            JSON.stringify(
+              JSON.parse(errMsg).errors.forEach((e: { message: string }) => {
+                toast(e.message);
+              })
+            )
+          );
+        else {
+          toast(errMsg);
+        }
+      } else if (isErrorWithMessage(response.error)) {
+        toast(response.error.message);
+      }
+      if (
+        response.data &&
+        'errors' in response.data &&
+        Array.isArray(response.data.errors)
+      )
+        response.data.errors.forEach((e: { message: string }) => {
+          toast(e.message);
+        });
+      else dispatch(setResponse(JSON.stringify(response.data)));
       setisPlay(true);
     } catch (error) {
-      if (error instanceof Error) throw new Error(error.message);
+      if (error instanceof Error) toast(error.message);
     }
   };
 
@@ -131,6 +169,7 @@ export default function InputURL(props: InputURLProps) {
           <PauseIcon fontSize="large" />
         )}
       </IconButton>
+      <ToastContainer />
     </nav>
   );
 }

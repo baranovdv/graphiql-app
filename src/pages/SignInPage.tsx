@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { ToastContainer } from 'react-toastify';
 import { auth, logInWithEmailAndPassword, signInWithGoogle } from '../firebase';
 import Footer from '../components/Footer/Footer';
 import classes from '../styles/SingIn.module.css';
@@ -33,7 +34,7 @@ function SignInPage() {
   useEffect(() => {
     if (loading) return;
     if (user) navigate('/MainPage');
-  }, [user, loading]);
+  }, [user, loading, navigate]);
 
   return (
     <>
@@ -86,6 +87,7 @@ function SignInPage() {
             </div>
           </div>
         </div>
+        <ToastContainer />
       </main>
       <Footer />
     </>

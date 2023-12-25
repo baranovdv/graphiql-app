@@ -20,6 +20,7 @@ import {
 } from 'firebase/firestore';
 import { useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyBU1PjkGdYLjUPzXg1NPIu-G_op6BMP7Sc',
@@ -52,7 +53,7 @@ const signInWithGoogle = async () => {
       });
     }
   } catch (err) {
-    if (err instanceof Error) throw new Error(err.message);
+    if (err instanceof Error) toast(err.message);
   }
 };
 
@@ -60,7 +61,7 @@ const logInWithEmailAndPassword = async (email: string, password: string) => {
   try {
     await signInWithEmailAndPassword(auth, email, password);
   } catch (err) {
-    if (err instanceof Error) throw new Error(err.message);
+    if (err instanceof Error) toast(err.message);
   }
 };
 
@@ -80,7 +81,7 @@ const registerWithEmailAndPassword = async (
       email,
     });
   } catch (err) {
-    if (err instanceof Error) throw new Error(err.message);
+    if (err instanceof Error) toast(err.message);
   }
 };
 

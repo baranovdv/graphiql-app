@@ -26,24 +26,26 @@ export default function EditorView({
   function formatResponse(text: string) {
     let formattedResponse = '';
     let indent = 0;
-    for (let i = 0; i < text.length; i += 1) {
-      const char = text[i];
-      if (char === '{' || char === '[') {
-        if (i !== 0) {
-          formattedResponse += `\n${'  '.repeat(indent)}${char}\n${'  '.repeat(
-            (indent += 1)
-          )}`;
+    if (text) {
+      for (let i = 0; i < text.length; i += 1) {
+        const char = text[i];
+        if (char === '{' || char === '[') {
+          if (i !== 0) {
+            formattedResponse += `\n${'  '.repeat(
+              indent
+            )}${char}\n${'  '.repeat((indent += 1))}`;
+          } else {
+            formattedResponse += `${'  '.repeat(indent)}${char}\n${'  '.repeat(
+              (indent += 1)
+            )}`;
+          }
+        } else if (char === '}' || char === ']') {
+          formattedResponse += `\n${'  '.repeat((indent -= 1))}${char}`;
+        } else if (char === ',') {
+          formattedResponse += `,\n${'  '.repeat(indent)}`;
         } else {
-          formattedResponse += `${'  '.repeat(indent)}${char}\n${'  '.repeat(
-            (indent += 1)
-          )}`;
+          formattedResponse += char;
         }
-      } else if (char === '}' || char === ']') {
-        formattedResponse += `\n${'  '.repeat((indent -= 1))}${char}`;
-      } else if (char === ',') {
-        formattedResponse += `,\n${'  '.repeat(indent)}`;
-      } else {
-        formattedResponse += char;
       }
     }
     return formattedResponse;

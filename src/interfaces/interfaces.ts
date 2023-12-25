@@ -42,3 +42,8 @@ export interface ItemType2 extends Partial<IntrospectionField> {
   fields?: ReadonlyArray<IntrospectionField>;
   inputFields?: ReadonlyArray<IntrospectionInputValue>;
 }
+
+export type RootTypesType = {
+  name: string;
+  fields: ItemType2[];
+};

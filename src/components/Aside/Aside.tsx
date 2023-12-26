@@ -1,12 +1,15 @@
 import { IconButton } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
+import { lazy, Suspense } from 'react';
 import classes from './Aside.module.css';
-import Docs from '../Docs/Docs';
+// import Docs from '../Docs/Docs';
 
 interface AsideProps {
   isOpen: boolean;
   toggleDocs: () => void;
 }
+
+const Docs = lazy(() => import('../Docs/Docs'));
 
 export default function Aside({ isOpen, toggleDocs }: AsideProps) {
   const closeButtonHandler = () => toggleDocs();
@@ -20,7 +23,7 @@ export default function Aside({ isOpen, toggleDocs }: AsideProps) {
       >
         <CloseIcon />
       </IconButton>
-      <Docs />
+      <Suspense fallback={<p>Loading...</p>}>{isOpen && <Docs />}</Suspense>
     </aside>
   );
 }

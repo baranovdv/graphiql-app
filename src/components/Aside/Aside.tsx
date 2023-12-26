@@ -2,7 +2,6 @@ import { IconButton } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import { lazy, Suspense } from 'react';
 import classes from './Aside.module.css';
-// import Docs from '../Docs/Docs';
 
 interface AsideProps {
   isOpen: boolean;

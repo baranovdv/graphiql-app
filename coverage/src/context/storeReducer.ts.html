@@ -23,15 +23,15 @@
         </h1>
         <div class="clearfix">
           <div class="fl pad1y space-right2">
-            <span class="strong">88.23% </span>
+            <span class="strong">100% </span>
             <span class="quiet">Statements</span>
-            <span class="fraction">15/17</span>
+            <span class="fraction">17/17</span>
           </div>
 
           <div class="fl pad1y space-right2">
-            <span class="strong">50% </span>
+            <span class="strong">100% </span>
             <span class="quiet">Branches</span>
-            <span class="fraction">1/2</span>
+            <span class="fraction">3/3</span>
           </div>
 
           <div class="fl pad1y space-right2">
@@ -41,9 +41,9 @@
           </div>
 
           <div class="fl pad1y space-right2">
-            <span class="strong">88.23% </span>
+            <span class="strong">100% </span>
             <span class="quiet">Lines</span>
-            <span class="fraction">15/17</span>
+            <span class="fraction">17/17</span>
           </div>
         </div>
         <p class="quiet">
@@ -79,20 +79,20 @@
 <a name='L18'></a><a href='#L18'>18</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import STRINGS_LOCALE from '../data/locales/Locales';
 import { Action, Store } from '../interfaces/interfaces';
 &nbsp;
@@ -105,9 +105,9 @@ export default function storeReducer(state: Store, action: Action): Store {
         strings: STRINGS_LOCALE[action.payload],
       };
     }
-<span class="branch-0 cbranch-no" title="branch not covered" >    default: {</span>
-<span class="cstat-no" title="statement not covered" >      throw Error(`Unknown action: ${action.type}`);</span>
-<span class="cstat-no" title="statement not covered" >    }</span>
+    default: {
+      throw Error(`Unknown action: ${action.type}`);
+    }
   }
 }
 &nbsp;</pre></td></tr></table></pre>
@@ -124,7 +124,7 @@ export default function storeReducer(state: Store, action: Action): Store {
         rel="noopener noreferrer"
         >istanbul</a
       >
-      at 2023-12-24T17:23:35.037Z
+      at 2023-12-26T14:06:18.432Z
     </div>
     <script src="../../prettify.js"></script>
     <script>

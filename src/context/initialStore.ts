@@ -1,4 +1,4 @@
-import STRINGS_LOCALE from '../data/locales/Locales';
+import STRINGS_LOCALE from '../data/locales/locales';
 import { Store } from '../interfaces/interfaces';
 import { AppLanguages } from '../types/types';
 

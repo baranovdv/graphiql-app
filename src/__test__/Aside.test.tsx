@@ -11,12 +11,12 @@ test('renders with correct class when isOpen is true', () => {
     <Provider store={store}>
       <LocaleProvider>
         <MemoryRouter>
-          <Aside isOpen />
+          <Aside isOpen toggleDocs={() => {}} />
         </MemoryRouter>
       </LocaleProvider>
     </Provider>
   );
-  const asideElement = screen.getByText('Docs');
+  const asideElement = screen.getByRole('complementary');
   expect(asideElement).toHaveClass('_aside_ee6eeb _open_ee6eeb');
 });
 
@@ -25,11 +25,11 @@ test('renders with correct class when isOpen is false', () => {
     <Provider store={store}>
       <LocaleProvider>
         <MemoryRouter>
-          <Aside isOpen />
+          <Aside isOpen toggleDocs={() => {}} />
         </MemoryRouter>
       </LocaleProvider>
     </Provider>
   );
-  const asideElement = screen.getByText('Docs');
+  const asideElement = screen.getByRole('complementary');
   expect(asideElement).toHaveClass('_aside_ee6eeb');
 });

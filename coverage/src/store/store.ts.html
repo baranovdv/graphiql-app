@@ -23,9 +23,9 @@
         </h1>
         <div class="clearfix">
           <div class="fl pad1y space-right2">
-            <span class="strong">100% </span>
+            <span class="strong">96% </span>
             <span class="quiet">Statements</span>
-            <span class="fraction">20/20</span>
+            <span class="fraction">24/25</span>
           </div>
 
           <div class="fl pad1y space-right2">
@@ -35,15 +35,15 @@
           </div>
 
           <div class="fl pad1y space-right2">
-            <span class="strong">100% </span>
+            <span class="strong">66.66% </span>
             <span class="quiet">Functions</span>
-            <span class="fraction">2/2</span>
+            <span class="fraction">2/3</span>
           </div>
 
           <div class="fl pad1y space-right2">
-            <span class="strong">100% </span>
+            <span class="strong">96% </span>
             <span class="quiet">Lines</span>
-            <span class="fraction">20/20</span>
+            <span class="fraction">24/25</span>
           </div>
         </div>
         <p class="quiet">
@@ -79,7 +79,14 @@
 <a name='L18'></a><a href='#L18'>18</a>
 <a name='L19'></a><a href='#L19'>19</a>
 <a name='L20'></a><a href='#L20'>20</a>
-<a name='L21'></a><a href='#L21'>21</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L21'></a><a href='#L21'>21</a>
+<a name='L22'></a><a href='#L22'>22</a>
+<a name='L23'></a><a href='#L23'>23</a>
+<a name='L24'></a><a href='#L24'>24</a>
+<a name='L25'></a><a href='#L25'>25</a>
+<a name='L26'></a><a href='#L26'>26</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -99,14 +106,19 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { configureStore } from '@reduxjs/toolkit';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import { MainPageDataSlice } from './reducers/mainPageSlice';
 import { MainPageApi } from './api/api';
+import docsSlice from './reducers/docsSlice';
 &nbsp;
 export const store = configureStore({
   reducer: {
     mainPage: MainPageDataSlice.reducer,
+    docs: docsSlice,
     [MainPageApi.reducerPath]: MainPageApi.reducer,
   },
   middleware: (getDefaultMiddleware) =&gt;
@@ -119,6 +131,9 @@ export type AppDispatch = AppStore['dispatch'];
 &nbsp;
 export const useAppDispatch = () =&gt; useDispatch&lt;AppDispatch&gt;();
 export const useAppSelector: TypedUseSelectorHook&lt;RootState&gt; = useSelector;
+&nbsp;
+export const selectSearchItemName = <span class="fstat-no" title="function not covered" >(state: RootState) =&gt;</span>
+<span class="cstat-no" title="statement not covered" >  state.docs.searchItemName;</span>
 &nbsp;</pre></td></tr></table></pre>
 
       <div class="push"></div>
@@ -133,7 +148,7 @@ export const useAppSelector: TypedUseSelectorHook&lt;RootState&gt; = useSelector
         rel="noopener noreferrer"
         >istanbul</a
       >
-      at 2023-12-27T17:04:40.283Z
+      at 2023-12-27T20:18:15.667Z
     </div>
     <script src="../../prettify.js"></script>
     <script>

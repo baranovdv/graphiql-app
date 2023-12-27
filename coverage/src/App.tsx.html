@@ -25,7 +25,7 @@
           <div class="fl pad1y space-right2">
             <span class="strong">100% </span>
             <span class="quiet">Statements</span>
-            <span class="fraction">13/13</span>
+            <span class="fraction">16/16</span>
           </div>
 
           <div class="fl pad1y space-right2">
@@ -43,7 +43,7 @@
           <div class="fl pad1y space-right2">
             <span class="strong">100% </span>
             <span class="quiet">Lines</span>
-            <span class="fraction">13/13</span>
+            <span class="fraction">16/16</span>
           </div>
         </div>
         <p class="quiet">
@@ -72,10 +72,16 @@
 <a name='L11'></a><a href='#L11'>11</a>
 <a name='L12'></a><a href='#L12'>12</a>
 <a name='L13'></a><a href='#L13'>13</a>
-<a name='L14'></a><a href='#L14'>14</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L14'></a><a href='#L14'>14</a>
+<a name='L15'></a><a href='#L15'>15</a>
+<a name='L16'></a><a href='#L16'>16</a>
+<a name='L17'></a><a href='#L17'>17</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-yes">5x</span>
@@ -88,11 +94,14 @@
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Outlet } from 'react-router-dom';
 import './App.css';
 import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
+import FireBase from './components/FireBase/FireBase';
 &nbsp;
 function App() {
   return (
     &lt;ErrorBoundary&gt;
-      &lt;Outlet /&gt;
+      &lt;FireBase&gt;
+        &lt;Outlet /&gt;
+      &lt;/FireBase&gt;
     &lt;/ErrorBoundary&gt;
   );
 }
@@ -112,7 +121,7 @@ export default App;
         rel="noopener noreferrer"
         >istanbul</a
       >
-      at 2023-12-27T17:04:40.283Z
+      at 2023-12-27T20:18:15.667Z
     </div>
     <script src="../prettify.js"></script>
     <script>

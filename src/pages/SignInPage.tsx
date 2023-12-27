@@ -3,26 +3,24 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { Button, Stack } from '@mui/material';
+import { PasswordElement, TextFieldElement } from 'react-hook-form-mui';
 import { auth, logInWithEmailAndPassword, signInWithGoogle } from '../firebase';
 import classes from '../styles/SingIn.module.css';
-import { fieldsForLogin, loginSchema } from '../utils/utils';
-import Label from '../components/label/Label';
 import { Client } from '../interfaces/interfaces';
-import LoginInput from '../components/input/LoginInput';
+import LoginSchema from '../data/validationScheme/loginSchema';
 
 function SignInPage() {
-  const form = useForm({
-    defaultValues: async () => {
-      return {
-        email: '',
-        firstPassword: '',
-      };
-    },
-    resolver: yupResolver(loginSchema),
-    mode: 'onChange',
+  const {
+    control,
+    handleSubmit,
+    formState: { isValid },
+  } = useForm({
+    mode: 'all',
+    resolver: yupResolver(LoginSchema()),
   });
-  const { register, handleSubmit, formState } = form;
-  const { errors } = formState;
+  // const { register, handleSubmit, formState } = form;
+  // const { errors } = formState;
   const [user, loading] = useAuthState(auth);
   const navigate = useNavigate();
   const loginUser = (data: Pick<Client, 'email' | 'firstPassword'>) => {
@@ -35,7 +33,7 @@ function SignInPage() {
   }, [user, loading]);
 
   return (
-    <main className={classes.main}>
+    <section className={classes.section}>
       <div className={classes.login}>
         <div className={classes.login__container}>
           <h1 className={classes.title}>Вход в Аккаунт</h1>
@@ -44,33 +42,37 @@ function SignInPage() {
             onSubmit={handleSubmit(loginUser)}
             noValidate
           >
-            {fieldsForLogin.map((field) => (
-              <Label
-                className={classes.field}
-                htmlFor={field.id}
-                key={field.id}
+            <Stack spacing={2} sx={{ minWidth: '320px' }}>
+              <TextFieldElement
+                name="email"
+                label="E-mail"
+                control={control}
+                required
+                fullWidth
+                helperText=" "
+              />
+              <PasswordElement
+                name="firstPassword"
+                label="Password"
+                control={control}
+                helperText=" "
+              />
+              <Button
+                sx={{
+                  '&&': {
+                    width: '15%',
+                    minWidth: '100px',
+                    marginLeft: 'auto',
+                    marginRight: 'auto',
+                  },
+                }}
+                variant="contained"
+                type="submit"
+                disabled={!isValid}
               >
-                {field.label}
-                <div className={classes.wrapperInput}>
-                  <LoginInput {...field} register={register} />
-                  {errors[
-                    field.id as keyof Pick<Client, 'email' | 'firstPassword'>
-                  ]?.message && (
-                    <p className={classes.error}>
-                      {
-                        errors[
-                          field.id as keyof Pick<
-                            Client,
-                            'email' | 'firstPassword'
-                          >
-                        ]?.message
-                      }
-                    </p>
-                  )}
-                </div>
-              </Label>
-            ))}
-            <input className={classes.button} type="submit" value="Вход" />
+                Submit
+              </Button>
+            </Stack>
           </form>
           <button
             type="button"
@@ -84,7 +86,7 @@ function SignInPage() {
           </div>
         </div>
       </div>
-    </main>
+    </section>
   );
 }
 

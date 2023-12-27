@@ -6,7 +6,7 @@
 
 body {
     margin: 0;
-    background: rgba(203, 213, 225, 1);
+    background: var(--main-bg-color);
     overflow-x: hidden;
 }
 

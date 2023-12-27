@@ -53,7 +53,7 @@ const signInWithGoogle = async () => {
       });
     }
   } catch (err) {
-    if (err instanceof Error) toast(err.message);
+    if (err instanceof Error) toast.error(err.message, { theme: 'light' });
   }
 };
 
@@ -61,7 +61,7 @@ const logInWithEmailAndPassword = async (email: string, password: string) => {
   try {
     await signInWithEmailAndPassword(auth, email, password);
   } catch (err) {
-    if (err instanceof Error) toast(err.message);
+    if (err instanceof Error) toast.info(err.message);
   }
 };
 
@@ -81,7 +81,7 @@ const registerWithEmailAndPassword = async (
       email,
     });
   } catch (err) {
-    if (err instanceof Error) toast(err.message);
+    if (err instanceof Error) toast.info(err.message);
   }
 };
 

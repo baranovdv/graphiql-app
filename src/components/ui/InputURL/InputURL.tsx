@@ -5,7 +5,7 @@ import ArticleIcon from '@mui/icons-material/Article';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import PauseIcon from '@mui/icons-material/Pause';
 import { useState } from 'react';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import classes from './InputURL.module.css';
 import { MainPageGridAreas } from '../../../types/types';
@@ -18,10 +18,7 @@ import {
   setUrl,
 } from '../../../store/reducers/mainPageSlice';
 import prettify from '../../../utils/prettify';
-import {
-  isErrorWithMessage,
-  isFetchBaseQueryError,
-} from '../../../utils/errors';
+import { handleResponseErrors } from '../../../utils/errors';
 
 interface InputURLProps {
   gridAreaProp: MainPageGridAreas;
@@ -60,40 +57,19 @@ export default function InputURL(props: InputURLProps) {
         }),
       });
 
-      if (isFetchBaseQueryError(response.error)) {
-        const errMsg =
-          'error' in response.error
-            ? response.error.error
-            : JSON.stringify(response.error.data);
-        if (
-          typeof JSON.parse(errMsg) === 'object' &&
-          'errors' in JSON.parse(errMsg)
-        )
-          toast(
-            JSON.stringify(
-              JSON.parse(errMsg).errors.forEach((e: { message: string }) => {
-                toast(e.message);
-              })
-            )
-          );
-        else {
-          toast(errMsg);
-        }
-      } else if (isErrorWithMessage(response.error)) {
-        toast(response.error.message);
-      }
+      handleResponseErrors(response.error);
       if (
         response.data &&
         'errors' in response.data &&
         Array.isArray(response.data.errors)
       )
         response.data.errors.forEach((e: { message: string }) => {
-          toast(e.message);
+          toast.error(e.message, { theme: 'dark' });
         });
       else dispatch(setResponse(JSON.stringify(response.data)));
       setisPlay(true);
     } catch (error) {
-      if (error instanceof Error) toast(error.message);
+      if (error instanceof Error) toast.error(error.message, { theme: 'dark' });
     }
   };
 
@@ -169,7 +145,6 @@ export default function InputURL(props: InputURLProps) {
           <PauseIcon fontSize="large" />
         )}
       </IconButton>
-      <ToastContainer />
     </nav>
   );
 }

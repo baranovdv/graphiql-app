@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { toast } from 'react-toastify';
 import { useAppDispatch, useAppSelector } from '../../store/store';
 import classes from './Aside.module.css';
 import { useLazyGetSchemaQuery } from '../../store/api/api';
@@ -14,7 +15,7 @@ export default function Aside({ isOpen }: { isOpen: boolean }) {
       const response = await triggerfn(url);
       dispatch(setDocs(JSON.stringify(response.data)));
     } catch (error) {
-      if (error instanceof Error) setDocs(error.message);
+      if (error instanceof Error) toast.error(error.message);
     }
   };
   useEffect(() => {

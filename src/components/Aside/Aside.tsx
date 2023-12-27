@@ -1,30 +1,28 @@
-import { useEffect } from 'react';
-import { toast } from 'react-toastify';
-import { useAppDispatch, useAppSelector } from '../../store/store';
+import { IconButton } from '@mui/material';
+import CloseIcon from '@mui/icons-material/Close';
+import { lazy, Suspense } from 'react';
 import classes from './Aside.module.css';
-import { useLazyGetSchemaQuery } from '../../store/api/api';
-import { setDocs } from '../../store/reducers/mainPageSlice';
 
-export default function Aside({ isOpen }: { isOpen: boolean }) {
-  const docs = useAppSelector((state) => state.mainPage.docs);
-  const url = useAppSelector((state) => state.mainPage.url);
-  const dispatch = useAppDispatch();
-  const [triggerfn] = useLazyGetSchemaQuery();
-  const DocsHandler = async () => {
-    try {
-      const response = await triggerfn(url);
-      dispatch(setDocs(JSON.stringify(response.data)));
-    } catch (error) {
-      if (error instanceof Error) toast.error(error.message);
-    }
-  };
-  useEffect(() => {
-    DocsHandler();
-  }, [url, docs]);
+interface AsideProps {
+  isOpen: boolean;
+  toggleDocs: () => void;
+}
+
+const Docs = lazy(() => import('../Docs/Docs'));
+
+export default function Aside({ isOpen, toggleDocs }: AsideProps) {
+  const closeButtonHandler = () => toggleDocs();
 
   return (
     <aside className={`${classes.aside} ${isOpen && classes.open}`}>
-      {docs}
+      <IconButton
+        sx={{ position: 'absolute', top: '1rem', right: '1rem' }}
+        aria-label="close"
+        onClick={closeButtonHandler}
+      >
+        <CloseIcon />
+      </IconButton>
+      <Suspense fallback={<p>Loading...</p>}>{isOpen && <Docs />}</Suspense>
     </aside>
   );
 }

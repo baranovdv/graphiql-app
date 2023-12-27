@@ -90,6 +90,7 @@ export default function InputURL(props: InputURLProps) {
           backgroundColor: 'rgba(0, 0, 0, 0.4)',
           fontSize: '0.7rem',
           p: '1rem',
+          zIndex: '0',
         }}
       >
         Prettify&nbsp;
@@ -105,6 +106,7 @@ export default function InputURL(props: InputURLProps) {
           backgroundColor: 'rgba(0, 0, 0, 0.4)',
           fontSize: '0.7rem',
           p: '1rem',
+          zIndex: '0',
         }}
       >
         Docs&nbsp;

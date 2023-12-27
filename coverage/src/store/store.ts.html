@@ -31,13 +31,13 @@
           <div class="fl pad1y space-right2">
             <span class="strong">100% </span>
             <span class="quiet">Branches</span>
-            <span class="fraction">1/1</span>
+            <span class="fraction">2/2</span>
           </div>
 
           <div class="fl pad1y space-right2">
-            <span class="strong">50% </span>
+            <span class="strong">100% </span>
             <span class="quiet">Functions</span>
-            <span class="fraction">1/2</span>
+            <span class="fraction">2/2</span>
           </div>
 
           <div class="fl pad1y space-right2">
@@ -90,7 +90,7 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -117,7 +117,7 @@ export type RootState = ReturnType&lt;typeof store.getState&gt;;
 export type AppStore = typeof store;
 export type AppDispatch = AppStore['dispatch'];
 &nbsp;
-export const useAppDispatch = <span class="fstat-no" title="function not covered" >() =&gt; useDispatch&lt;AppDispatch&gt;();</span>
+export const useAppDispatch = () =&gt; useDispatch&lt;AppDispatch&gt;();
 export const useAppSelector: TypedUseSelectorHook&lt;RootState&gt; = useSelector;
 &nbsp;</pre></td></tr></table></pre>
 
@@ -133,7 +133,7 @@ export const useAppSelector: TypedUseSelectorHook&lt;RootState&gt; = useSelector
         rel="noopener noreferrer"
         >istanbul</a
       >
-      at 2023-12-26T14:06:18.432Z
+      at 2023-12-27T17:04:40.283Z
     </div>
     <script src="../../prettify.js"></script>
     <script>

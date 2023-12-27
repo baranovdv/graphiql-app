@@ -9,7 +9,6 @@ import Input from '../components/input/Input';
 import { FieldsForRegistration, UserSchema } from '../utils/utils';
 import classes from '../styles/SingUp.module.css';
 import { useLocale } from '../context/StoreContext';
-import Footer from '../components/Footer/Footer';
 import { registerWithEmailAndPassword, auth } from '../firebase';
 
 function SignUpPage() {
@@ -42,37 +41,34 @@ function SignUpPage() {
   }, [user, loading]);
 
   return (
-    <>
-      <main className={classes.main}>
-        <h1 className={classes.title}>{strings.singup_page_title}</h1>
-        <form
-          className={classes.form}
-          onSubmit={handleSubmit(registerUser)}
-          noValidate
-        >
-          {FieldsForRegistration().map((field) => (
-            <Label className={classes.field} htmlFor={field.id} key={field.id}>
-              {field.label}
-              <div className={classes.wrapperInput}>
-                <Input {...field} register={register} />
-                {errors[field.id as keyof Client]?.message && (
-                  <p className={classes.error}>
-                    {errors[field.id as keyof Client]?.message}
-                  </p>
-                )}
-              </div>
-            </Label>
-          ))}
-          <input
-            className={classes.button}
-            type="submit"
-            value={strings.signup_button}
-            disabled={!isValid}
-          />
-        </form>
-      </main>
-      <Footer />
-    </>
+    <main className={classes.main}>
+      <h1 className={classes.title}>{strings.singup_page_title}</h1>
+      <form
+        className={classes.form}
+        onSubmit={handleSubmit(registerUser)}
+        noValidate
+      >
+        {FieldsForRegistration().map((field) => (
+          <Label className={classes.field} htmlFor={field.id} key={field.id}>
+            {field.label}
+            <div className={classes.wrapperInput}>
+              <Input {...field} register={register} />
+              {errors[field.id as keyof Client]?.message && (
+                <p className={classes.error}>
+                  {errors[field.id as keyof Client]?.message}
+                </p>
+              )}
+            </div>
+          </Label>
+        ))}
+        <input
+          className={classes.button}
+          type="submit"
+          value={strings.signup_button}
+          disabled={!isValid}
+        />
+      </form>
+    </main>
   );
 }
 

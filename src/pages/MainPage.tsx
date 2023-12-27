@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import Aside from '../components/Aside/Aside';
-import Footer from '../components/Footer/Footer';
 import EditorView from '../components/ui/EditorView/EditorView';
 import InputURL from '../components/ui/InputURL/InputURL';
 import VarsHeaders from '../components/ui/VarsHeaders/VarsHeaders';
@@ -13,17 +12,13 @@ export function MainPage() {
   };
 
   return (
-    <>
-      {/* <Header /> */}
-      <section className={classes.container}>
-        <InputURL gridAreaProp="navbar" toggleDocs={handleToggleDocs} />
-        <EditorView gridAreaProp="editor" />
-        <EditorView gridAreaProp="viewer" />
-        <VarsHeaders gridAreaProp="vars" />
-        <Aside isOpen={isDocsOpen} />
-      </section>
-      <Footer />
-    </>
+    <section className={classes.container}>
+      <InputURL gridAreaProp="navbar" toggleDocs={handleToggleDocs} />
+      <EditorView gridAreaProp="editor" />
+      <EditorView gridAreaProp="viewer" />
+      <VarsHeaders gridAreaProp="vars" />
+      <Aside isOpen={isDocsOpen} />
+    </section>
   );
 }
 

@@ -20,7 +20,7 @@ export function MainPage() {
         <EditorView gridAreaProp="editor" />
         <EditorView gridAreaProp="viewer" />
         <VarsHeaders gridAreaProp="vars" />
-        <Aside isOpen={isDocsOpen} />
+        <Aside isOpen={isDocsOpen} toggleDocs={handleToggleDocs} />
       </section>
       <Footer />
     </>

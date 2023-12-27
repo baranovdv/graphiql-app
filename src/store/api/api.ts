@@ -4,6 +4,7 @@ import {
   fetchBaseQuery,
   reactHooksModule,
 } from '@reduxjs/toolkit/query/react';
+import { IntrospectionQuery, getIntrospectionQuery } from 'graphql';
 
 type MainPageRes = {
   data: object;
@@ -39,7 +40,19 @@ export const MainPageApi = createApi({
         }),
       }),
     }),
+    getSchema: query<IntrospectionQuery, string>({
+      query: (url) => ({
+        url: `${url}`,
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ query: getIntrospectionQuery() }),
+      }),
+      keepUnusedDataFor: 9999,
+      transformResponse: (res: { data: IntrospectionQuery }) => res.data,
+    }),
   }),
 });
 
-export const { useLazyGetDataQuery } = MainPageApi;
+export const { useLazyGetDataQuery, useLazyGetSchemaQuery } = MainPageApi;

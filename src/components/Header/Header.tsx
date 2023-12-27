@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { useLocale, useLocaleDispatch } from '../../context/StoreContext';
 import { AppLanguages } from '../../types/types';
-import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth, logout } from '../../firebase';
+import Logo from '../../assets/img/Logo.svg';
 import classes from './Header.module.css';
 
 export default function Header() {
@@ -13,7 +14,7 @@ export default function Header() {
   const dispatch = useLocaleDispatch();
 
   const checkScroll = () => {
-    setIsScrolled(window.scrollY > 0);
+    setIsScrolled(window.scrollY > 5);
   };
   const [user, loading] = useAuthState(auth);
   useEffect(() => {
@@ -24,11 +25,7 @@ export default function Header() {
   }, []);
   return (
     <header className={isScrolled ? classes.scrolled : ''}>
-      <img
-        className={classes.headerLogo}
-        src="../../public/logo.png"
-        alt="logo"
-      />
+      <img className={classes.headerLogo} src={Logo} alt="logo" />
       <div className={classes.headerTool}>
         {!loading && user && (
           <>
@@ -41,7 +38,7 @@ export default function Header() {
               className={classes.headerExit}
               onClick={logout}
             >
-              Выйти
+              {strings.logout}
             </button>
           </>
         )}

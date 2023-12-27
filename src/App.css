@@ -6,6 +6,8 @@
 
 body {
     margin: 0;
+    background: rgba(203, 213, 225, 1);
+    overflow-x: hidden;
 }
 
 .main {

@@ -28,9 +28,11 @@ function SignUpPage() {
   });
 
   const [user, loading] = useAuthState(auth);
+
   const registerUser = (data: Client) => {
     registerWithEmailAndPassword(data.username, data.email, data.firstPassword);
   };
+
   const navigate = useNavigate();
 
   useEffect(() => {

@@ -19,10 +19,11 @@ function SignInPage() {
     mode: 'all',
     resolver: yupResolver(LoginSchema()),
   });
-  // const { register, handleSubmit, formState } = form;
-  // const { errors } = formState;
+
   const [user, loading] = useAuthState(auth);
+
   const navigate = useNavigate();
+
   const loginUser = (data: Pick<Client, 'email' | 'firstPassword'>) => {
     logInWithEmailAndPassword(data.email, data.firstPassword);
   };
@@ -34,58 +35,62 @@ function SignInPage() {
 
   return (
     <section className={classes.section}>
-      <div className={classes.login}>
-        <div className={classes.login__container}>
-          <h1 className={classes.title}>Вход в Аккаунт</h1>
-          <form
-            className={classes.form}
-            onSubmit={handleSubmit(loginUser)}
-            noValidate
+      <h1 className={classes.title}>Вход в Аккаунт</h1>
+      <form
+        className={classes.form}
+        onSubmit={handleSubmit(loginUser)}
+        noValidate
+      >
+        <Stack spacing={2} sx={{ minWidth: '320px' }}>
+          <TextFieldElement
+            name="email"
+            label="E-mail"
+            control={control}
+            required
+            fullWidth
+            helperText=" "
+          />
+          <PasswordElement
+            name="firstPassword"
+            label="Password"
+            control={control}
+            helperText=" "
+          />
+          <Button
+            sx={{
+              '&&': {
+                width: '15%',
+                minWidth: '100px',
+                marginLeft: 'auto',
+                marginRight: 'auto',
+              },
+            }}
+            variant="contained"
+            type="submit"
+            disabled={!isValid}
           >
-            <Stack spacing={2} sx={{ minWidth: '320px' }}>
-              <TextFieldElement
-                name="email"
-                label="E-mail"
-                control={control}
-                required
-                fullWidth
-                helperText=" "
-              />
-              <PasswordElement
-                name="firstPassword"
-                label="Password"
-                control={control}
-                helperText=" "
-              />
-              <Button
-                sx={{
-                  '&&': {
-                    width: '15%',
-                    minWidth: '100px',
-                    marginLeft: 'auto',
-                    marginRight: 'auto',
-                  },
-                }}
-                variant="contained"
-                type="submit"
-                disabled={!isValid}
-              >
-                Submit
-              </Button>
-            </Stack>
-          </form>
-          <button
+            Submit
+          </Button>
+          <Button
+            sx={{
+              '&&': {
+                width: '50%',
+                minWidth: '250px',
+                marginLeft: 'auto',
+                marginRight: 'auto',
+              },
+            }}
+            variant="contained"
             type="button"
-            className={(classes.login__btn, classes.login__google)}
             onClick={signInWithGoogle}
           >
             Вход с помощью Google
-          </button>
-          <div>
+          </Button>
+          <div className={classes.noAcc}>
             Нет аккаунта? <Link to="/SignUp">Зарегистрируйтесь</Link> здесь.
           </div>
-        </div>
-      </div>
+        </Stack>
+      </form>
     </section>
   );
 }

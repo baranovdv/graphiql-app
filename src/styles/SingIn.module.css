@@ -1,85 +1,25 @@
-.main {
-  max-width: 800px;
-  margin: auto;
+.section {
   display: flex;
-  align-items: center;
-  text-align: center;
-}
-
-.login {
-  width: 100vw;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.login__container {
-  width: 740px;
-  display: flex;
+  width: 100%;
   flex-direction: column;
-  text-align: center;
-  align-items: center;
-  background-color: #dcdcdc;
-  padding: 30px;
-}
-.field {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  font-size: 28px;
-  column-gap: 10px;
-  text-align: left;
-
-  @media screen and (width <= 620px) {
-    font-size: 20px;
-  }
-
-  @media screen and (width <= 470px) {
-    font-size: 14px;
-  }
-}
-
-.button {
-  border-radius: 20px;
-  width: 240px;
-  height: 50px;
-  margin-bottom: 20px;
-}
-
-.error {
-  margin: 0;
-  color: red;
-  font-size: 12px;
-  text-align: left;
-}
-
-.wrapperInput {
-  height: 100px;
-  max-width: 410px;
+  gap: 5%;
+  margin: 1rem auto;
+  padding: 1rem 0;
 }
 
 .title {
-  font-size: 48px;
-  padding: 80px 0 60px;
+  text-align: center;
+  letter-spacing: 0.15rem;
+  color: var(--text-color-primary);
+}
 
-  @media screen and (width <= 470px) {
-    padding: 40px 0 30px;
-    font-size: 32px;
-  }
+.form {
+  margin: 0 auto;
+  width: 50%;
+  min-width: 300px;
+  height: 100%;
 }
-.login__btn {
-  padding: 10px;
-  font-size: 18px;
-  margin-bottom: 10px;
-  border: none;
-  justify-self: center;
-  color: white;
-  background-color: black;
-}
-.login__google {
-  width: 300px;
-  height: 50px;
-  background-color: #4285f4;
-}
-.login div {
-  margin-top: 7px;
+
+.noAcc {
+  text-align: end;
 }

@@ -10,6 +10,7 @@ header {
     top: 0;
     transition: all 0.5s ease-in-out;
     z-index: 5;
+    border-bottom: 2px double var(--header-bg-color-active);
 }
 
 header.scrolled {

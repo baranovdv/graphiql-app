@@ -1,6 +1,8 @@
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Fab } from '@mui/material';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { useLocale, useLocaleDispatch } from '../../context/StoreContext';
@@ -16,6 +18,8 @@ export default function Header() {
   const { strings, currentLanguage } = useLocale();
 
   const dispatch = useLocaleDispatch();
+
+  const navigate = useNavigate();
 
   const [user, loading] = useAuthState(auth);
 
@@ -39,32 +43,14 @@ export default function Header() {
 
   return (
     <header className={isScrolled ? classes.scrolled : ''}>
-      <Link to="./">
-        <img className={classes.headerLogo} src={Logo} alt="logo" />
-      </Link>
-      {/* <div className={classes.headerTool}>
-        {!loading && user && (
-          <>
-            <div className={classes.headerTexts}>
-              <div className={classes.headerText}>{user.displayName}</div>
-              <div className={classes.headerText}>{user?.email}</div>
-            </div>
-            <button
-              type="button"
-              className={classes.headerExit}
-              onClick={logout}
-            >
-              {strings.logout}
-            </button>
-          </>
-        )}
-        {loading && !user && (
-          <div className={classes.headerText}>Загружаю...</div>
-        )}
-        {!loading && !user && (
-          <div className={classes.headerText}>Вход не выполнен</div>
-        )} 
-              </div> */}
+      <div>
+        <img
+          onClick={() => navigate('/')}
+          className={classes.headerLogo}
+          src={Logo}
+          alt="logo"
+        />
+      </div>
       <h2 className={classes.headerTitle}>GraphQL App</h2>
       <div className={classes.headerButtons}>
         {loading ? (

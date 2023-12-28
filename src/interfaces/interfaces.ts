@@ -24,3 +24,10 @@ export interface Action {
   type: ActionType;
   payload: AppLanguages;
 }
+
+export interface TeamMemberCardProps {
+  name: string;
+  img: string;
+  bio: string;
+  github: string;
+}

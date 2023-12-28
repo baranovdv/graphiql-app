@@ -5,7 +5,7 @@ const ruStrings: Record<StringsTypes, string> = {
   signup_button: 'Регистрация',
   page404_message: 'Это страница 404',
   logout: 'Выйти',
-  main_page_title: 'Главная страница',
+  main_page_title: 'Главная',
   singin_page_title: 'Войти',
   singup_page_title: 'Регистрация',
   about_project: 'О проекте',

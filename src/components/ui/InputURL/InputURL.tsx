@@ -70,6 +70,7 @@ export default function InputURL(props: InputURLProps) {
       setisPlay(true);
     } catch (error) {
       if (error instanceof Error) toast.error(error.message, { theme: 'dark' });
+      setisPlay(true);
     }
   };
 

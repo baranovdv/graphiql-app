@@ -48,7 +48,7 @@ function SignUpPage() {
         onSubmit={handleSubmit(registerUser)}
         noValidate
       >
-        <Stack spacing={2} sx={{ minWidth: '320px' }}>
+        <Stack spacing={2} sx={{ minWidth: '300px' }}>
           <TextFieldElement
             name="username"
             label="Name"

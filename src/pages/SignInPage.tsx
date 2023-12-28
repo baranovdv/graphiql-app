@@ -41,7 +41,7 @@ function SignInPage() {
         onSubmit={handleSubmit(loginUser)}
         noValidate
       >
-        <Stack spacing={2} sx={{ minWidth: '320px' }}>
+        <Stack spacing={2} sx={{ minWidth: '300px' }}>
           <TextFieldElement
             name="email"
             label="E-mail"

@@ -27,11 +27,11 @@ const routes = [
         path: 'MainPage',
         element: <PrivateRoute />,
       },
-      {
-        path: '*',
-        element: <Page404 />,
-      },
     ],
+  },
+  {
+    path: '*',
+    element: <Page404 />,
   },
 ];
 

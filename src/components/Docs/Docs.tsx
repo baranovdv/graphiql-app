@@ -2,6 +2,7 @@
 import { Button } from '@mui/material';
 import { IntrospectionObjectType, IntrospectionType } from 'graphql';
 import { useEffect, useRef, useState } from 'react';
+import { toast } from 'react-toastify';
 import { ItemType2, RootTypesType } from '../../interfaces/interfaces';
 import {
   selectSearchItemName,
@@ -42,19 +43,22 @@ export default function Docs() {
   const DocsHandler = async () => {
     try {
       const response = await triggerfn(url);
-      if (!response.data) throw new Error();
+      if (!response.data) {
+        toast.info('No Docs From that API', { theme: 'colored' });
+      } else {
+        const parsedTypesToString = getTypesFromIntrospection(response.data);
 
-      const parsedTypesToString = getTypesFromIntrospection(response.data);
+        isDocsValid = isJSONParse(parsedTypesToString);
 
-      isDocsValid = isJSONParse(parsedTypesToString);
+        const parsedItemsFromString = isDocsValid
+          ? (JSON.parse(parsedTypesToString) as IntrospectionType[])
+          : [];
 
-      const parsedItemsFromString = isDocsValid
-        ? (JSON.parse(parsedTypesToString) as IntrospectionType[])
-        : [];
-
-      setInitList(parsedItemsFromString);
+        setInitList(parsedItemsFromString);
+      }
     } catch (error) {
-      if (error instanceof Error) console.log(error.message);
+      if (error instanceof Error)
+        toast.error(error.message, { theme: 'colored' });
     }
   };
 

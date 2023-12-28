@@ -3,6 +3,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 import { Client } from '../interfaces/interfaces';
 import Label from '../components/label/Label';
 import Input from '../components/input/Input';
@@ -39,7 +40,7 @@ function SignUpPage() {
   useEffect(() => {
     if (loading) return;
     if (user) navigate('/MainPage');
-  }, [user, loading]);
+  }, [user, loading, navigate]);
 
   return (
     <>
@@ -70,6 +71,7 @@ function SignUpPage() {
             disabled={!isValid}
           />
         </form>
+        <ToastContainer />
       </main>
       <Footer />
     </>

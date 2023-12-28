@@ -5,16 +5,20 @@ import ArticleIcon from '@mui/icons-material/Article';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import PauseIcon from '@mui/icons-material/Pause';
 import { useState } from 'react';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import classes from './InputURL.module.css';
 import { MainPageGridAreas } from '../../../types/types';
 import { useLazyGetDataQuery } from '../../../store/api/api';
 import { useAppDispatch, useAppSelector } from '../../../store/store';
+
 import {
   setInput,
   setResponse,
   setUrl,
 } from '../../../store/reducers/mainPageSlice';
 import prettify from '../../../utils/prettify';
+import { handleResponseErrors } from '../../../utils/errors';
 
 interface InputURLProps {
   gridAreaProp: MainPageGridAreas;
@@ -52,10 +56,21 @@ export default function InputURL(props: InputURLProps) {
           'Content-Type': 'application/json',
         }),
       });
-      dispatch(setResponse(JSON.stringify(response.data)));
+
+      handleResponseErrors(response.error);
+      if (
+        response.data &&
+        'errors' in response.data &&
+        Array.isArray(response.data.errors)
+      )
+        response.data.errors.forEach((e: { message: string }) => {
+          toast.error(e.message, { theme: 'dark' });
+        });
+      else dispatch(setResponse(JSON.stringify(response.data)));
       setisPlay(true);
     } catch (error) {
-      if (error instanceof Error) throw new Error(error.message);
+      if (error instanceof Error) toast.error(error.message, { theme: 'dark' });
+      setisPlay(true);
     }
   };
 

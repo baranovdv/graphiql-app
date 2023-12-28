@@ -16,7 +16,7 @@ export interface Client {
 }
 
 export interface Store {
-  currentLanguage: string;
+  currentLanguage: AppLanguages;
   strings: LocaleData;
 }
 

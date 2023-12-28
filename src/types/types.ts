@@ -1,4 +1,4 @@
-export type AppLanguages = 'ru' | 'en';
+export type AppLanguages = 'Ру' | 'En';
 
 export type ActionType = 'change_language';
 

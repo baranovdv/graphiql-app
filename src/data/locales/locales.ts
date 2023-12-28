@@ -3,8 +3,8 @@ import enStrings from './en';
 import ruStrings from './ru';
 
 const STRINGS_LOCALE: Record<AppLanguages, LocaleData> = {
-  en: enStrings,
-  ru: ruStrings,
+  En: enStrings,
+  Ру: ruStrings,
 };
 
 export default STRINGS_LOCALE;

@@ -120,7 +120,11 @@ export default function InputURL(props: InputURLProps) {
           left: '50%',
           transform: 'translate(-50%, -50%)',
           backgroundColor: 'rgba(0, 0, 0, 0.4)',
-          width: '4rem',
+          width: '5rem',
+          zIndex: '30',
+          // maxWidth: '6rem',
+          // height: '80px',
+          // padding: '0',
           aspectRatio: '1',
         }}
         size="large"

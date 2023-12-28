@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { ToastContainer } from 'react-toastify';
 import classes from '../styles/Welcome.module.css';
 import InfoPerson from '../components/InfoPerson/InfoPerson';
 import Header from '../components/Header/Header';
@@ -52,6 +53,7 @@ export default function Welcome() {
           })}
         </div>
       </main>
+      <ToastContainer />
       <Footer />
     </>
   );

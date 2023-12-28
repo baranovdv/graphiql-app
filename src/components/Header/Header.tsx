@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { useLocale, useLocaleDispatch } from '../../context/StoreContext';
 import { AppLanguages } from '../../types/types';
-import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth, logout } from '../../firebase';
 import classes from './Header.module.css';
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
 
-  const { strings, currentLanguage } = useLocale();
+  const { currentLanguage } = useLocale();
 
   const dispatch = useLocaleDispatch();
 

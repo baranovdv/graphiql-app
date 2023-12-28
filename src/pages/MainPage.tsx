@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { ToastContainer } from 'react-toastify';
 import Aside from '../components/Aside/Aside';
 import Footer from '../components/Footer/Footer';
 import EditorView from '../components/ui/EditorView/EditorView';
@@ -20,7 +21,8 @@ export function MainPage() {
         <EditorView gridAreaProp="editor" />
         <EditorView gridAreaProp="viewer" />
         <VarsHeaders gridAreaProp="vars" />
-        <Aside isOpen={isDocsOpen} />
+        <Aside isOpen={isDocsOpen} toggleDocs={handleToggleDocs} />
+        <ToastContainer />
       </section>
       <Footer />
     </>

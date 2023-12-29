@@ -13,11 +13,10 @@ import { useLazyGetDataQuery } from '../../../store/api/api';
 import { useAppDispatch, useAppSelector } from '../../../store/store';
 
 import {
-  setHeaders,
+  resetSlice,
   setInput,
   setResponse,
   setUrl,
-  setVars,
 } from '../../../store/reducers/mainPageSlice';
 import prettify from '../../../utils/prettify';
 import { handleResponseErrors } from '../../../utils/errors';
@@ -47,9 +46,7 @@ export default function InputURL(props: InputURLProps) {
   };
   const refreshHandler = () => {
     dispatch(setUrl(CurrentUrl));
-    dispatch(setInput('query{}'));
-    dispatch(setHeaders(''));
-    dispatch(setVars(''));
+    dispatch(resetSlice());
   };
   const playHandler = async () => {
     try {

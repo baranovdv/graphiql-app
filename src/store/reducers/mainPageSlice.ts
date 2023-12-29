@@ -34,9 +34,20 @@ export const MainPageDataSlice = createSlice({
     setHeaders(state, action: PayloadAction<string>): void {
       state.headers = action.payload;
     },
+    resetSlice(state) {
+      state.input = 'query{}';
+      state.vars = '';
+      state.headers = 's';
+    },
   },
 });
 
 export default MainPageDataSlice.reducer;
-export const { setUrl, setInput, setVars, setResponse, setHeaders } =
-  MainPageDataSlice.actions;
+export const {
+  setUrl,
+  setInput,
+  setVars,
+  setResponse,
+  setHeaders,
+  resetSlice,
+} = MainPageDataSlice.actions;

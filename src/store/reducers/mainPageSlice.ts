@@ -37,7 +37,7 @@ export const MainPageDataSlice = createSlice({
     resetSlice(state) {
       state.input = 'query{}';
       state.vars = '';
-      state.headers = 's';
+      state.headers = '';
     },
   },
 });

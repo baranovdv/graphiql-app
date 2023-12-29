@@ -39,6 +39,7 @@ export default function Welcome() {
                 width: '20%',
                 minWidth: '180px',
                 textTransform: 'none',
+                zIndex: '0',
               }}
             >
               {strings.singup_page_title}&nbsp;
@@ -54,6 +55,7 @@ export default function Welcome() {
                 width: '20%',
                 minWidth: '180px',
                 textTransform: 'none',
+                zIndex: '0',
               }}
             >
               {strings.singin_page_title}&nbsp;
@@ -76,6 +78,7 @@ export default function Welcome() {
                 width: '20%',
                 minWidth: '180px',
                 textTransform: 'none',
+                zIndex: '0',
               }}
             >
               {strings.main_page_title}&nbsp;

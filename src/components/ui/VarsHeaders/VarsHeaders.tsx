@@ -36,23 +36,37 @@ export default function VarsHeaders({
         <Button
           id="variables"
           variant="text"
-          sx={{ textDecoration: menu === 'variables' ? 'underline' : '' }}
+          sx={{
+            textDecoration: menu === 'variables' ? 'underline' : '',
+            textTransform: 'none',
+          }}
           disabled={menu === 'variables'}
           onClick={clickHandler}
         >
-          QUERY VARIABLES
+          Query Vars
         </Button>
         <Button
           id="headers"
           variant="text"
-          sx={{ textDecoration: menu === 'headers' ? 'underline' : '' }}
+          sx={{
+            textDecoration: menu === 'headers' ? 'underline' : '',
+            textTransform: 'none',
+          }}
           disabled={menu === 'headers'}
           onClick={clickHandler}
         >
-          HTTP HEADERS
+          HTTP Headers
         </Button>
-        <IconButton aria-label="show content" onClick={toggleContentHandler}>
-          {isContentOpen ? <KeyboardArrowDownIcon /> : <KeyboardArrowUpIcon />}
+        <IconButton
+          aria-label="show content"
+          onClick={toggleContentHandler}
+          sx={{ marginLeft: 'auto' }}
+        >
+          {isContentOpen ? (
+            <KeyboardArrowDownIcon fontSize="small" />
+          ) : (
+            <KeyboardArrowUpIcon fontSize="small" />
+          )}
         </IconButton>
       </nav>
       <div

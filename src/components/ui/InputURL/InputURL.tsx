@@ -76,6 +76,9 @@ export default function InputURL(props: InputURLProps) {
           backgroundColor: 'rgba(0, 0, 0, 0.4)',
           fontSize: '0.7rem',
           p: '1rem',
+          '@media (max-width: 768px)': {
+            fontSize: '0',
+          },
         }}
       >
         Prettify&nbsp;
@@ -91,6 +94,9 @@ export default function InputURL(props: InputURLProps) {
           backgroundColor: 'rgba(0, 0, 0, 0.4)',
           fontSize: '0.7rem',
           p: '1rem',
+          '@media (max-width: 768px)': {
+            fontSize: '0',
+          },
         }}
       >
         Docs&nbsp;
@@ -116,16 +122,18 @@ export default function InputURL(props: InputURLProps) {
         }}
         sx={{
           position: 'absolute',
-          top: '7rem',
+          top: '112px',
           left: '50%',
           transform: 'translate(-50%, -50%)',
           backgroundColor: 'rgba(0, 0, 0, 0.4)',
           width: '5rem',
           zIndex: '30',
-          // maxWidth: '6rem',
-          // height: '80px',
-          // padding: '0',
           aspectRatio: '1',
+          '@media (max-width: 768px)': {
+            width: '4rem',
+            height: '4rem',
+            top: '365px',
+          },
         }}
         size="large"
       >

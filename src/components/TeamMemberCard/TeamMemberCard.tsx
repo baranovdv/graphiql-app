@@ -50,13 +50,19 @@ export default function TeamMemberCard({
             component="div"
             align="center"
             fontWeight="700"
+            sx={{ color: 'rgba(0, 0, 0, 0.8)' }}
           >
             {name}
             <GitHubIcon sx={{ marginLeft: 2 }} />
           </Typography>
         </Link>
 
-        <Typography variant="body2" fontSize="1rem" fontWeight="600">
+        <Typography
+          variant="body2"
+          fontSize="1rem"
+          fontWeight="600"
+          sx={{ color: 'rgba(0, 0, 0, 0.6)' }}
+        >
           {isShowmore ? bio : `${bio.substring(0, 120)}...`}
           <Button
             size="small"

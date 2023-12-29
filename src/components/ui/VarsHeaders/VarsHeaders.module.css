@@ -1,6 +1,8 @@
 .section {
+  /* height: 100px; */
   padding: 0.5rem 1.5rem;
   background-color: blanchedalmond;
+  overflow: hidden;
 }
 
 .navbar {
@@ -15,7 +17,7 @@
 
 .contentShow {
   display: block;
-  height: 25vh;
+  height: 15vh;
 }
 
 .textarea {

@@ -14,7 +14,7 @@ import {
   setResponse,
   setUrl,
 } from '../../../store/reducers/mainPageSlice';
-import prettify from '../../../utils/prettify';
+import prettifyEditor from '../../../utils/prettifyEditor';
 
 interface InputURLProps {
   gridAreaProp: MainPageGridAreas;
@@ -37,7 +37,7 @@ export default function InputURL(props: InputURLProps) {
   const refreshHandler = () => console.log('refresh');
 
   const prettifyHandler = () => {
-    const prettifiedInput = prettify(inputvalue);
+    const prettifiedInput = prettifyEditor(inputvalue);
 
     dispatch(setInput(prettifiedInput));
   };

@@ -1,6 +1,6 @@
-const TAB_SIZE = '    ';
+const TAB_SIZE = '  ';
 
-function removeSpaces(str: string): string {
+export function removeSpaces(str: string): string {
   return str
     .replace(/\n/g, ' ')
     .split(' ')
@@ -8,7 +8,7 @@ function removeSpaces(str: string): string {
     .join(' ');
 }
 
-function handleParenthesis(str: string): string {
+export function handleParenthesis(str: string): string {
   return str
     .replace(/\(\s/g, '(')
     .replace(/\s\(/g, '(')
@@ -17,29 +17,31 @@ function handleParenthesis(str: string): string {
     .replace(/\)/g, ') ');
 }
 
-function handleColon(str: string): string {
+export function handleColon(str: string): string {
   return str.replace(/\s:/g, ':').replace(/:\s/g, ':').replace(/:/g, ': ');
 }
 
-function handleComma(str: string): string {
+export function handleComma(str: string): string {
   return str.replace(/\s,/g, ',').replace(/,\s/g, ',').replace(/,/g, ', ');
 }
 
-function handleReference(str: string): string {
+export function handleReference(str: string): string {
   return str.replace(/\s\$/g, '$').replace(/\$\s/g, '$');
 }
 
-function handleBrackets(str: string): string {
+export function handleBrackets(str: string): string {
   return str
     .replace(/\{\s/g, '{')
     .replace(/\s\{/g, '{')
     .replace(/\{/g, ' {')
     .replace(/\{/g, '{\n')
     .replace(/\}\s/g, '}')
-    .replace(/\}/g, '\n}');
+    .replace(/\}/g, '\n}')
+    .replace(/\[/g, '[\n')
+    .replace(/\]/g, '\n]');
 }
 
-function handleItems(str: string): string {
+export function handleItemsEditor(str: string): string {
   return str
     .split('\n')
     .map((item) => {
@@ -60,36 +62,39 @@ function handleItems(str: string): string {
     .join('\n');
 }
 
-function levelLines(str: string): string {
+export function handleItemsViewer(str: string): string {
+  return str
+    .split('\n')
+    .map((item) => {
+      if (item.includes(',')) return item.replace(/,\s/g, ',\n');
+      if (item.includes('{')) return item;
+      if (item.includes('}')) return item;
+      return item;
+    })
+    .flat()
+    .filter((item) => item.trim() !== '')
+    .join('\n');
+}
+
+export function levelLines(str: string): string {
   let level = 0;
   return str
     .split('\n')
     .map((line) => {
-      if (line.includes('}')) level -= 1;
+      if (line.includes('}') || line.includes(']')) level -= 1;
 
       const newLine = `${TAB_SIZE.repeat(level)}${line}`;
 
-      if (line.includes('}') && level === 0) {
-        if (line.includes('{')) level += 1;
-        return newLine.replace(/\}/g, '}\n');
+      if (
+        (line.includes('}') && level === 0) ||
+        (line.includes(']') && level === 0)
+      ) {
+        if (line.includes('{') || line.includes('[')) level += 1;
+        return newLine.replace(/\}/g, '}\n').replace(/\]/g, ']\n');
       }
 
-      if (line.includes('{')) level += 1;
+      if (line.includes('{') || line.includes('[')) level += 1;
       return newLine;
     })
     .join('\n');
 }
-
-function prettify(input: string): string {
-  return levelLines(
-    handleItems(
-      handleBrackets(
-        handleColon(
-          handleComma(handleReference(handleParenthesis(removeSpaces(input))))
-        )
-      )
-    )
-  );
-}
-
-export default prettify;

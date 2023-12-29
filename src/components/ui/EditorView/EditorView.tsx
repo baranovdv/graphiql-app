@@ -7,6 +7,7 @@ import { useAppDispatch, useAppSelector } from '../../../store/store';
 import { setInput, setResponse } from '../../../store/reducers/mainPageSlice';
 import { MainPageGridAreas } from '../../../types/types';
 import classes from './EditorView.module.css';
+import prettifyViewer from '../../../utils/prettifyViewer';
 
 export default function EditorView({
   gridAreaProp,
@@ -21,32 +22,6 @@ export default function EditorView({
     SyntaxHighlighter.registerLanguage('json', json);
   } else {
     SyntaxHighlighter.registerLanguage('graphql', graphql);
-  }
-
-  function formatResponse(text: string) {
-    let formattedResponse = '';
-    let indent = 0;
-    for (let i = 0; i < text.length; i += 1) {
-      const char = text[i];
-      if (char === '{' || char === '[') {
-        if (i !== 0) {
-          formattedResponse += `\n${'  '.repeat(indent)}${char}\n${'  '.repeat(
-            (indent += 1)
-          )}`;
-        } else {
-          formattedResponse += `${'  '.repeat(indent)}${char}\n${'  '.repeat(
-            (indent += 1)
-          )}`;
-        }
-      } else if (char === '}' || char === ']') {
-        formattedResponse += `\n${'  '.repeat((indent -= 1))}${char}`;
-      } else if (char === ',') {
-        formattedResponse += `,\n${'  '.repeat(indent)}`;
-      } else {
-        formattedResponse += char;
-      }
-    }
-    return formattedResponse;
   }
 
   function adjustHeight() {
@@ -106,7 +81,7 @@ export default function EditorView({
             },
           }}
         >
-          {gridAreaProp === 'editor' ? input : formatResponse(response)}
+          {gridAreaProp === 'editor' ? input : prettifyViewer(response)}
         </SyntaxHighlighter>
       </pre>
       <textarea
@@ -124,7 +99,7 @@ export default function EditorView({
           }
         }}
         onKeyDown={handleKeyDown}
-        value={gridAreaProp === 'editor' ? input : formatResponse(response)}
+        value={gridAreaProp === 'editor' ? input : prettifyViewer(response)}
       />
     </section>
   );

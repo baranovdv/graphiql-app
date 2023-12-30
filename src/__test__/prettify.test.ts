@@ -1,5 +1,5 @@
 import { test, expect } from 'vitest';
-import prettifyEditor from '../utils/prettifyEditor';
+import prettifyEditor from '../utils/prettify/prettifyEditor';
 
 test('prettify', () => {
   const input = `query($page:Int, $filter:FilterCharacter){characters(page:$page,filter:$filter){results{idnamestatus}}};`;

@@ -17,7 +17,7 @@ import {
   setResponse,
   setUrl,
 } from '../../../store/reducers/mainPageSlice';
-import prettifyEditor from '../../../utils/prettifyEditor';
+import prettifyEditor from '../../../utils/prettify/prettifyEditor';
 import { handleResponseErrors } from '../../../utils/errors';
 
 interface InputURLProps {

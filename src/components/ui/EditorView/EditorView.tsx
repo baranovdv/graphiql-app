@@ -7,7 +7,7 @@ import { useAppDispatch, useAppSelector } from '../../../store/store';
 import { setInput, setResponse } from '../../../store/reducers/mainPageSlice';
 import { MainPageGridAreas } from '../../../types/types';
 import classes from './EditorView.module.css';
-import prettifyViewer from '../../../utils/prettifyViewer';
+import prettifyViewer from '../../../utils/prettify/prettifyViewer';
 
 export default function EditorView({
   gridAreaProp,

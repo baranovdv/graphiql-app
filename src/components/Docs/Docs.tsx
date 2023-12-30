@@ -9,7 +9,7 @@ import {
   useAppDispatch,
   useAppSelector,
 } from '../../store/store';
-import isJSONParse from '../../utils/isJSONParse';
+import isJSONParse from '../../utils/docsUtils/isJSONParse';
 import RootType from './RootType/RootType';
 import classes from './Docs.module.css';
 import { setSearchName } from '../../store/reducers/docsSlice';
@@ -17,7 +17,7 @@ import parseItems from '../../utils/docsUtils/parseItems';
 import ItemLink from './ItemLink/ItemLink';
 import getType from '../../utils/docsUtils/getType';
 import { useLazyGetSchemaQuery } from '../../store/api/api';
-import getTypesFromIntrospection from '../../utils/getTypesFromIntrospection';
+import getTypesFromIntrospection from '../../utils/docsUtils/getTypesFromIntrospection';
 import parseSearchItemName from '../../utils/docsUtils/parseSearchItemName';
 
 const UPPER_LEVEL_NAME = 'Docs';

@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { ToastContainer } from 'react-toastify';
 import { Fab } from '@mui/material';
 import LoginIcon from '@mui/icons-material/Login';
 import PersonIcon from '@mui/icons-material/Person';
@@ -98,6 +99,7 @@ export default function Welcome() {
           return <TeamMemberCard key={member.name} {...member} />;
         })}
       </section>
+      <ToastContainer />
     </section>
   );
 }

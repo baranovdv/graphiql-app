@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Button, Stack } from '@mui/material';
 import { PasswordElement, TextFieldElement } from 'react-hook-form-mui';
+import { ToastContainer } from 'react-toastify';
 import { auth, logInWithEmailAndPassword, signInWithGoogle } from '../firebase';
 import classes from '../styles/SingIn.module.css';
 import { Client } from '../interfaces/interfaces';
@@ -31,7 +32,7 @@ function SignInPage() {
   useEffect(() => {
     if (loading) return;
     if (user) navigate('/MainPage');
-  }, [user, loading]);
+  }, [user, loading, navigate]);
 
   return (
     <section className={classes.section}>
@@ -91,6 +92,7 @@ function SignInPage() {
           </div>
         </Stack>
       </form>
+      <ToastContainer />
     </section>
   );
 }

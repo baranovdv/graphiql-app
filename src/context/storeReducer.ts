@@ -1,4 +1,4 @@
-import STRINGS_LOCALE from '../data/locales/Locales';
+import STRINGS_LOCALE from '../data/locales/locales';
 import { Action, Store } from '../interfaces/interfaces';
 
 export default function storeReducer(state: Store, action: Action): Store {

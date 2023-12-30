@@ -1,3 +1,4 @@
+import { IntrospectionField, IntrospectionInputValue } from 'graphql';
 import { ActionType, AppLanguages, LocaleData } from '../types/types';
 
 export interface IErrorBoundaryProps {
@@ -31,3 +32,25 @@ export interface TeamMemberCardProps {
   bio: string;
   github: string;
 }
+
+type KindTypes =
+  | 'SCALAR'
+  | 'OBJECT'
+  | 'INTERFACE'
+  | 'UNION'
+  | 'ENUM'
+  | 'INPUT_OBJECT'
+  | 'LIST'
+  | 'NON_NULL';
+
+export interface ItemType2 extends Partial<IntrospectionField> {
+  kind?: KindTypes;
+  name: string;
+  fields?: ReadonlyArray<IntrospectionField>;
+  inputFields?: ReadonlyArray<IntrospectionInputValue>;
+}
+
+export type RootTypesType = {
+  name: string;
+  fields: ItemType2[];
+};

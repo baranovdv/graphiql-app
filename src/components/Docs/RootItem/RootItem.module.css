@@ -1,0 +1,23 @@
+.hr {
+  margin: 5px 0;
+  margin-left: 5%;
+  background-color: rgba(100,116,139, 0.3);
+  height: 1px;
+  width: 30%;
+}
+
+.item {
+  color: rgba(0,0,0, 0.8);
+}
+
+.description {
+  font-style: italic;
+  color: rgba(0,0,0, 0.6);
+  padding-left: 1rem;
+  margin-bottom: 5px;
+}
+
+.descriptionLink {
+  color: rgba(0,200,0, 0.5);
+  cursor: pointer;
+}

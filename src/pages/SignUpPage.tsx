@@ -9,6 +9,7 @@ import {
   PasswordRepeatElement,
   TextFieldElement,
 } from 'react-hook-form-mui';
+import { ToastContainer } from 'react-toastify';
 import { Client } from '../interfaces/interfaces';
 import classes from '../styles/SingUp.module.css';
 import { useLocale } from '../context/StoreContext';
@@ -38,7 +39,7 @@ function SignUpPage() {
   useEffect(() => {
     if (loading) return;
     if (user) navigate('/MainPage');
-  }, [user, loading]);
+  }, [user, loading, navigate]);
 
   return (
     <section className={classes.section}>
@@ -95,6 +96,7 @@ function SignUpPage() {
           </Button>
         </Stack>
       </form>
+      <ToastContainer />
     </section>
   );
 }

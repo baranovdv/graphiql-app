@@ -27,3 +27,5 @@ export type StringsTypes =
   | 'password_rules'
   | 'password_match'
   | 'field_required';
+
+export type BtnBGColors = 'transparent' | 'orange' | 'green' | 'red' | 'blue';

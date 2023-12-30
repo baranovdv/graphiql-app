@@ -37,3 +37,4 @@ const routes = [
 
 const router = createBrowserRouter(routes);
 export default router;
+export { routes };

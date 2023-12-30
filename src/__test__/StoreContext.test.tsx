@@ -1,4 +1,4 @@
-import { test } from 'vitest';
+import { expect, test } from 'vitest';
 import { renderHook, act } from '@testing-library/react';
 import {
   LocaleProvider,
@@ -8,8 +8,11 @@ import {
 import initialStore from '../context/initialStore';
 
 const expectObject = {
-  currentLanguage: 'ru',
+  currentLanguage: 'Ру',
   strings: {
+    welcome_page_title_1: 'Это GraphQL приложение от команды',
+    welcome_page_title_2: '!',
+    welcome_page_subtitle: 'Привет! Пожалуйста зарегистрируйся или войди:',
     about_project: 'О проекте',
     about_project_text:
       'Наша команда разработала инновационный проект, который значительно упрощает взаимодействие с GraphQL. GraphQL - это не просто язык запросов для API, это целая среда выполнения, которая позволяет вам эффективно работать с вашими существующими данными. Одним из ключевых преимуществ GraphQL является его полное и понятное описание данных в вашем API. Это обеспечивает клиентам возможность запрашивать именно ту информацию, которая им необходима, исключая лишние данные. Это не только упрощает процесс работы с API, но и делает его более эффективным. В целом, наш проект предлагает решение, которое делает взаимодействие с GraphQL более простым и эффективным, открывая новые возможности для разработчиков и пользователей. Мы верим, что это будет полезным дополнением к любому проекту, который использует GraphQL.',
@@ -19,7 +22,7 @@ const expectObject = {
     field_required: 'Обязательное поле',
     login: 'Логин:',
     logout: 'Выйти',
-    main_page_title: 'Главная страница',
+    main_page_title: 'Главная',
     name_capitalized: 'Логин должен начинаться с большой буквы',
     our_team: 'Наша команда',
     page404_message: 'Это страница 404',
@@ -55,7 +58,7 @@ test('LocaleProvider provides context correctly', async () => {
   act(() => {
     result.current.dispatch({
       type: 'change_language',
-      payload: 'ru',
+      payload: 'Ру',
     });
   });
 

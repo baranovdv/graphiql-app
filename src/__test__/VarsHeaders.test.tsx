@@ -21,9 +21,9 @@ test('VarsHeaders component', async () => {
   });
 
   const variablesButton = screen.getByRole('button', {
-    name: /QUERY VARIABLES/i,
+    name: /Query Vars/i,
   });
-  const headersButton = screen.getByRole('button', { name: /HTTP HEADERS/i });
+  const headersButton = screen.getByRole('button', { name: /HTTP Headers/i });
 
   expect(variablesButton).toBeDisabled();
   expect(headersButton).not.toBeDisabled();

@@ -30,6 +30,7 @@ export default function LangToggleButton({
       color="info"
       startIcon={flagIcon}
       size="medium"
+      data-testid="lang-change"
       sx={{
         width: '72px',
         textTransform: 'none',

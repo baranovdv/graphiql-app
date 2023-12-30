@@ -86,6 +86,7 @@ export default function InputURL(props: InputURLProps) {
         size="small"
         color="primary"
         aria-label="register"
+        data-testid="pretttify"
         onClick={prettifyHandler}
         sx={{
           backgroundColor: 'rgba(0, 0, 0, 0.4)',

@@ -2,7 +2,7 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import { Client } from '../interfaces/interfaces';
 import Label from '../components/label/Label';
@@ -38,11 +38,12 @@ function SignUpPage() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (loading) return;
     if (user) navigate('/MainPage');
-  }, [user, loading, navigate]);
-
-  return (
+  }, [user, navigate]);
+  if (user) return <Navigate to="/MainPage" replace />;
+  return loading ? (
+    <div>loading</div>
+  ) : (
     <>
       <main className={classes.main}>
         <h1 className={classes.title}>{strings.singup_page_title}</h1>

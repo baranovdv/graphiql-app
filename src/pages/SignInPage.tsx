@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -32,11 +32,12 @@ function SignInPage() {
   };
 
   useEffect(() => {
-    if (loading) return;
     if (user) navigate('/MainPage');
   }, [user, loading, navigate]);
-
-  return (
+  if (user) return <Navigate to="/MainPage" replace />;
+  return loading ? (
+    <div>Loading</div>
+  ) : (
     <>
       <main className={classes.main}>
         <div className={classes.login}>

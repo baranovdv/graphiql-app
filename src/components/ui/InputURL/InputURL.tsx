@@ -13,6 +13,7 @@ import { useLazyGetDataQuery } from '../../../store/api/api';
 import { useAppDispatch, useAppSelector } from '../../../store/store';
 
 import {
+  resetSlice,
   setInput,
   setResponse,
   setUrl,
@@ -35,17 +36,18 @@ export default function InputURL(props: InputURLProps) {
   const vars = useAppSelector((state) => state.mainPage.vars);
   const headers = useAppSelector((state) => state.mainPage.headers);
   const url = useAppSelector((state) => state.mainPage.url);
-
+  const [CurrentUrl, setCurrentUrl] = useState<string>(url);
   const [triggerfn] = useLazyGetDataQuery();
-
-  const refreshHandler = () => console.log('refresh');
 
   const prettifyHandler = () => {
     const prettifiedInput = prettify(inputvalue);
 
     dispatch(setInput(prettifiedInput));
   };
-
+  const refreshHandler = () => {
+    dispatch(setUrl(CurrentUrl));
+    dispatch(resetSlice());
+  };
   const playHandler = async () => {
     try {
       const response = await triggerfn({
@@ -119,8 +121,8 @@ export default function InputURL(props: InputURLProps) {
         variant="outlined"
         size="small"
         sx={{ width: '100%' }}
-        value={url}
-        onChange={(e) => dispatch(setUrl(e.target.value))}
+        defaultValue={url}
+        onChange={(e) => setCurrentUrl(e.target.value)}
       />
       <IconButton aria-label="refresh" onClick={refreshHandler}>
         <RefreshIcon />

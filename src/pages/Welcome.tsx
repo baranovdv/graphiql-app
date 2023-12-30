@@ -21,8 +21,8 @@ export default function Welcome() {
     <section className={classes.welcomeSection}>
       <nav className={classes.nav}>
         <h1 className={classes.navTitle}>
-          Welcome to GraphQL application by{' '}
-          <span className={classes.gradient}>TwentyMinutesAdventure</span> team!
+          Welcome to GraphQL Application by{' '}
+          <span className={classes.gradient}>TwentyMinutesAdventure</span> Team!
         </h1>
         {!user && !loading && (
           <section className={classes.navGuest}>

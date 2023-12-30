@@ -26,17 +26,15 @@ export default function LangToggleButton({
 
   return (
     <Button
-      variant="outlined"
+      variant="contained"
       color="info"
       startIcon={flagIcon}
-      size="large"
+      size="medium"
       sx={{
         width: '72px',
         textTransform: 'none',
-        // borderColor: 'orange',
-        // color: 'white',
-        // background: 'lightgrey',
-        // '&:hover': { background: 'orange' },
+        fontWeight: '700',
+        background: '#0288D1',
       }}
       onClick={() => onClick(lang)}
     >

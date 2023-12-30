@@ -1,7 +1,6 @@
 .welcomeSection {
   font-family: 'Roboto', sans-serif;
   color: var(--text-color-primary);
-  margin: 0 1rem;
 }
 
 .nav {
@@ -9,10 +8,15 @@
   gap: 2%;
   flex-direction: column;
   align-items: center;
+  color: var(--text-color-primary-bright);
+  background-image: url('../assets/img/background.JPG');
+  background-size: cover;
+  background-clip: border-box;
+  padding-bottom: 5rem;
 }
 
 .navTitle{
-  margin-top: 3%;
+  margin-top: 5%;
   margin-bottom: 5%;
   text-align: center;
   width: fit-content;
@@ -52,23 +56,23 @@
   gap: 5%;
   flex-wrap: wrap;
   padding: 0 1rem;
-  margin: 2rem 0;
+  margin: 1rem 0;
 }
 
 .sectionTitle {
   width: 100%;
   text-align: left;
-  font-size: 2rem;
-  letter-spacing: 0.2rem;
+  font-size: 1.5rem;
   font-weight: 700;
   margin: 1rem 0;
-  padding-left: 1rem;
-  font-family: 'Caveat', cursive;
+  padding-left: 2rem;
+  text-transform: uppercase;
 }
 
 .aboutText {
   text-align: justify;
   line-height: 1.3rem;
+  padding: 0 1rem;
 }
 
 @media (max-width: 500px) {
@@ -88,7 +92,6 @@
     padding: 0;
     margin: 2rem 0;
   }
-  .navGuest {}
   .navLogged {
     flex-wrap: wrap;
     row-gap: 1rem;
@@ -102,7 +105,7 @@
 }
 
 .gradient {
-  background: linear-gradient(261deg, rgb(2, 136, 209), #E535AB);
+  background: linear-gradient(261deg, #0288D1, #E535AB);
   background-size: 400% 400%;
 
   -webkit-background-clip: text;

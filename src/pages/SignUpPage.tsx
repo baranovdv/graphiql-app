@@ -2,14 +2,14 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 import { Button, Stack } from '@mui/material';
 import {
   PasswordElement,
   PasswordRepeatElement,
   TextFieldElement,
 } from 'react-hook-form-mui';
-import { ToastContainer } from 'react-toastify';
 import { Client } from '../interfaces/interfaces';
 import classes from '../styles/SingUp.module.css';
 import { useLocale } from '../context/StoreContext';
@@ -37,11 +37,13 @@ function SignUpPage() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (loading) return;
     if (user) navigate('/MainPage');
-  }, [user, loading, navigate]);
+  }, [user, navigate]);
 
-  return (
+  if (user) return <Navigate to="/MainPage" replace />;
+  return loading ? (
+    <div>loading</div>
+  ) : (
     <section className={classes.section}>
       <h1 className={classes.title}>{strings.singup_page_title}</h1>
       <form

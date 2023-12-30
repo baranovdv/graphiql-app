@@ -15,7 +15,7 @@ import LangToggleButton from './langToggleButton/langToggleButton';
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
 
-  const { currentLanguage } = useLocale();
+  const { strings, currentLanguage } = useLocale();
 
   const dispatch = useLocaleDispatch();
 

@@ -22,19 +22,21 @@ export default function Welcome() {
     <section className={classes.welcomeSection}>
       <nav className={classes.nav}>
         <h1 className={classes.navTitle}>
-          Welcome to GraphQL Application by{' '}
-          <span className={classes.gradient}>TwentyMinutesAdventure</span> Team!
+          {strings.welcome_page_title_1}{' '}
+          <span className={classes.gradient}>TwentyMinutesAdventure</span>{' '}
+          {strings.welcome_page_title_2}
         </h1>
         {!user && !loading && (
           <section className={classes.navGuest}>
             <h2 className={classes.navSubtitle}>
-              Hello! Please register or login:
+              {strings.welcome_page_subtitle}
             </h2>
             <Fab
               variant="extended"
               size="large"
               color="info"
               aria-label="register"
+              data-testid="register"
               onClick={() => navigate('/SignUp')}
               sx={{
                 width: '20%',
@@ -47,10 +49,12 @@ export default function Welcome() {
               <PersonIcon />
             </Fab>
             <Fab
+              id="signin"
               variant="extended"
               size="large"
               color="info"
               aria-label="login"
+              data-testid="login"
               onClick={() => navigate('/SignIn')}
               sx={{
                 width: '20%',

@@ -1,6 +1,9 @@
 import { StringsTypes } from '../../types/types';
 
 const ruStrings: Record<StringsTypes, string> = {
+  welcome_page_title_1: 'Это GraphQL приложение от команды',
+  welcome_page_title_2: '!',
+  welcome_page_subtitle: 'Привет! Пожалуйста зарегистрируйся или войди:',
   signin_button: 'Войти',
   signup_button: 'Регистрация',
   page404_message: 'Это страница 404',

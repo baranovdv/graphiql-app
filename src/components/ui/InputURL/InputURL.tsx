@@ -132,6 +132,7 @@ export default function InputURL(props: InputURLProps) {
       </IconButton>
       <IconButton
         aria-label="play"
+        data-testid="play-button"
         onClick={() => {
           setisPlay(false);
           playHandler();

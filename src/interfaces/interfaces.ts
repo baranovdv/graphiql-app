@@ -1,3 +1,4 @@
+/* v8 ignore start */
 import { IntrospectionField, IntrospectionInputValue } from 'graphql';
 import { ActionType, AppLanguages, LocaleData } from '../types/types';
 
@@ -54,3 +55,4 @@ export type RootTypesType = {
   name: string;
   fields: ItemType2[];
 };
+/* v8 ignore stop */

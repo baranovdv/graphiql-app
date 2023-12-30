@@ -53,13 +53,15 @@ test('проверка изменения класса при прокрутке
 
 test('проверка переключения языка', async () => {
   const testRouter = createMemoryRouter(routes);
-  render(
-    <Provider store={store}>
-      <LocaleProvider>
-        <RouterProvider router={testRouter} />
-      </LocaleProvider>
-    </Provider>
-  );
+  await act(async () => {
+    render(
+      <Provider store={store}>
+        <LocaleProvider>
+          <RouterProvider router={testRouter} />
+        </LocaleProvider>
+      </Provider>
+    );
+  });
   const langChangeButton = await screen.findByTestId('lang-change');
 
   fireEvent.click(langChangeButton);

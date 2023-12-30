@@ -1,3 +1,4 @@
+/* v8 ignore start */
 export type AppLanguages = 'Ру' | 'En';
 
 export type ActionType = 'change_language';
@@ -32,3 +33,4 @@ export type StringsTypes =
   | 'field_required';
 
 export type BtnBGColors = 'transparent' | 'orange' | 'green' | 'red' | 'blue';
+/* v8 ignore stop */

@@ -6,12 +6,16 @@
   position: absolute;
   z-index: 10;
   top: 0;
-  right: 0;
-  display: none;
+  right: -100%;
+  visibility: hidden;
+  opacity: 0;
   padding: 1.5rem;
   overflow: scroll;
+  transition: all 0.5s;
 }
 
 .open {
-  display: block;
+  right: 0;
+  visibility: visible;
+  opacity: 1;
 }

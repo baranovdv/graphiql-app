@@ -93,6 +93,7 @@ export default function InputURL(props: InputURLProps) {
         sx={{
           backgroundColor: 'rgba(0, 0, 0, 0.4)',
           fontSize: '0.7rem',
+          zIndex: '10',
           p: '1rem',
           '@media (max-width: 768px)': {
             fontSize: '0',
@@ -112,6 +113,7 @@ export default function InputURL(props: InputURLProps) {
           backgroundColor: 'rgba(0, 0, 0, 0.4)',
           fontSize: '0.7rem',
           p: '1rem',
+          zIndex: '10',
           '@media (max-width: 768px)': {
             fontSize: '0',
           },

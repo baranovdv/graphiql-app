@@ -1,15 +1,16 @@
-import prettify from '../utils/prettify';
+import { test, expect } from 'vitest';
+import prettifyEditor from '../utils/prettify/prettifyEditor';
 
 test('prettify', () => {
   const input = `query($page:Int, $filter:FilterCharacter){characters(page:$page,filter:$filter){results{idnamestatus}}};`;
   const expected = `query($page: Int, $filter: FilterCharacter) {
-    characters(page: $page, filter: $filter) {
-        results {
-            idnamestatus
-        }
+  characters(page: $page, filter: $filter) {
+    results {
+      idnamestatus
     }
+  }
 }
 ;`;
-  const result = prettify(input);
+  const result = prettifyEditor(input);
   expect(result).toBe(expected);
 });

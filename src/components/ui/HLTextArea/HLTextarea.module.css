@@ -1,0 +1,30 @@
+.textarea {
+  min-width: 300px;
+  position: absolute;
+  background-color: transparent;
+  color: transparent;
+  padding: 1em;
+  opacity: 1;
+  margin-left: 36px;
+  font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
+  font-size: 1em;
+  line-height: 1.5;
+  caret-color: black;
+  resize: none;
+  outline: none;
+}
+
+.pre {
+  position: absolute;
+  padding: 1em;
+}
+
+
+@media (max-width: 500px) {
+  .pre {
+    padding: 1em 0;
+  }
+  .textarea {
+    padding: 1em 0;
+  }
+}

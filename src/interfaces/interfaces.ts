@@ -1,3 +1,4 @@
+/* v8 ignore start */
 import { IntrospectionField, IntrospectionInputValue } from 'graphql';
 import { ActionType, AppLanguages, LocaleData } from '../types/types';
 
@@ -17,13 +18,20 @@ export interface Client {
 }
 
 export interface Store {
-  currentLanguage: string;
+  currentLanguage: AppLanguages;
   strings: LocaleData;
 }
 
 export interface Action {
   type: ActionType;
   payload: AppLanguages;
+}
+
+export interface TeamMemberCardProps {
+  name: string;
+  img: string;
+  bio: string;
+  github: string;
 }
 
 type KindTypes =
@@ -47,3 +55,4 @@ export type RootTypesType = {
   name: string;
   fields: ItemType2[];
 };
+/* v8 ignore stop */

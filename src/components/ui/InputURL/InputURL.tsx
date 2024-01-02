@@ -18,7 +18,7 @@ import {
   setResponse,
   setUrl,
 } from '../../../store/reducers/mainPageSlice';
-import prettify from '../../../utils/prettify';
+import prettifyEditor from '../../../utils/prettify/prettifyEditor';
 import { handleResponseErrors } from '../../../utils/errors';
 
 interface InputURLProps {
@@ -40,7 +40,7 @@ export default function InputURL(props: InputURLProps) {
   const [triggerfn] = useLazyGetDataQuery();
 
   const prettifyHandler = () => {
-    const prettifiedInput = prettify(inputvalue);
+    const prettifiedInput = prettifyEditor(inputvalue);
 
     dispatch(setInput(prettifiedInput));
   };
@@ -88,12 +88,15 @@ export default function InputURL(props: InputURLProps) {
         size="small"
         color="primary"
         aria-label="register"
+        data-testid="pretttify"
         onClick={prettifyHandler}
         sx={{
           backgroundColor: 'rgba(0, 0, 0, 0.4)',
           fontSize: '0.7rem',
           p: '1rem',
-          zIndex: '0',
+          '@media (max-width: 768px)': {
+            fontSize: '0',
+          },
         }}
       >
         Prettify&nbsp;
@@ -109,7 +112,9 @@ export default function InputURL(props: InputURLProps) {
           backgroundColor: 'rgba(0, 0, 0, 0.4)',
           fontSize: '0.7rem',
           p: '1rem',
-          zIndex: '0',
+          '@media (max-width: 768px)': {
+            fontSize: '0',
+          },
         }}
       >
         Docs&nbsp;
@@ -129,18 +134,25 @@ export default function InputURL(props: InputURLProps) {
       </IconButton>
       <IconButton
         aria-label="play"
+        data-testid="play-button"
         onClick={() => {
           setisPlay(false);
           playHandler();
         }}
         sx={{
           position: 'absolute',
-          top: '7rem',
+          top: '112px',
           left: '50%',
           transform: 'translate(-50%, -50%)',
           backgroundColor: 'rgba(0, 0, 0, 0.4)',
-          width: '4rem',
+          width: '5rem',
+          zIndex: '30',
           aspectRatio: '1',
+          '@media (max-width: 768px)': {
+            width: '4rem',
+            height: '4rem',
+            top: '365px',
+          },
         }}
         size="large"
       >

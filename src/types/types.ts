@@ -1,4 +1,5 @@
-export type AppLanguages = 'ru' | 'en';
+/* v8 ignore start */
+export type AppLanguages = 'Ру' | 'En';
 
 export type ActionType = 'change_language';
 
@@ -6,7 +7,12 @@ export type LocaleData = Record<StringsTypes, string>;
 
 export type MainPageGridAreas = 'navbar' | 'editor' | 'viewer' | 'vars';
 
+export type HLTextAreaTypes = MainPageGridAreas | 'headers';
+
 export type StringsTypes =
+  | 'welcome_page_title_1'
+  | 'welcome_page_title_2'
+  | 'welcome_page_subtitle'
   | 'signin_button'
   | 'signup_button'
   | 'page404_message'
@@ -29,3 +35,4 @@ export type StringsTypes =
   | 'field_required';
 
 export type BtnBGColors = 'transparent' | 'orange' | 'green' | 'red' | 'blue';
+/* v8 ignore stop */

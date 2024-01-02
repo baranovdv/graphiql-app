@@ -1,60 +1,109 @@
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { ToastContainer } from 'react-toastify';
+import { Fab } from '@mui/material';
+import LoginIcon from '@mui/icons-material/Login';
+import PersonIcon from '@mui/icons-material/Person';
+import ApiIcon from '@mui/icons-material/Api';
 import classes from '../styles/Welcome.module.css';
-import InfoPerson from '../components/InfoPerson/InfoPerson';
-import Header from '../components/Header/Header';
 import { useLocale } from '../context/StoreContext';
-import Footer from '../components/Footer/Footer';
 import { auth } from '../firebase';
+import teamData from '../data/teamData';
+import TeamMemberCard from '../components/TeamMemberCard/TeamMemberCard';
 
 export default function Welcome() {
   const { strings } = useLocale();
 
-  const array = [1, 2, 3];
+  const navigate = useNavigate();
+
   const [user, loading] = useAuthState(auth);
 
   return (
-    <>
-      <Header />
-      <main>
-        <div className={classes.aboutProject}>
-          <div className={classes.wrapper}>
-            <div className={classes.mainLog}>
-              {!user && !loading && (
-                <>
-                  <Link to="SignUp" className={classes.link}>
-                    {strings.singup_page_title}
-                  </Link>
-                  <Link to="SignIn" className={classes.link}>
-                    {strings.singin_page_title}
-                  </Link>
-                </>
-              )}{' '}
-              {user && !loading && (
-                <Link to="MainPage" className={classes.link}>
-                  Главная
-                </Link>
-              )}
-              {loading}
-            </div>
-          </div>
-          <div className={classes.wrapper}>
-            <div className={classes.mainInfo}>
-              <h2 className={classes.mainTitle}>{strings.about_project}</h2>
-              <p className={classes.mainText}>{strings.about_project_text}</p>
-            </div>
-          </div>
-        </div>
-        <div className={classes.aboutTeam}>
-          <h2>{strings.our_team}</h2>
-          {array.map((key) => {
-            return <InfoPerson key={key} />;
-          })}
-        </div>
-      </main>
+    <section className={classes.welcomeSection}>
+      <nav className={classes.nav}>
+        <h1 className={classes.navTitle}>
+          {strings.welcome_page_title_1}{' '}
+          <span className={classes.gradient}>TwentyMinutesAdventure</span>{' '}
+          {strings.welcome_page_title_2}
+        </h1>
+        {!user && !loading && (
+          <section className={classes.navGuest}>
+            <h2 className={classes.navSubtitle}>
+              {strings.welcome_page_subtitle}
+            </h2>
+            <Fab
+              variant="extended"
+              size="large"
+              color="info"
+              aria-label="register"
+              data-testid="register"
+              onClick={() => navigate('/SignUp')}
+              sx={{
+                width: '20%',
+                minWidth: '180px',
+                textTransform: 'none',
+                zIndex: '0',
+              }}
+            >
+              {strings.singup_page_title}&nbsp;
+              <PersonIcon />
+            </Fab>
+            <Fab
+              id="signin"
+              variant="extended"
+              size="large"
+              color="info"
+              aria-label="login"
+              data-testid="login"
+              onClick={() => navigate('/SignIn')}
+              sx={{
+                width: '20%',
+                minWidth: '180px',
+                textTransform: 'none',
+                zIndex: '0',
+              }}
+            >
+              {strings.singin_page_title}&nbsp;
+              <LoginIcon />
+            </Fab>
+          </section>
+        )}
+        {user && !loading && (
+          <section className={classes.navLogged}>
+            <h2 className={classes.navSubtitleLogged}>
+              Hello! Please proceed to the main page:
+            </h2>
+            <Fab
+              variant="extended"
+              size="large"
+              color="info"
+              aria-label="login"
+              onClick={() => navigate('/MainPage')}
+              sx={{
+                width: '20%',
+                minWidth: '180px',
+                textTransform: 'none',
+                zIndex: '0',
+              }}
+            >
+              {strings.main_page_title}&nbsp;
+              <ApiIcon />
+            </Fab>
+          </section>
+        )}
+        {loading}
+      </nav>
+      <section className={classes.section}>
+        <h2 className={classes.sectionTitle}>{strings.about_project}</h2>
+        <p className={classes.aboutText}>{strings.about_project_text}</p>
+      </section>
+      <section className={classes.section}>
+        <h2 className={classes.sectionTitle}>{strings.our_team}</h2>
+        {teamData.map((member) => {
+          return <TeamMemberCard key={member.name} {...member} />;
+        })}
+      </section>
       <ToastContainer />
-      <Footer />
-    </>
+    </section>
   );
 }

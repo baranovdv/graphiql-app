@@ -1,12 +1,16 @@
 import { test, expect } from 'vitest';
-import { render, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
-import { MemoryRouter } from 'react-router-dom';
+import { fireEvent, render, screen } from '@testing-library/react';
+import {
+  createMemoryRouter,
+  MemoryRouter,
+  RouterProvider,
+} from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { act } from 'react-dom/test-utils';
 import Header from '../components/Header/Header';
 import { store } from '../store/store';
 import { LocaleProvider } from '../context/StoreContext';
+import { routes } from '../router/router';
 
 test('проверка отображения логотипа', async () => {
   await act(async () => {
@@ -48,36 +52,21 @@ test('проверка изменения класса при прокрутке
 });
 
 test('проверка переключения языка', async () => {
+  const testRouter = createMemoryRouter(routes);
   await act(async () => {
     render(
       <Provider store={store}>
         <LocaleProvider>
-          <MemoryRouter>
-            <Header />
-          </MemoryRouter>
+          <RouterProvider router={testRouter} />
         </LocaleProvider>
       </Provider>
     );
   });
-  const select: HTMLSelectElement = screen.getByLabelText(
-    'label to select language'
-  );
-  await userEvent.selectOptions(select, 'en');
-  expect(select.value).toBe('en');
-});
+  const langChangeButton = await screen.findByTestId('lang-change');
 
-test('отображение текста "Вход не выполнен" при отсутствии пользователя', async () => {
-  await act(async () => {
-    render(
-      <Provider store={store}>
-        <LocaleProvider>
-          <MemoryRouter>
-            <Header />
-          </MemoryRouter>
-        </LocaleProvider>
-      </Provider>
-    );
-  });
-  const linkElement = screen.getByText(/Вход не выполнен/i);
-  expect(linkElement).toBeInTheDocument();
+  fireEvent.click(langChangeButton);
+
+  const title = await screen.findByRole('heading', { level: 1 });
+
+  expect(title).toHaveTextContent('Welcome to GraphQL Application by');
 });

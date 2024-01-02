@@ -4,78 +4,102 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { useEffect } from 'react';
 import { Navigate, useNavigate } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
+import { Button, Stack } from '@mui/material';
+import {
+  PasswordElement,
+  PasswordRepeatElement,
+  TextFieldElement,
+} from 'react-hook-form-mui';
 import { Client } from '../interfaces/interfaces';
-import Label from '../components/label/Label';
-import Input from '../components/input/Input';
-import { FieldsForRegistration, UserSchema } from '../utils/utils';
 import classes from '../styles/SingUp.module.css';
 import { useLocale } from '../context/StoreContext';
-import Footer from '../components/Footer/Footer';
 import { registerWithEmailAndPassword, auth } from '../firebase';
+import RegistrationSchema from '../data/validationScheme/registrationSchema';
 
 function SignUpPage() {
   const { strings } = useLocale();
 
-  const form = useForm({
-    defaultValues: async () => {
-      return {
-        username: '',
-        email: '',
-        firstPassword: '',
-        secondPassword: '',
-      };
-    },
-    resolver: yupResolver(UserSchema()),
-    mode: 'onChange',
+  const {
+    control,
+    handleSubmit,
+    formState: { isValid },
+  } = useForm({
+    mode: 'all',
+    resolver: yupResolver(RegistrationSchema()),
   });
 
-  const { register, handleSubmit, formState } = form;
-  const { errors, isValid } = formState;
   const [user, loading] = useAuthState(auth);
+
   const registerUser = (data: Client) => {
     registerWithEmailAndPassword(data.username, data.email, data.firstPassword);
   };
+
   const navigate = useNavigate();
 
   useEffect(() => {
     if (user) navigate('/MainPage');
   }, [user, navigate]);
+
   if (user) return <Navigate to="/MainPage" replace />;
   return loading ? (
     <div>loading</div>
   ) : (
-    <>
-      <main className={classes.main}>
-        <h1 className={classes.title}>{strings.singup_page_title}</h1>
-        <form
-          className={classes.form}
-          onSubmit={handleSubmit(registerUser)}
-          noValidate
-        >
-          {FieldsForRegistration().map((field) => (
-            <Label className={classes.field} htmlFor={field.id} key={field.id}>
-              {field.label}
-              <div className={classes.wrapperInput}>
-                <Input {...field} register={register} />
-                {errors[field.id as keyof Client]?.message && (
-                  <p className={classes.error}>
-                    {errors[field.id as keyof Client]?.message}
-                  </p>
-                )}
-              </div>
-            </Label>
-          ))}
-          <input
-            className={classes.button}
-            type="submit"
-            value={strings.signup_button}
-            disabled={!isValid}
+    <section className={classes.section}>
+      <h1 className={classes.title}>{strings.singup_page_title}</h1>
+      <form
+        className={classes.form}
+        onSubmit={handleSubmit(registerUser)}
+        noValidate
+      >
+        <Stack spacing={2} sx={{ minWidth: '300px' }}>
+          <TextFieldElement
+            name="username"
+            label="Name"
+            control={control}
+            required
+            fullWidth
+            helperText=" "
           />
-        </form>
-        <ToastContainer />
-      </main>
-      <Footer />
-    </>
+          <TextFieldElement
+            name="email"
+            label="E-mail"
+            control={control}
+            required
+            fullWidth
+            helperText=" "
+          />
+          <PasswordElement
+            name="firstPassword"
+            label="Password"
+            control={control}
+            helperText=" "
+          />
+          <PasswordRepeatElement
+            name="secondPassword"
+            label="Password Repeat"
+            passwordFieldName="firstPassword"
+            control={control}
+            helperText=" "
+          />
+          <Button
+            sx={{
+              '&&': {
+                width: '15%',
+                minWidth: '100px',
+                marginLeft: 'auto',
+                marginRight: 'auto',
+              },
+            }}
+            variant="contained"
+            type="submit"
+            disabled={!isValid}
+          >
+            Submit
+          </Button>
+        </Stack>
+      </form>
+      <ToastContainer />
+    </section>
   );
 }
 

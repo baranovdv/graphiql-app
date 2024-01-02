@@ -3,30 +3,28 @@ import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { Button, Stack } from '@mui/material';
+import { PasswordElement, TextFieldElement } from 'react-hook-form-mui';
 import { ToastContainer } from 'react-toastify';
 import { auth, logInWithEmailAndPassword, signInWithGoogle } from '../firebase';
-import Footer from '../components/Footer/Footer';
 import classes from '../styles/SingIn.module.css';
-import { fieldsForLogin, loginSchema } from '../utils/utils';
-import Label from '../components/label/Label';
 import { Client } from '../interfaces/interfaces';
-import LoginInput from '../components/input/LoginInput';
+import LoginSchema from '../data/validationScheme/loginSchema';
 
 function SignInPage() {
-  const form = useForm({
-    defaultValues: async () => {
-      return {
-        email: '',
-        firstPassword: '',
-      };
-    },
-    resolver: yupResolver(loginSchema),
-    mode: 'onChange',
+  const {
+    control,
+    handleSubmit,
+    formState: { isValid },
+  } = useForm({
+    mode: 'all',
+    resolver: yupResolver(LoginSchema()),
   });
-  const { register, handleSubmit, formState } = form;
-  const { errors } = formState;
+
   const [user, loading] = useAuthState(auth);
+
   const navigate = useNavigate();
+
   const loginUser = (data: Pick<Client, 'email' | 'firstPassword'>) => {
     logInWithEmailAndPassword(data.email, data.firstPassword);
   };
@@ -34,64 +32,70 @@ function SignInPage() {
   useEffect(() => {
     if (user) navigate('/MainPage');
   }, [user, loading, navigate]);
+
   if (user) return <Navigate to="/MainPage" replace />;
   return loading ? (
     <div>Loading</div>
   ) : (
-    <>
-      <main className={classes.main}>
-        <div className={classes.login}>
-          <div className={classes.login__container}>
-            <h1 className={classes.title}>Вход в Аккаунт</h1>
-            <form
-              className={classes.form}
-              onSubmit={handleSubmit(loginUser)}
-              noValidate
-            >
-              {fieldsForLogin.map((field) => (
-                <Label
-                  className={classes.field}
-                  htmlFor={field.id}
-                  key={field.id}
-                >
-                  {field.label}
-                  <div className={classes.wrapperInput}>
-                    <LoginInput {...field} register={register} />
-                    {errors[
-                      field.id as keyof Pick<Client, 'email' | 'firstPassword'>
-                    ]?.message && (
-                      <p className={classes.error}>
-                        {
-                          errors[
-                            field.id as keyof Pick<
-                              Client,
-                              'email' | 'firstPassword'
-                            >
-                          ]?.message
-                        }
-                      </p>
-                    )}
-                  </div>
-                </Label>
-              ))}
-              <input className={classes.button} type="submit" value="Вход" />
-            </form>
-            <button
-              type="button"
-              className={(classes.login__btn, classes.login__google)}
-              onClick={signInWithGoogle}
-            >
-              Вход с помощью Google
-            </button>
-            <div>
-              Нет аккаунта? <Link to="/SignUp">Зарегистрируйтесь</Link> здесь.
-            </div>
+    <section className={classes.section}>
+      <h1 className={classes.title}>Вход в Аккаунт</h1>
+      <form
+        className={classes.form}
+        onSubmit={handleSubmit(loginUser)}
+        noValidate
+      >
+        <Stack spacing={2} sx={{ minWidth: '300px' }}>
+          <TextFieldElement
+            name="email"
+            label="E-mail"
+            control={control}
+            required
+            fullWidth
+            helperText=" "
+          />
+          <PasswordElement
+            name="firstPassword"
+            label="Password"
+            control={control}
+            helperText=" "
+          />
+          <Button
+            sx={{
+              '&&': {
+                width: '15%',
+                minWidth: '100px',
+                marginLeft: 'auto',
+                marginRight: 'auto',
+              },
+            }}
+            variant="contained"
+            type="submit"
+            disabled={!isValid}
+          >
+            Submit
+          </Button>
+          <Button
+            sx={{
+              '&&': {
+                width: '50%',
+                minWidth: '250px',
+                marginLeft: 'auto',
+                marginRight: 'auto',
+              },
+            }}
+            variant="contained"
+            type="button"
+            onClick={signInWithGoogle}
+          >
+            Вход с помощью Google
+          </Button>
+          <div className={classes.noAcc}>
+            Нет аккаунта? <Link to="/SignUp">Зарегистрируйтесь</Link> здесь.
           </div>
-        </div>
-        <ToastContainer />
-      </main>
-      <Footer />
-    </>
+        </Stack>
+      </form>
+      <ToastContainer />
+    </section>
   );
 }
 

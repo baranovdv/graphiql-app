@@ -12,9 +12,10 @@
 }
 
 .content {
-  display: none;
+  height: 0;
   position: relative;
-  overflow: auto;
+  overflow: hidden;
+  transition: all 0.5s;
 }
 
 .contentShow {

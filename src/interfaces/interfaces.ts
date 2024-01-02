@@ -28,9 +28,10 @@ export interface Action {
 }
 
 export interface TeamMemberCardProps {
-  name: string;
+  id: number;
+  name: Record<AppLanguages, string>;
   img: string;
-  bio: string;
+  bio: Record<AppLanguages, string>;
   github: string;
 }
 

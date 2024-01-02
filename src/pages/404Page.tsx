@@ -17,10 +17,8 @@ function Page404() {
       <div className={classes.wrapper}>
         <div className={classes.info404}>
           <h1 className={classes.title404}>404</h1>
-          <h2 className={classes.error404}>Ошибка!</h2>
-          <p className={classes.description404}>
-            К сожалению, запрашиваемая вами страница не найдена
-          </p>
+          <h2 className={classes.error404}>{strings.error}</h2>
+          <p className={classes.description404}>{strings.error_message}</p>
           <Fab
             variant="extended"
             size="large"

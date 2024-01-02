@@ -13,10 +13,12 @@ export type StringsTypes =
   | 'welcome_page_title_1'
   | 'welcome_page_title_2'
   | 'welcome_page_subtitle'
+  | 'welcome_page_subtitle_logged'
   | 'signin_button'
   | 'signup_button'
   | 'page404_message'
   | 'logout'
+  | 'name'
   | 'main_page_title'
   | 'singin_page_title'
   | 'singup_page_title'
@@ -32,7 +34,18 @@ export type StringsTypes =
   | 'email_domain'
   | 'password_rules'
   | 'password_match'
-  | 'field_required';
+  | 'field_required'
+  | 'error'
+  | 'error_message'
+  | 'error_data'
+  | 'no_docs'
+  | 'loading'
+  | 'login_google'
+  | 'no_acc_1'
+  | 'no_acc_2'
+  | 'no_acc_3'
+  | 'show_less'
+  | 'show_more';
 
 export type BtnBGColors = 'transparent' | 'orange' | 'green' | 'red' | 'blue';
 /* v8 ignore stop */

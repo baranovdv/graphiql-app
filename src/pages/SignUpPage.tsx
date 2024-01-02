@@ -42,7 +42,7 @@ function SignUpPage() {
 
   if (user) return <Navigate to="/MainPage" replace />;
   return loading ? (
-    <div>loading</div>
+    <div>{strings.loading}</div>
   ) : (
     <section className={classes.section}>
       <h1 className={classes.title}>{strings.singup_page_title}</h1>
@@ -54,7 +54,7 @@ function SignUpPage() {
         <Stack spacing={2} sx={{ minWidth: '300px' }}>
           <TextFieldElement
             name="username"
-            label="Name"
+            label={strings.name}
             control={control}
             required
             fullWidth
@@ -70,13 +70,13 @@ function SignUpPage() {
           />
           <PasswordElement
             name="firstPassword"
-            label="Password"
+            label={strings.password}
             control={control}
             helperText=" "
           />
           <PasswordRepeatElement
             name="secondPassword"
-            label="Password Repeat"
+            label={strings.password_repeat}
             passwordFieldName="firstPassword"
             control={control}
             helperText=" "
@@ -85,7 +85,7 @@ function SignUpPage() {
             sx={{
               '&&': {
                 width: '15%',
-                minWidth: '100px',
+                minWidth: '130px',
                 marginLeft: 'auto',
                 marginRight: 'auto',
               },
@@ -94,7 +94,7 @@ function SignUpPage() {
             type="submit"
             disabled={!isValid}
           >
-            Submit
+            {strings.signup_button}
           </Button>
         </Stack>
       </form>

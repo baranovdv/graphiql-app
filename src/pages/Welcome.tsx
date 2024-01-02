@@ -71,7 +71,7 @@ export default function Welcome() {
         {user && !loading && (
           <section className={classes.navLogged}>
             <h2 className={classes.navSubtitleLogged}>
-              Hello! Please proceed to the main page:
+              {strings.welcome_page_subtitle_logged}
             </h2>
             <Fab
               variant="extended"
@@ -100,7 +100,7 @@ export default function Welcome() {
       <section className={classes.section}>
         <h2 className={classes.sectionTitle}>{strings.our_team}</h2>
         {teamData.map((member) => {
-          return <TeamMemberCard key={member.name} {...member} />;
+          return <TeamMemberCard key={member.id} {...member} />;
         })}
       </section>
       <ToastContainer />

@@ -54,7 +54,7 @@ export default function Header() {
       <h2 className={classes.headerTitle}>GraphQL App</h2>
       <div className={classes.headerButtons}>
         {loading ? (
-          <p>...loading</p>
+          <p>{strings.loading}</p>
         ) : (
           user && (
             <Fab

@@ -14,7 +14,7 @@
 .content {
   height: 0;
   position: relative;
-  overflow: hidden;
+  overflow: auto;
   transition: all 0.5s;
 }
 

@@ -7,6 +7,8 @@ export type LocaleData = Record<StringsTypes, string>;
 
 export type MainPageGridAreas = 'navbar' | 'editor' | 'viewer' | 'vars';
 
+export type HLTextAreaTypes = MainPageGridAreas | 'headers';
+
 export type StringsTypes =
   | 'welcome_page_title_1'
   | 'welcome_page_title_2'

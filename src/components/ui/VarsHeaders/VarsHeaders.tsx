@@ -2,10 +2,14 @@ import { Button, IconButton } from '@mui/material';
 import { useState } from 'react';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import { PrismLight as SyntaxHighlighter } from 'react-syntax-highlighter';
+import graphql from 'react-syntax-highlighter/dist/esm/languages/prism/graphql';
+import json from 'react-syntax-highlighter/dist/esm/languages/prism/json';
 import { MainPageGridAreas } from '../../../types/types';
 import classes from './VarsHeaders.module.css';
 import { useAppDispatch, useAppSelector } from '../../../store/store';
 import { setHeaders, setVars } from '../../../store/reducers/mainPageSlice';
+import HLTextArea from '../HLTextArea/HLTextArea';
 
 export default function VarsHeaders({
   gridAreaProp,
@@ -19,9 +23,13 @@ export default function VarsHeaders({
     const { id } = event.target as HTMLElement;
     setMenu(id);
   };
+
   const dispatch = useAppDispatch();
   const vars = useAppSelector((state) => state.mainPage.vars);
   const headers = useAppSelector((state) => state.mainPage.headers);
+
+  SyntaxHighlighter.registerLanguage('graphql', graphql);
+  SyntaxHighlighter.registerLanguage('json', json);
 
   const toggleContentHandler = () => setIsContentOpen(!isContentOpen);
 
@@ -63,9 +71,9 @@ export default function VarsHeaders({
           sx={{ marginLeft: 'auto' }}
         >
           {isContentOpen ? (
-            <KeyboardArrowDownIcon fontSize="small" />
-          ) : (
             <KeyboardArrowUpIcon fontSize="small" />
+          ) : (
+            <KeyboardArrowDownIcon fontSize="small" />
           )}
         </IconButton>
       </nav>
@@ -73,29 +81,21 @@ export default function VarsHeaders({
         className={`${classes.content} ${isContentOpen && classes.contentShow}`}
       >
         {menu === 'variables' && (
-          <textarea
-            className={classes.textarea}
-            id="ev"
-            name="ev"
-            rows={3}
-            cols={30}
+          <HLTextArea
+            type="vars"
+            value={vars}
             onChange={(e) => {
               dispatch(setVars(e.target.value));
             }}
-            value={vars}
           />
         )}
         {menu === 'headers' && (
-          <textarea
-            className={classes.textarea}
-            id="ev"
-            name="ev"
-            rows={3}
-            cols={30}
+          <HLTextArea
+            type="headers"
+            value={headers}
             onChange={(e) => {
               dispatch(setHeaders(e.target.value));
             }}
-            value={headers}
           />
         )}
       </div>

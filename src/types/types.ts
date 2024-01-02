@@ -9,6 +9,11 @@ export type MainPageGridAreas = 'navbar' | 'editor' | 'viewer' | 'vars';
 
 export type HLTextAreaTypes = MainPageGridAreas | 'headers';
 
+export type MainPageRes = {
+  data: object;
+  errors?: [];
+};
+
 export type StringsTypes =
   | 'welcome_page_title_1'
   | 'welcome_page_title_2'

@@ -11,7 +11,6 @@ export function MainPage() {
   const handleToggleDocs = () => {
     setIsDocsOpen(!isDocsOpen);
   };
-
   return (
     <section className={classes.container}>
       <InputURL gridAreaProp="navbar" toggleDocs={handleToggleDocs} />

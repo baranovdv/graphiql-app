@@ -8,7 +8,7 @@ import { useState } from 'react';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import classes from './InputURL.module.css';
-import { MainPageGridAreas } from '../../../types/types';
+import { MainPageGridAreas, MainPageRes } from '../../../types/types';
 import { useLazyGetDataQuery } from '../../../store/api/api';
 import { useAppDispatch, useAppSelector } from '../../../store/store';
 
@@ -63,11 +63,13 @@ export default function InputURL(props: InputURLProps) {
       if (
         response.data &&
         'errors' in response.data &&
-        Array.isArray(response.data.errors)
+        Array.isArray((response.data as MainPageRes).errors)
       )
-        response.data.errors.forEach((e: { message: string }) => {
-          toast.error(e.message, { theme: 'dark' });
-        });
+        (response.data as MainPageRes).errors?.forEach(
+          (e: { message: string }) => {
+            toast.error(e.message, { theme: 'dark' });
+          }
+        );
       else dispatch(setResponse(JSON.stringify(response.data)));
       setisPlay(true);
     } catch (error) {

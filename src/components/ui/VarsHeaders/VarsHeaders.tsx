@@ -17,7 +17,7 @@ export default function VarsHeaders({
   gridAreaProp: MainPageGridAreas;
 }) {
   const [menu, setMenu] = useState('variables');
-  const [isContentOpen, setIsContentOpen] = useState<boolean>(false);
+  const [isContentOpen, setIsContentOpen] = useState<boolean>(true);
 
   const clickHandler = (event: React.MouseEvent<HTMLElement>): void => {
     const { id } = event.target as HTMLElement;

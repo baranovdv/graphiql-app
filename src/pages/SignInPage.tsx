@@ -10,6 +10,7 @@ import { auth, logInWithEmailAndPassword, signInWithGoogle } from '../firebase';
 import classes from '../styles/SingIn.module.css';
 import { Client } from '../interfaces/interfaces';
 import LoginSchema from '../data/validationScheme/loginSchema';
+import { useLocale } from '../context/StoreContext';
 
 function SignInPage() {
   const {
@@ -25,6 +26,8 @@ function SignInPage() {
 
   const navigate = useNavigate();
 
+  const { strings } = useLocale();
+
   const loginUser = (data: Pick<Client, 'email' | 'firstPassword'>) => {
     logInWithEmailAndPassword(data.email, data.firstPassword);
   };
@@ -35,10 +38,10 @@ function SignInPage() {
 
   if (user) return <Navigate to="/MainPage" replace />;
   return loading ? (
-    <div>Loading</div>
+    <div>{strings.loading}</div>
   ) : (
     <section className={classes.section}>
-      <h1 className={classes.title}>Вход в Аккаунт</h1>
+      <h1 className={classes.title}>{strings.singin_page_title}</h1>
       <form
         className={classes.form}
         onSubmit={handleSubmit(loginUser)}
@@ -47,7 +50,7 @@ function SignInPage() {
         <Stack spacing={2} sx={{ minWidth: '300px' }}>
           <TextFieldElement
             name="email"
-            label="E-mail"
+            label={strings.email}
             control={control}
             required
             fullWidth
@@ -55,7 +58,7 @@ function SignInPage() {
           />
           <PasswordElement
             name="firstPassword"
-            label="Password"
+            label={strings.password}
             control={control}
             helperText=" "
           />
@@ -72,7 +75,7 @@ function SignInPage() {
             type="submit"
             disabled={!isValid}
           >
-            Submit
+            {strings.signin_button}
           </Button>
           <Button
             sx={{
@@ -87,10 +90,11 @@ function SignInPage() {
             type="button"
             onClick={signInWithGoogle}
           >
-            Вход с помощью Google
+            {strings.login_google}
           </Button>
           <div className={classes.noAcc}>
-            Нет аккаунта? <Link to="/SignUp">Зарегистрируйтесь</Link> здесь.
+            {strings.no_acc_1} <Link to="/SignUp">{strings.no_acc_2}</Link>{' '}
+            {strings.no_acc_3}
           </div>
         </Stack>
       </form>

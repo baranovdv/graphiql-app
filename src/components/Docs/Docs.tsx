@@ -19,6 +19,7 @@ import getType from '../../utils/docsUtils/getType';
 import { useLazyGetSchemaQuery } from '../../store/api/api';
 import getTypesFromIntrospection from '../../utils/docsUtils/getTypesFromIntrospection';
 import parseSearchItemName from '../../utils/docsUtils/parseSearchItemName';
+import { useLocale } from '../../context/StoreContext';
 
 const UPPER_LEVEL_NAME = 'Docs';
 const ROOT_TYPES = ['Query', 'Mutation', 'query_root'];
@@ -29,6 +30,8 @@ export default function Docs() {
   const [triggerfn] = useLazyGetSchemaQuery();
 
   const dispatch = useAppDispatch();
+
+  const { strings } = useLocale();
 
   let isDocsValid: boolean = true;
 
@@ -44,7 +47,7 @@ export default function Docs() {
     try {
       const response = await triggerfn(url);
       if (!response.data) {
-        toast.info('No Docs From that API', { theme: 'colored' });
+        toast.info(strings.no_docs, { theme: 'colored' });
       } else {
         const parsedTypesToString = getTypesFromIntrospection(response.data);
 
@@ -102,16 +105,16 @@ export default function Docs() {
 
     const parsedItems = parseItems(findedItem);
 
-    updateItemsList(parsedItems, findedItem?.name || 'notFound');
+    updateItemsList(parsedItems, findedItem?.name || strings.error_data);
 
     return () => {
       dispatch(setSearchName(''));
     };
   }, [searchItemName]);
 
-  if (initList.length === 0) return <div>Loading...</div>;
+  if (initList.length === 0) return <div>{strings.loading}</div>;
 
-  if (!isDocsValid) return <div>Error Data</div>;
+  if (!isDocsValid) return <div>{strings.error_data}</div>;
 
   getRootTypes();
 

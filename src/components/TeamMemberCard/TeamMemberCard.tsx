@@ -8,6 +8,7 @@ import {
   Typography,
 } from '@mui/material';
 import { useState } from 'react';
+import { useLocale } from '../../context/StoreContext';
 import { TeamMemberCardProps } from '../../interfaces/interfaces';
 
 export default function TeamMemberCard({
@@ -20,15 +21,20 @@ export default function TeamMemberCard({
 
   const toggleShowmore = () => setIsShowmore(!isShowmore);
 
+  const { strings, currentLanguage } = useLocale();
+
   return (
     <Card
       sx={{
-        width: '320px',
+        width: '400px',
         backgroundColor: 'rgba(255, 255, 255, 0.4)',
         borderRadius: '3%',
-        padding: '1rem 1.5rem',
+        padding: '1rem 1rem',
         margin: '1rem 0',
         boxShadow: '-4px 4px 4px 0px rgba(0, 0, 0, 0.25)',
+        '@media(max-width: 500px)': {
+          width: '320px',
+        },
       }}
     >
       <CardMedia
@@ -52,7 +58,7 @@ export default function TeamMemberCard({
             fontWeight="700"
             sx={{ color: 'rgba(0, 0, 0, 0.8)' }}
           >
-            {name}
+            {name[currentLanguage]}
             <GitHubIcon sx={{ marginLeft: 2 }} />
           </Typography>
         </Link>
@@ -63,7 +69,9 @@ export default function TeamMemberCard({
           fontWeight="600"
           sx={{ color: 'rgba(0, 0, 0, 0.6)' }}
         >
-          {isShowmore ? bio : `${bio.substring(0, 120)}...`}
+          {isShowmore
+            ? bio[currentLanguage]
+            : `${bio[currentLanguage].substring(0, 120)}...`}
           <Button
             size="small"
             onClick={toggleShowmore}
@@ -71,7 +79,7 @@ export default function TeamMemberCard({
               color: 'rgba(0, 0, 0, 0.6)',
             }}
           >
-            {isShowmore ? 'Show Less' : 'Show More'}
+            {isShowmore ? strings.show_less : strings.show_more}
           </Button>
         </Typography>
       </CardContent>

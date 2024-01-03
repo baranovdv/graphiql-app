@@ -4,12 +4,14 @@ const ruStrings: Record<StringsTypes, string> = {
   welcome_page_title_1: 'Это GraphQL приложение от команды',
   welcome_page_title_2: '!',
   welcome_page_subtitle: 'Привет! Пожалуйста зарегистрируйся или войди:',
+  welcome_page_subtitle_logged: 'Привет! Пожалуйста перейди на главную:',
   signin_button: 'Войти',
   signup_button: 'Регистрация',
   page404_message: 'Это страница 404',
   logout: 'Выйти',
+  name: 'Имя',
   main_page_title: 'Главная',
-  singin_page_title: 'Войти',
+  singin_page_title: 'Вход в Аккаунт',
   singup_page_title: 'Регистрация',
   about_project: 'О проекте',
   about_project_text:
@@ -26,6 +28,17 @@ const ruStrings: Record<StringsTypes, string> = {
   email_valid: 'Email должен быть валидным',
   email_domain: 'Электронная почта должна содержать доменное имя',
   field_required: 'Обязательное поле',
+  error: 'Ошибка!',
+  error_message: 'К сожалению, запрашиваемая вами страница не найдена',
+  error_data: 'Ошибка данных',
+  no_docs: 'Нет документации',
+  loading: 'Загрузка...',
+  login_google: 'Вход с помощью Google',
+  no_acc_1: 'Нет аккаунта?',
+  no_acc_2: 'Зарегистрируйтесь',
+  no_acc_3: 'здесь.',
+  show_less: 'Показать меньше',
+  show_more: 'Показать больше',
 };
 
 export default ruStrings;

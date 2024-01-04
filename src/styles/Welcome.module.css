@@ -16,7 +16,7 @@
   padding-bottom: 5rem;
 }
 
-.navTitle{
+.navTitle {
   margin-top: 5%;
   margin-bottom: 5%;
   text-align: center;
@@ -80,7 +80,7 @@
   .welcomeSection {
     margin: 0;
   }
-  .navTitle{
+  .navTitle {
     font-size: 1.5rem;
   }
   .navSubtitle {
@@ -106,7 +106,7 @@
 }
 
 .gradient {
-  background: linear-gradient(261deg, #0288D1, #E535AB);
+  background: linear-gradient(261deg, #0288d1, #e535ab);
   background-size: 400% 400%;
 
   -webkit-background-clip: text;
@@ -120,17 +120,35 @@
 }
 
 @-webkit-keyframes AnimationName {
-  0%{background-position:0% 50%}
-  50%{background-position:100% 50%}
-  100%{background-position:0% 50%}
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 @-moz-keyframes AnimationName {
-  0%{background-position:0% 50%}
-  50%{background-position:100% 50%}
-  100%{background-position:0% 50%}
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 @keyframes AnimationName {
-  0%{background-position:0% 50%}
-  50%{background-position:100% 50%}
-  100%{background-position:0% 50%}
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }

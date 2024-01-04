@@ -6,8 +6,8 @@
 
 body {
   margin: 0;
-    background: var(--main-bg-color);
-    overflow-x: hidden;
+  background: var(--main-bg-color);
+  overflow-x: hidden;
 }
 
 .main {

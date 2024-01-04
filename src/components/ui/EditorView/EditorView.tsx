@@ -13,6 +13,7 @@ export default function EditorView({
   gridAreaProp: MainPageGridAreas;
 }) {
   const dispatch = useAppDispatch();
+
   const input = useAppSelector((state) => state.mainPage.input);
   const response = useAppSelector((state) => state.mainPage.response);
 

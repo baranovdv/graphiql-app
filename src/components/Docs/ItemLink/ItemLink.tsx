@@ -17,11 +17,13 @@ export default function ItemLink({
 }: ItemLinkProps) {
   const dispatch = useAppDispatch();
 
+  const itemLinkHandler = () => dispatch(setSearchName(type));
+
   return (
     <>
       {title && <b>{`${title}: `}</b>}
       <Button
-        onClick={() => dispatch(setSearchName(type))}
+        onClick={itemLinkHandler}
         size="small"
         sx={{
           minWidth: '0px',

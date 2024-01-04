@@ -41,6 +41,7 @@ function SignUpPage() {
   }, [user, navigate]);
 
   if (user) return <Navigate to="/MainPage" replace />;
+
   return loading ? (
     <div>{strings.loading}</div>
   ) : (

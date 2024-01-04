@@ -50,6 +50,7 @@ export default function Docs() {
   const DocsHandler = async () => {
     try {
       const { data } = await triggerfn(url);
+
       if (!data) {
         toast.info(strings.no_docs, { theme: 'colored' });
       } else {
@@ -81,13 +82,16 @@ export default function Docs() {
 
   const breadcrumbHandler = () => {
     setItemsList(lastItemsList.current.pop() || []);
+
     levelName.current.pop();
+
     dispatch(setSearchName(''));
   };
 
   const getRootTypes = () => {
     ROOT_TYPES.forEach((name) => {
       const rootItem = initList.find((intro) => intro.name === name);
+
       if (rootItem) {
         rootTypes.push({
           name: rootItem.name,

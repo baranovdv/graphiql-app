@@ -33,13 +33,17 @@ export default function HLTextArea({
       textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`;
 
       let maxWidth = 300;
+
       const lines = textareaRef.current.value.split('\\n');
+
       lines.forEach((line) => {
         const el = document.createElement('span');
+
         el.style.whiteSpace = 'pre';
         el.textContent = line;
         document.body.appendChild(el);
         const { width } = el.getBoundingClientRect();
+
         if (width > maxWidth) {
           maxWidth = width;
         }

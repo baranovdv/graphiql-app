@@ -71,9 +71,11 @@ export default function InputURL(props: InputURLProps) {
           }
         );
       else dispatch(setResponse(JSON.stringify(response.data)));
+
       setisPlay(true);
     } catch (error) {
       if (error instanceof Error) toast.error(error.message, { theme: 'dark' });
+
       setisPlay(true);
     }
   };

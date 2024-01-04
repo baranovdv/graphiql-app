@@ -13,9 +13,9 @@ interface RootItemProps {
 }
 
 export default function RootItem({ item }: RootItemProps) {
-  const [showDescription, setShowDescription] = useState(false);
+  const [isShowDescription, setIsShowDescription] = useState(false);
 
-  const toggleDescHandler = () => setShowDescription(!showDescription);
+  const toggleDescHandler = () => setIsShowDescription(!isShowDescription);
 
   return (
     <div className={classes.item} key={item.name}>
@@ -34,7 +34,7 @@ export default function RootItem({ item }: RootItemProps) {
       ))}
       ):&nbsp;
       <ItemLink type={getReturnType(item)} color="orange" />
-      {showDescription && (
+      {isShowDescription && (
         <div className={classes.description}>{item.description}</div>
       )}
       <hr className={classes.hr} />

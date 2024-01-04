@@ -18,6 +18,12 @@ export default function Welcome() {
 
   const [user, loading] = useAuthState(auth);
 
+  const signupButtonHandler = () => navigate('/SignUp');
+
+  const signinButtonHandler = () => navigate('/SignIn');
+
+  const mainPageButtonHandler = () => navigate('/MainPage');
+
   return (
     <section className={classes.welcomeSection}>
       <nav className={classes.nav}>
@@ -37,7 +43,7 @@ export default function Welcome() {
               color="info"
               aria-label="register"
               data-testid="register"
-              onClick={() => navigate('/SignUp')}
+              onClick={signupButtonHandler}
               sx={{
                 width: '20%',
                 minWidth: '180px',
@@ -55,7 +61,7 @@ export default function Welcome() {
               color="info"
               aria-label="login"
               data-testid="login"
-              onClick={() => navigate('/SignIn')}
+              onClick={signinButtonHandler}
               sx={{
                 width: '20%',
                 minWidth: '180px',
@@ -78,7 +84,7 @@ export default function Welcome() {
               size="large"
               color="info"
               aria-label="login"
-              onClick={() => navigate('/MainPage')}
+              onClick={mainPageButtonHandler}
               sx={{
                 width: '20%',
                 minWidth: '180px',

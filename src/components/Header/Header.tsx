@@ -34,6 +34,8 @@ export default function Header() {
     });
   };
 
+  const logoClickHandler = () => navigate('/');
+
   useEffect(() => {
     window.addEventListener('scroll', checkScroll);
     return () => {
@@ -45,7 +47,7 @@ export default function Header() {
     <header className={isScrolled ? classes.scrolled : ''}>
       <div>
         <img
-          onClick={() => navigate('/')}
+          onClick={logoClickHandler}
           className={classes.headerLogo}
           src={Logo}
           alt="logo"

@@ -12,6 +12,9 @@ function Page404() {
   const { strings } = useLocale();
 
   const navigate = useNavigate();
+
+  const buttonClickHandler = () => navigate('/MainPage');
+
   return (
     <div className={classes.wrapperPage}>
       <div className={classes.wrapper}>
@@ -24,7 +27,7 @@ function Page404() {
             size="large"
             color="info"
             aria-label="login"
-            onClick={() => navigate('/MainPage')}
+            onClick={buttonClickHandler}
             sx={{
               width: '20%',
               minWidth: '180px',

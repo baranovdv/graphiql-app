@@ -1,11 +1,13 @@
 const TAB_SIZE = '  ';
 
 export function removeSpaces(str: string): string {
-  return str
-    .replace(/\n/g, ' ')
-    .split(' ')
-    .filter((item) => item.trim() !== '')
-    .join(' ');
+  if (str)
+    return str
+      .replace(/\n/g, ' ')
+      .split(' ')
+      .filter((item) => item.trim() !== '')
+      .join(' ');
+  return '';
 }
 
 export function handleParenthesis(str: string): string {

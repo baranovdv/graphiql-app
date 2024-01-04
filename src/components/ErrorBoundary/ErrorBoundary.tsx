@@ -12,8 +12,8 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
   }
 
   componentDidCatch(error: Error, errorInfo: ErrorInfo) {
-    toast.error(`${error.message}${errorInfo}`);
     this.setState({ hasError: true });
+    toast.error(`${error.message}${errorInfo}`);
   }
 
   render() {

@@ -1,12 +1,12 @@
-import { describe, it, expect } from 'vitest';
+import { describe, test, expect } from 'vitest';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { store } from '../store/store';
 import { LocaleProvider } from '../context/StoreContext';
 import Docs from '../components/Docs/Docs';
 
-describe('Docs Component', () => {
-  it('Renders Docs Component', async () => {
+describe('<Docs>', () => {
+  test('should render Docs Component', async () => {
     render(
       <Provider store={store}>
         <LocaleProvider>
@@ -20,7 +20,7 @@ describe('Docs Component', () => {
     expect(title).toHaveTextContent('Query');
   });
 
-  it('Renders type information', async () => {
+  test('should render type information', async () => {
     render(
       <Provider store={store}>
         <LocaleProvider>
@@ -42,7 +42,7 @@ describe('Docs Component', () => {
     }
   });
 
-  it('Renders type information for input', async () => {
+  test('Should render type information for input', async () => {
     render(
       <Provider store={store}>
         <LocaleProvider>

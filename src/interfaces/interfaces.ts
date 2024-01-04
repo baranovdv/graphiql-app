@@ -2,11 +2,11 @@
 import { IntrospectionField, IntrospectionInputValue } from 'graphql';
 import { ActionType, AppLanguages, LocaleData } from '../types/types';
 
-export interface IErrorBoundaryProps {
+export interface ErrorBoundaryProps {
   children: React.ReactNode;
 }
 
-export interface IErrorBoundaryState {
+export interface ErrorBoundaryState {
   hasError: boolean;
 }
 

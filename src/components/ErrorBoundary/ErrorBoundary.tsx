@@ -1,15 +1,12 @@
 import { Component, ErrorInfo } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import {
-  IErrorBoundaryProps,
-  IErrorBoundaryState,
+  ErrorBoundaryProps,
+  ErrorBoundaryState,
 } from '../../interfaces/interfaces';
 
-class ErrorBoundary extends Component<
-  IErrorBoundaryProps,
-  IErrorBoundaryState
-> {
-  constructor(props: IErrorBoundaryProps) {
+class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
+  constructor(props: ErrorBoundaryProps) {
     super(props);
     this.state = { hasError: false };
   }

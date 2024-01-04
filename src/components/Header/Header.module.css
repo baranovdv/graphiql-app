@@ -30,8 +30,8 @@ header.scrolled {
 .headerTitle {
   font-size: 3rem;
   letter-spacing: 0.4rem;
-  color: var(--graphql-color);
-  font-family: 'Caveat', cursive;
+  color: var(--text-color-primary);
+  font-family: 'Roboto', sans-serif;
 }
 
 .headerButtons {

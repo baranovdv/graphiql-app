@@ -2,7 +2,6 @@ import { ItemType2 } from '../../interfaces/interfaces';
 import getSubType from './getSubTypes';
 
 export default function getType(item: ItemType2): string {
-  console.log(item);
   if (item.type?.kind === 'LIST' || item.type?.kind === 'NON_NULL') {
     return getSubType(item.type?.ofType);
   }

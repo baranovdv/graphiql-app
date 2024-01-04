@@ -45,15 +45,15 @@ type KindTypes =
   | 'LIST'
   | 'NON_NULL';
 
-export interface ItemType2 extends Partial<IntrospectionField> {
-  kind?: KindTypes;
+export interface ParsedIntrospectionType extends Partial<IntrospectionField> {
   name: string;
+  kind?: KindTypes;
   fields?: ReadonlyArray<IntrospectionField>;
   inputFields?: ReadonlyArray<IntrospectionInputValue>;
 }
 
 export type RootTypesType = {
   name: string;
-  fields: ItemType2[];
+  fields: ParsedIntrospectionType[];
 };
 /* v8 ignore stop */

@@ -3,7 +3,10 @@ import { Button } from '@mui/material';
 import { IntrospectionObjectType, IntrospectionType } from 'graphql';
 import { useEffect, useRef, useState } from 'react';
 import { toast } from 'react-toastify';
-import { ItemType2, RootTypesType } from '../../interfaces/interfaces';
+import {
+  ParsedIntrospectionType,
+  RootTypesType,
+} from '../../interfaces/interfaces';
 import {
   selectSearchItemName,
   useAppDispatch,
@@ -27,29 +30,30 @@ const ROOT_TYPES = ['Query', 'Mutation', 'query_root'];
 export default function Docs() {
   const searchItemName = useAppSelector(selectSearchItemName);
   const url = useAppSelector((state) => state.mainPage.url);
+
+  const [initList, setInitList] = useState<IntrospectionType[]>([]);
+  const [itemsList, setItemsList] = useState<ParsedIntrospectionType[]>([]);
+
+  const lastItemsList = useRef<ParsedIntrospectionType[][]>([]);
+  const levelName = useRef<string[]>([UPPER_LEVEL_NAME]);
+
   const [triggerfn] = useLazyGetSchemaQuery();
 
   const dispatch = useAppDispatch();
 
   const { strings } = useLocale();
 
-  let isDocsValid: boolean = true;
-
   const rootTypes: RootTypesType[] = [];
 
-  const [initList, setInitList] = useState<IntrospectionType[]>([]);
-  const [itemsList, setItemsList] = useState<ItemType2[]>([]);
-
-  const lastItemsList = useRef<ItemType2[][]>([]);
-  const levelName = useRef<string[]>([UPPER_LEVEL_NAME]);
+  let isDocsValid: boolean = true;
 
   const DocsHandler = async () => {
     try {
-      const response = await triggerfn(url);
-      if (!response.data) {
+      const { data } = await triggerfn(url);
+      if (!data) {
         toast.info(strings.no_docs, { theme: 'colored' });
       } else {
-        const parsedTypesToString = getTypesFromIntrospection(response.data);
+        const parsedTypesToString = getTypesFromIntrospection(data);
 
         isDocsValid = isJSONParse(parsedTypesToString);
 
@@ -65,7 +69,10 @@ export default function Docs() {
     }
   };
 
-  const updateItemsList = (newItemsList: ItemType2[], itemName: string) => {
+  const updateItemsList = (
+    newItemsList: ParsedIntrospectionType[],
+    itemName: string
+  ) => {
     lastItemsList.current.push(itemsList);
     levelName.current.push(itemName);
 
@@ -84,7 +91,8 @@ export default function Docs() {
       if (rootItem) {
         rootTypes.push({
           name: rootItem.name,
-          fields: (rootItem as IntrospectionObjectType).fields as ItemType2[],
+          fields: (rootItem as IntrospectionObjectType)
+            .fields as ParsedIntrospectionType[],
         });
       }
     });

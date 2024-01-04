@@ -53,7 +53,7 @@ export default function InputURL(props: InputURLProps) {
       const response = await triggerfn({
         url,
         query: `${inputvalue}`,
-        variables: JSON.parse(vars),
+        variables: JSON.parse(vars || '{}'),
         headersopt: Object.assign(JSON.parse(headers || '{}'), {
           'Content-Type': 'application/json',
         }),

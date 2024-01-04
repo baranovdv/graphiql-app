@@ -1,4 +1,5 @@
 import { Component, ErrorInfo } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
 import {
   IErrorBoundaryProps,
   IErrorBoundaryState,
@@ -14,7 +15,7 @@ class ErrorBoundary extends Component<
   }
 
   componentDidCatch(error: Error, errorInfo: ErrorInfo) {
-    console.error('ErrorBoundary caught an error: ', error, errorInfo);
+    toast.error(`${error.message}${errorInfo}`);
     this.setState({ hasError: true });
   }
 
@@ -22,7 +23,14 @@ class ErrorBoundary extends Component<
     const { hasError } = this.state;
     const { children } = this.props;
     if (hasError === true) {
-      return <h1>Something went wrong.</h1>;
+      return (
+        <ToastContainer
+          position="top-center"
+          autoClose={false}
+          theme="colored"
+          style={{ top: '50%' }}
+        />
+      );
     }
 
     return children;

@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { ToastContainer } from 'react-toastify';
-import { Fab } from '@mui/material';
+import { Button, ButtonGroup } from '@mui/material';
 import LoginIcon from '@mui/icons-material/Login';
 import PersonIcon from '@mui/icons-material/Person';
 import ApiIcon from '@mui/icons-material/Api';
@@ -24,80 +24,86 @@ export default function Welcome() {
 
   const mainPageButtonHandler = () => navigate('/MainPage');
 
+  const buttonsGuest = [
+    <Button
+      key="signin"
+      onClick={signinButtonHandler}
+      data-testid="login"
+      color="info"
+      sx={{
+        textTransform: 'none',
+        zIndex: '0',
+      }}
+    >
+      {strings.singin_page_title}&nbsp;
+      <PersonIcon />
+    </Button>,
+    <Button
+      key="signup"
+      onClick={signupButtonHandler}
+      data-testid="register"
+      color="info"
+      sx={{
+        textTransform: 'none',
+        zIndex: '0',
+      }}
+    >
+      {strings.singup_page_title}&nbsp;
+      <LoginIcon />
+    </Button>,
+  ];
+
   return (
     <section className={classes.welcomeSection}>
       <nav className={classes.nav}>
+        {!user && !loading && (
+          <ButtonGroup
+            orientation="vertical"
+            aria-label="vertical contained button group"
+            variant="contained"
+            sx={{
+              marginLeft: 'auto',
+              marginTop: '2rem',
+              marginRight: '1rem',
+              '@media(max-width: 768px)': {
+                marginTop: '1rem',
+                marginRight: '0',
+                marginBottom: '1rem',
+              },
+            }}
+          >
+            {buttonsGuest}
+          </ButtonGroup>
+        )}
+        {user && !loading && (
+          <Button
+            variant="contained"
+            color="info"
+            size="large"
+            onClick={mainPageButtonHandler}
+            sx={{
+              textTransform: 'none',
+              zIndex: '0',
+              marginLeft: 'auto',
+              marginTop: '2rem',
+              marginRight: '1rem',
+              '@media(max-width: 768px)': {
+                marginTop: '1rem',
+                marginRight: '0',
+                marginBottom: '1rem',
+              },
+            }}
+          >
+            {strings.main_page_title}&nbsp;
+            <ApiIcon />
+          </Button>
+        )}
+        {loading && <div className={classes.loading}> {strings.loading}</div>}
         <h1 className={classes.navTitle}>
           {strings.welcome_page_title_1}{' '}
           <span className={classes.gradient}>TwentyMinutesAdventure</span>{' '}
           {strings.welcome_page_title_2}
         </h1>
-        {!user && !loading && (
-          <section className={classes.navGuest}>
-            <h2 className={classes.navSubtitle}>
-              {strings.welcome_page_subtitle}
-            </h2>
-            <Fab
-              variant="extended"
-              size="large"
-              color="info"
-              aria-label="register"
-              data-testid="register"
-              onClick={signupButtonHandler}
-              sx={{
-                width: '20%',
-                minWidth: '180px',
-                textTransform: 'none',
-                zIndex: '0',
-              }}
-            >
-              {strings.singup_page_title}&nbsp;
-              <PersonIcon />
-            </Fab>
-            <Fab
-              id="signin"
-              variant="extended"
-              size="large"
-              color="info"
-              aria-label="login"
-              data-testid="login"
-              onClick={signinButtonHandler}
-              sx={{
-                width: '20%',
-                minWidth: '180px',
-                textTransform: 'none',
-                zIndex: '0',
-              }}
-            >
-              {strings.singin_page_title}&nbsp;
-              <LoginIcon />
-            </Fab>
-          </section>
-        )}
-        {user && !loading && (
-          <section className={classes.navLogged}>
-            <h2 className={classes.navSubtitleLogged}>
-              {strings.welcome_page_subtitle_logged}
-            </h2>
-            <Fab
-              variant="extended"
-              size="large"
-              color="info"
-              aria-label="login"
-              onClick={mainPageButtonHandler}
-              sx={{
-                width: '20%',
-                minWidth: '180px',
-                textTransform: 'none',
-                zIndex: '0',
-              }}
-            >
-              {strings.main_page_title}&nbsp;
-              <ApiIcon />
-            </Fab>
-          </section>
-        )}
-        {loading}
       </nav>
       <section className={classes.section}>
         <h2 className={classes.sectionTitle}>{strings.about_project}</h2>

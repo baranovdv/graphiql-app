@@ -10,7 +10,7 @@ const MockContextStore = {
     page404_message: 'Это страница 404',
     logout: 'Выйти',
     name: 'Имя',
-    main_page_title: 'Главная',
+    main_page_title: 'Перейти на главную',
     singin_page_title: 'Вход в Аккаунт',
     singup_page_title: 'Регистрация',
     about_project: 'О проекте',

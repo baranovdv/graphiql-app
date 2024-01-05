@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useNavigate } from 'react-router-dom';
-import { Fab } from '@mui/material';
+import { Button } from '@mui/material';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { useLocale, useLocaleDispatch } from '../../context/StoreContext';
 import { AppLanguages } from '../../types/types';
@@ -59,17 +59,19 @@ export default function Header() {
           <p>{strings.loading}</p>
         ) : (
           user && (
-            <Fab
-              variant="extended"
-              size="medium"
-              aria-label="logout"
-              color="info"
+            <Button
               onClick={logout}
-              sx={{ textTransform: 'none' }}
+              variant="contained"
+              color="info"
+              size="medium"
+              sx={{
+                textTransform: 'none',
+                zIndex: '0',
+              }}
             >
               {strings.logout}&nbsp;
               <LogoutIcon />
-            </Fab>
+            </Button>
           )
         )}
         <LangToggleButton

@@ -1,6 +1,6 @@
-import avatar from '../assets/img/avatar.png';
 import baranovdvAvatar from '../assets/img/baranovdv.jpg';
 import rpg0007avatar from '../assets/img/RPGavatar.jpg';
+import sanya from '../assets/img/teamMember_Aliaksandr.png';
 import { TeamMemberCardProps } from '../interfaces/interfaces';
 
 const teamData: TeamMemberCardProps[] = [
@@ -27,10 +27,10 @@ const teamData: TeamMemberCardProps[] = [
   {
     id: 3,
     name: { En: 'Aleksandr', Ру: 'Александр' },
-    img: avatar,
+    img: sanya,
     bio: {
-      En: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum',
-      Ру: 'Важно заботиться о больном, чтобы за ним следили, но это произойдет в такое время, когда будет много работы и боли. Если говорить до мельчайших подробностей, то никто не должен заниматься никакой работой, если не получит от нее какой-либо пользы. Не сердись на боль, на выговор, на удовольствие он хочет быть волоском от боли в надежде, что не будет размножения. Если не ослеплены похотью, не выходят, виноваты те, кто бросает свои обязанности, душа смягчается, то есть трудится',
+      En: 'I like solving logic problems and have a lot of free time, so I decided to entertain myself with this course',
+      Ру: 'Нравится решать логические задачки и много свободного времени, поэтому решил развлечь себя этим курсом',
     },
     github: 'https://github.com/baranovdv/',
   },

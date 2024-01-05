@@ -16,6 +16,9 @@ const enStrings: Record<StringsTypes, string> = {
   about_project: 'About project',
   about_project_text:
     "Our team has developed an innovative project that makes interacting with GraphQL much easier. GraphQL isn't just an API query language, it's an entire runtime that allows you to work efficiently with your existing data. One of the key benefits of GraphQL is its complete and clear description of the data in your API. This ensures that customers can request exactly the information they need, eliminating unnecessary data. This not only simplifies the process of working with the API, but also makes it more efficient. Overall, our project provides a solution that makes interacting with GraphQL easier and more efficient, opening up new possibilities for developers and users. We believe this will be a useful addition to any project that uses GraphQL.",
+  about_course: 'About course',
+  about_course_text:
+    'This project is final task of RSSchool React course. Course started from 23 october 2023. Everyone can study at RS School, regardless of age, professional employment, or place of residence. The mentors and trainers of our school are front-end and javascript developers from different companies and countries.',
   our_team: 'Our team',
   login: 'Login:',
   name_capitalized: 'Login should be capitalized',

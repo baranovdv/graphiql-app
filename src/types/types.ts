@@ -29,6 +29,8 @@ export type StringsTypes =
   | 'singup_page_title'
   | 'about_project'
   | 'about_project_text'
+  | 'about_course'
+  | 'about_course_text'
   | 'our_team'
   | 'login'
   | 'password'

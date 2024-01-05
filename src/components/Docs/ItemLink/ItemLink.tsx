@@ -35,6 +35,7 @@ export default function ItemLink({
         }}
       >
         {type}
+        {type === 'ID' && '!'}
       </Button>
     </>
   );

@@ -19,7 +19,7 @@ describe('<404Page>', () => {
     expect(
       screen.getByText(/К сожалению, запрашиваемая вами страница не найдена/i)
     ).toBeInTheDocument();
-    screen.getByText(/Главная/i);
+    screen.getByText(/Перейти на главную/i);
   });
 
   test('should navigate to Main Page after click on button', async () => {

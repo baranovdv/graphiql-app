@@ -10,7 +10,7 @@ import { AppLanguages } from '../../types/types';
 import { auth, logout } from '../../firebase';
 import Logo from '../../assets/img/Logo.svg';
 import classes from './Header.module.css';
-import LangToggleButton from './langToggleButton/langToggleButton';
+import LangToggleButton from './langToggleButton/LangToggleButton';
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);

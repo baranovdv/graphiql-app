@@ -11,6 +11,7 @@ import classes from '../styles/SingIn.module.css';
 import { Client } from '../interfaces/interfaces';
 import LoginSchema from '../data/validationScheme/loginSchema';
 import { useLocale } from '../context/StoreContext';
+import Spinner from '../assets/img/spinner.svg';
 
 function SignInPage() {
   const {
@@ -38,7 +39,9 @@ function SignInPage() {
 
   if (user) return <Navigate to="/MainPage" replace />;
   return loading ? (
-    <div>{strings.loading}</div>
+    <div className="loadingDiv">
+      <img src={Spinner} alt="LoadingImg" />
+    </div>
   ) : (
     <section className={classes.section}>
       <h1 className={classes.title}>{strings.singin_page_title}</h1>

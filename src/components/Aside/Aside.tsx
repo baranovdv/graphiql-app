@@ -3,6 +3,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import { lazy, Suspense } from 'react';
 import classes from './Aside.module.css';
 import { useLocale } from '../../context/StoreContext';
+import Spinner from '../../assets/img/spinner.svg';
 
 interface AsideProps {
   isOpen: boolean;
@@ -25,7 +26,14 @@ export default function Aside({ isOpen, toggleDocs }: AsideProps) {
       >
         <CloseIcon />
       </IconButton>
-      <Suspense fallback={<p>{strings.loading}</p>}>
+      <Suspense
+        fallback={
+          <div className="loadingDiv">
+            {strings.loading}
+            <img src={Spinner} alt="LoadingImg" />
+          </div>
+        }
+      >
         {isOpen && <Docs />}
       </Suspense>
     </aside>

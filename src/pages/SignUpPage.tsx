@@ -15,6 +15,7 @@ import classes from '../styles/SingUp.module.css';
 import { useLocale } from '../context/StoreContext';
 import { registerWithEmailAndPassword, auth } from '../firebase';
 import RegistrationSchema from '../data/validationScheme/registrationSchema';
+import Spinner from '../assets/img/spinner.svg';
 
 function SignUpPage() {
   const { strings } = useLocale();
@@ -43,7 +44,9 @@ function SignUpPage() {
   if (user) return <Navigate to="/MainPage" replace />;
 
   return loading ? (
-    <div>{strings.loading}</div>
+    <div className="loadingDiv">
+      <img src={Spinner} alt="LoadingImg" />
+    </div>
   ) : (
     <section className={classes.section}>
       <h1 className={classes.title}>{strings.singup_page_title}</h1>

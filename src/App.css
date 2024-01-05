@@ -17,3 +17,10 @@ body {
   margin-right: auto;
   height: 100vh;
 }
+
+.loadingDiv{
+  display: flex;
+  align-self: center;
+  justify-self: center;
+  align-items: center;
+}

@@ -23,13 +23,17 @@ export default function RegistrationSchema() {
     firstPassword: string()
       .required(strings.field_required)
       .matches(
-        /^(?=.*\p{Ll})(?=.*\p{Lu})(?=.*\d)(?=.*[@$!%*?&])[\p{L}\d@$!%*?&."']{8,}$/u,
+        /^(?=.*\p{Ll})(?=.*\p{Lu})(?=.*\d)(?=.*[@$!%*?&*()_+])[\p{L}\d@$!%*?&*()_+."']{8,}$/u,
         strings.password_rules
       ),
     secondPassword: string()
       .required(strings.field_required)
-      .test('passwords-match', strings.password_match, function (value) {
-        return this.parent.firstPassword === value;
-      }),
+      .test(
+        'passwords-match',
+        strings.password_match,
+        function checkMatch(value) {
+          return this.parent.firstPassword === value;
+        }
+      ),
   });
 }

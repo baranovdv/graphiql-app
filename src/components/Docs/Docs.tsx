@@ -23,6 +23,7 @@ import { useLazyGetSchemaQuery } from '../../store/api/api';
 import getTypesFromIntrospection from '../../utils/docsUtils/getTypesFromIntrospection';
 import parseSearchItemName from '../../utils/docsUtils/parseSearchItemName';
 import { useLocale } from '../../context/StoreContext';
+import Spinner from '../../assets/img/spinner.svg';
 
 const UPPER_LEVEL_NAME = 'Docs';
 const ROOT_TYPES = ['Query', 'Mutation', 'query_root'];
@@ -124,7 +125,13 @@ export default function Docs() {
     };
   }, [searchItemName]);
 
-  if (initList.length === 0) return <div>{strings.loading}</div>;
+  if (initList.length === 0)
+    return (
+      <div className="loadingDiv">
+        {strings.loading}
+        <img src={Spinner} alt="LoadingImg" />
+      </div>
+    );
 
   if (!isDocsValid) return <div>{strings.error_data}</div>;
 

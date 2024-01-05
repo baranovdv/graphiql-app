@@ -11,6 +11,7 @@ import { auth, logout } from '../../firebase';
 import Logo from '../../assets/img/Logo.svg';
 import classes from './Header.module.css';
 import LangToggleButton from './langToggleButton/LangToggleButton';
+import Spinner from '../../assets/img/spinner.svg';
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -56,7 +57,10 @@ export default function Header() {
       <h2 className={classes.headerTitle}>GraphQL App</h2>
       <div className={classes.headerButtons}>
         {loading ? (
-          <p>{strings.loading}</p>
+          <div className="loadingDiv">
+            {strings.loading}
+            <img src={Spinner} width={35} height={35} alt="LoadingImg" />
+          </div>
         ) : (
           user && (
             <Button

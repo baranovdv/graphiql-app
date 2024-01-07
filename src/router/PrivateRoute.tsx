@@ -1,6 +1,6 @@
 import { Navigate } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { MainPage } from '../pages/MainPage';
+import { MainPage } from '../pages/MainPage/MainPage';
 import { auth } from '../firebase';
 import Spinner from '../assets/img/spinner.svg';
 

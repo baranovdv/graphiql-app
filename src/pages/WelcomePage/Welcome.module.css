@@ -9,7 +9,7 @@
   flex-direction: column;
   align-items: center;
   color: var(--text-color-primary-bright);
-  background-image: url('../assets/img/background.JPG');
+  background-image: url('../../assets/img/background.JPG');
   background-size: cover;
   background-clip: border-box;
   padding: 0 1rem;

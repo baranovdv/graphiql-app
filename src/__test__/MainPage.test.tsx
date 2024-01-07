@@ -4,7 +4,7 @@ import { render, screen } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { store } from '../store/store';
 import { LocaleProvider } from '../context/StoreContext';
-import MainPage from '../pages/MainPage';
+import MainPage from '../pages/MainPage/MainPage';
 
 describe('<MainPage>', () => {
   test('should render MainPage component', async () => {

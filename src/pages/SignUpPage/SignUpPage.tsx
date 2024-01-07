@@ -10,12 +10,12 @@ import {
   PasswordRepeatElement,
   TextFieldElement,
 } from 'react-hook-form-mui';
-import { Client } from '../interfaces/interfaces';
-import classes from '../styles/SingUp.module.css';
-import { useLocale } from '../context/StoreContext';
-import { registerWithEmailAndPassword, auth } from '../firebase';
-import RegistrationSchema from '../data/validationScheme/registrationSchema';
-import Spinner from '../assets/img/spinner.svg';
+import { Client } from '../../interfaces/interfaces';
+import classes from './SingUp.module.css';
+import { useLocale } from '../../context/StoreContext';
+import { registerWithEmailAndPassword, auth } from '../../firebase';
+import RegistrationSchema from '../../data/validationScheme/registrationSchema';
+import Spinner from '../../assets/img/spinner.svg';
 
 function SignUpPage() {
   const { strings } = useLocale();

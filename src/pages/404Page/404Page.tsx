@@ -1,12 +1,12 @@
 import { useNavigate } from 'react-router-dom';
 import { Fab } from '@mui/material';
 import ApiIcon from '@mui/icons-material/Api';
-import classes from '../styles/404Page.module.css';
-import Footer from '../components/Footer/Footer';
-import coachLarge from '../assets/img/couch_lurge_404.png';
-import coachSmall from '../assets/img/couch_small_404.png';
-import coach from '../assets/img/couch_404.png';
-import { useLocale } from '../context/StoreContext';
+import classes from './404Page.module.css';
+import Footer from '../../components/Footer/Footer';
+import coachLarge from '../../assets/img/couch_lurge_404.png';
+import coachSmall from '../../assets/img/couch_small_404.png';
+import coach from '../../assets/img/couch_404.png';
+import { useLocale } from '../../context/StoreContext';
 
 function Page404() {
   const { strings } = useLocale();

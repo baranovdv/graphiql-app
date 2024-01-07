@@ -5,11 +5,11 @@ import { Button, ButtonGroup } from '@mui/material';
 import LoginIcon from '@mui/icons-material/Login';
 import PersonIcon from '@mui/icons-material/Person';
 import ApiIcon from '@mui/icons-material/Api';
-import classes from '../styles/Welcome.module.css';
-import { useLocale } from '../context/StoreContext';
-import { auth } from '../firebase';
-import teamData from '../data/teamData';
-import TeamMemberCard from '../components/TeamMemberCard/TeamMemberCard';
+import classes from './Welcome.module.css';
+import { useLocale } from '../../context/StoreContext';
+import { auth } from '../../firebase';
+import teamData from '../../data/teamData';
+import TeamMemberCard from '../../components/TeamMemberCard/TeamMemberCard';
 
 export default function Welcome() {
   const { strings } = useLocale();

@@ -2,7 +2,7 @@ import { describe, expect, test } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import userEvent from '@testing-library/user-event';
-import Page404 from '../pages/404Page';
+import Page404 from '../pages/404Page/404Page';
 import { LocaleProvider } from '../context/StoreContext';
 
 describe('<404Page>', () => {

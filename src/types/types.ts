@@ -14,6 +14,13 @@ export type MainPageRes = {
   errors?: [];
 };
 
+export type MainPageReq = {
+  url: string;
+  query: string;
+  variables?: object;
+  headersopt?: Record<string, string>;
+};
+
 export type StringsTypes =
   | 'welcome_page_title_1'
   | 'welcome_page_title_2'
@@ -29,6 +36,8 @@ export type StringsTypes =
   | 'singup_page_title'
   | 'about_project'
   | 'about_project_text'
+  | 'about_course'
+  | 'about_course_text'
   | 'our_team'
   | 'login'
   | 'password'

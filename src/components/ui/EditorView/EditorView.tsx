@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../../store/store';
 import { setInput, setResponse } from '../../../store/reducers/mainPageSlice';
@@ -13,6 +14,7 @@ export default function EditorView({
   gridAreaProp: MainPageGridAreas;
 }) {
   const dispatch = useAppDispatch();
+
   const input = useAppSelector((state) => state.mainPage.input);
   const response = useAppSelector((state) => state.mainPage.response);
 

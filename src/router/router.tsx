@@ -1,10 +1,10 @@
 import { createBrowserRouter } from 'react-router-dom';
 import App from '../App';
-import SignInPage from '../pages/SignInPage';
-import Page404 from '../pages/404Page';
+import SignInPage from '../pages/SignInPage/SignInPage';
+import Page404 from '../pages/404Page/404Page';
 import PrivateRoute from './PrivateRoute';
-import Welcome from '../pages/Welcome';
-import SignUpPage from '../pages/SignUpPage';
+import Welcome from '../pages/WelcomePage/Welcome';
+import SignUpPage from '../pages/SignUpPage/SignUpPage';
 
 const routes = [
   {

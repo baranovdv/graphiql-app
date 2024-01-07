@@ -6,11 +6,16 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { Button, Stack } from '@mui/material';
 import { PasswordElement, TextFieldElement } from 'react-hook-form-mui';
 import { ToastContainer } from 'react-toastify';
-import { auth, logInWithEmailAndPassword, signInWithGoogle } from '../firebase';
-import classes from '../styles/SingIn.module.css';
-import { Client } from '../interfaces/interfaces';
-import LoginSchema from '../data/validationScheme/loginSchema';
-import { useLocale } from '../context/StoreContext';
+import {
+  auth,
+  logInWithEmailAndPassword,
+  signInWithGoogle,
+} from '../../firebase';
+import classes from './SingIn.module.css';
+import { Client } from '../../interfaces/interfaces';
+import LoginSchema from '../../data/validationScheme/loginSchema';
+import { useLocale } from '../../context/StoreContext';
+import Spinner from '../../assets/img/spinner.svg';
 
 function SignInPage() {
   const {
@@ -38,7 +43,9 @@ function SignInPage() {
 
   if (user) return <Navigate to="/MainPage" replace />;
   return loading ? (
-    <div>{strings.loading}</div>
+    <div className="loadingDiv">
+      <img src={Spinner} alt="LoadingImg" />
+    </div>
   ) : (
     <section className={classes.section}>
       <h1 className={classes.title}>{strings.singin_page_title}</h1>

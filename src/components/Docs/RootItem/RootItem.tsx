@@ -1,21 +1,20 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import { Fragment, useState } from 'react';
-import { ItemType2 } from '../../../interfaces/interfaces';
+import { ParsedIntrospectionType } from '../../../interfaces/interfaces';
 import getArgType from '../../../utils/docsUtils/getArgType';
 import getReturnType from '../../../utils/docsUtils/getReturnType';
 import ItemLink from '../ItemLink/ItemLink';
 import classes from './RootItem.module.css';
 
 interface RootItemProps {
-  item: ItemType2;
+  item: ParsedIntrospectionType;
 }
 
 export default function RootItem({ item }: RootItemProps) {
-  const [showDescription, setShowDescription] = useState(false);
+  const [isShowDescription, setIsShowDescription] = useState(false);
 
-  const toggleDescHandler = () => setShowDescription(!showDescription);
+  const toggleDescHandler = () => setIsShowDescription(!isShowDescription);
 
   return (
     <div className={classes.item} key={item.name}>
@@ -34,7 +33,7 @@ export default function RootItem({ item }: RootItemProps) {
       ))}
       ):&nbsp;
       <ItemLink type={getReturnType(item)} color="orange" />
-      {showDescription && (
+      {isShowDescription && (
         <div className={classes.description}>{item.description}</div>
       )}
       <hr className={classes.hr} />

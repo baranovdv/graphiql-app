@@ -1,10 +1,10 @@
-import { ItemType2 } from '../../../interfaces/interfaces';
+import { ParsedIntrospectionType } from '../../../interfaces/interfaces';
 import RootItem from '../RootItem/RootItem';
 import classes from './RootType.module.css';
 
 interface RootTypeProps {
   name: string;
-  fields: ItemType2[];
+  fields: ParsedIntrospectionType[];
 }
 
 export default function RootType({ name, fields }: RootTypeProps) {

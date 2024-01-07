@@ -2,11 +2,11 @@ import { describe, expect, test } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import userEvent from '@testing-library/user-event';
-import Page404 from '../pages/404Page';
+import Page404 from '../pages/404Page/404Page';
 import { LocaleProvider } from '../context/StoreContext';
 
-describe('Page404', () => {
-  test('renders 404', () => {
+describe('<404Page>', () => {
+  test('should render 404 Page', () => {
     render(
       <LocaleProvider>
         <MemoryRouter>
@@ -14,15 +14,15 @@ describe('Page404', () => {
         </MemoryRouter>
       </LocaleProvider>
     );
-    expect(screen.getByText(/Ошибка!/i)).toBeInTheDocument();
-    expect(screen.getByText(/404/i)).toBeInTheDocument();
+    screen.getByText(/Ошибка!/i);
+    screen.getByText(/404/i);
     expect(
       screen.getByText(/К сожалению, запрашиваемая вами страница не найдена/i)
     ).toBeInTheDocument();
-    expect(screen.getByText(/Главная/i)).toBeInTheDocument();
+    screen.getByText(/Перейти на главную/i);
   });
 
-  test('проверка перехода на главную страницу при нажатии на кнопку', async () => {
+  test('should navigate to Main Page after click on button', async () => {
     render(
       <LocaleProvider>
         <MemoryRouter>
@@ -32,7 +32,9 @@ describe('Page404', () => {
     );
 
     const button = screen.getByRole('button');
+
     await userEvent.click(button);
+
     expect(window.location.pathname).toBe('/');
   });
 });

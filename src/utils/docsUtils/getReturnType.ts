@@ -1,7 +1,7 @@
-import { ItemType2 } from '../../interfaces/interfaces';
+import { ParsedIntrospectionType } from '../../interfaces/interfaces';
 import getSubType from './getSubTypes';
 
-export default function getReturnType(item: ItemType2): string {
+export default function getReturnType(item: ParsedIntrospectionType): string {
   if (item.type?.kind === 'SCALAR' || item.type?.kind === 'OBJECT')
     return item.type?.name;
 

@@ -1,16 +1,18 @@
 import { Navigate } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { MainPage } from '../pages/MainPage';
+import { MainPage } from '../pages/MainPage/MainPage';
 import { auth } from '../firebase';
-import { useLocale } from '../context/StoreContext';
+import Spinner from '../assets/img/spinner.svg';
 
 function PrivateRoute() {
   const [user, loading] = useAuthState(auth);
 
-  const { strings } = useLocale();
-
   if (loading) {
-    return <div>{strings.loading}</div>;
+    return (
+      <div className="loadingDiv">
+        <img src={Spinner} alt="LoadingImg" />
+      </div>
+    );
   }
 
   if (!user) {

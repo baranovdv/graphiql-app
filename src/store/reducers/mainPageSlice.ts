@@ -38,6 +38,7 @@ export const MainPageDataSlice = createSlice({
       state.input = 'query{}';
       state.vars = '';
       state.headers = '';
+      state.response = '';
     },
   },
 });

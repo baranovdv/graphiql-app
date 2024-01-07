@@ -5,17 +5,7 @@ import {
   reactHooksModule,
 } from '@reduxjs/toolkit/query/react';
 import { IntrospectionQuery, getIntrospectionQuery } from 'graphql';
-
-type MainPageRes = {
-  data: object;
-};
-
-type MainPageReq = {
-  url: string;
-  query: string;
-  variables?: object;
-  headersopt?: Record<string, string>;
-};
+import { MainPageReq, MainPageRes } from '../../types/types';
 
 const createApi = buildCreateApi(
   coreModule(),
@@ -29,7 +19,6 @@ export const MainPageApi = createApi({
   }),
   endpoints: ({ query }) => ({
     getData: query<MainPageRes, MainPageReq>({
-      // eslint-disable-next-line @typescript-eslint/no-shadow
       query: ({ url, query, variables, headersopt }) => ({
         url: `${url}`,
         method: 'POST',

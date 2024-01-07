@@ -24,6 +24,8 @@ export default function LangToggleButton({
     </Icon>
   );
 
+  const LangToggleButtonHandler = () => onClick(lang);
+
   return (
     <Button
       variant="contained"
@@ -37,7 +39,7 @@ export default function LangToggleButton({
         fontWeight: '700',
         background: '#0288D1',
       }}
-      onClick={() => onClick(lang)}
+      onClick={LangToggleButtonHandler}
     >
       {lang}
     </Button>

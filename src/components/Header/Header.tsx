@@ -3,14 +3,15 @@
 import { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useNavigate } from 'react-router-dom';
-import { Fab } from '@mui/material';
+import { Button } from '@mui/material';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { useLocale, useLocaleDispatch } from '../../context/StoreContext';
 import { AppLanguages } from '../../types/types';
 import { auth, logout } from '../../firebase';
 import Logo from '../../assets/img/Logo.svg';
 import classes from './Header.module.css';
-import LangToggleButton from './langToggleButton/langToggleButton';
+import LangToggleButton from './langToggleButton/LangToggleButton';
+import Spinner from '../../assets/img/spinner.svg';
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -34,6 +35,8 @@ export default function Header() {
     });
   };
 
+  const logoClickHandler = () => navigate('/');
+
   useEffect(() => {
     window.addEventListener('scroll', checkScroll);
     return () => {
@@ -45,29 +48,34 @@ export default function Header() {
     <header className={isScrolled ? classes.scrolled : ''}>
       <div>
         <img
-          onClick={() => navigate('/')}
+          onClick={logoClickHandler}
           className={classes.headerLogo}
           src={Logo}
           alt="logo"
         />
       </div>
-      <h2 className={classes.headerTitle}>GraphQL App</h2>
+      <h2 className={classes.headerTitle}>GraphiQL App</h2>
       <div className={classes.headerButtons}>
         {loading ? (
-          <p>{strings.loading}</p>
+          <div className="loadingDiv">
+            {strings.loading}
+            <img src={Spinner} width={35} height={35} alt="LoadingImg" />
+          </div>
         ) : (
           user && (
-            <Fab
-              variant="extended"
-              size="medium"
-              aria-label="logout"
-              color="info"
+            <Button
               onClick={logout}
-              sx={{ textTransform: 'none' }}
+              variant="contained"
+              color="info"
+              size="medium"
+              sx={{
+                textTransform: 'none',
+                zIndex: '0',
+              }}
             >
               {strings.logout}&nbsp;
               <LogoutIcon />
-            </Fab>
+            </Button>
           )
         )}
         <LangToggleButton

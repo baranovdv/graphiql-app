@@ -21,6 +21,7 @@ export default function VarsHeaders({
 
   const clickHandler = (event: React.MouseEvent<HTMLElement>): void => {
     const { id } = event.target as HTMLElement;
+
     setMenu(id);
   };
 

@@ -6,8 +6,8 @@
 
 body {
   margin: 0;
-    background: var(--main-bg-color);
-    overflow-x: hidden;
+  background: var(--main-bg-color);
+  overflow-x: hidden;
 }
 
 .main {
@@ -16,4 +16,11 @@ body {
   margin-left: auto;
   margin-right: auto;
   height: 100vh;
+}
+
+.loadingDiv{
+  display: flex;
+  align-self: center;
+  justify-self: center;
+  align-items: center;
 }

@@ -1,13 +1,13 @@
 /* eslint-disable import/no-named-as-default */
-import { describe, it, expect } from 'vitest';
+import { describe, test, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { store } from '../store/store';
 import { LocaleProvider } from '../context/StoreContext';
-import MainPage from '../pages/MainPage';
+import MainPage from '../pages/MainPage/MainPage';
 
-describe('MainPage component', () => {
-  it('Renders', async () => {
+describe('<MainPage>', () => {
+  test('should render MainPage component', async () => {
     render(
       <Provider store={store}>
         <LocaleProvider>

@@ -51,7 +51,7 @@ export default function InputURL(props: InputURLProps) {
   const playHandler = async () => {
     try {
       const response = await triggerfn({
-        url,
+        url: CurrentUrl,
         query: `${inputvalue}`,
         variables: JSON.parse(vars || '{}'),
         headersopt: Object.assign(JSON.parse(headers || '{}'), {
@@ -68,12 +68,18 @@ export default function InputURL(props: InputURLProps) {
         (response.data as MainPageRes).errors?.forEach(
           (e: { message: string }) => {
             toast.error(e.message, { theme: 'dark' });
+            dispatch(setResponse(''));
           }
         );
       else dispatch(setResponse(JSON.stringify(response.data)));
+
       setisPlay(true);
     } catch (error) {
-      if (error instanceof Error) toast.error(error.message, { theme: 'dark' });
+      if (error instanceof Error) {
+        toast.error(error.message, { theme: 'dark' });
+        dispatch(setResponse(''));
+      }
+
       setisPlay(true);
     }
   };

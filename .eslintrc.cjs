@@ -35,5 +35,6 @@ module.exports = {
     'no-param-reassign': ['error', { props: false }],
     'react/jsx-props-no-spreading': 'off',
     'react-hooks/exhaustive-deps': 'warn',
+    '@typescript-eslint/no-shadow': 'off',
   },
 };

@@ -1,9 +1,10 @@
-import { test, expect } from 'vitest';
+import { describe, test, expect } from 'vitest';
 import prettifyEditor from '../utils/prettify/prettifyEditor';
 
-test('prettify', () => {
-  const input = `query($page:Int, $filter:FilterCharacter){characters(page:$page,filter:$filter){results{idnamestatus}}};`;
-  const expected = `query($page: Int, $filter: FilterCharacter) {
+describe('Prettify', () => {
+  test('should correct text', () => {
+    const input = `query($page:Int, $filter:FilterCharacter){characters(page:$page,filter:$filter){results{idnamestatus}}};`;
+    const expected = `query($page: Int, $filter: FilterCharacter) {
   characters(page: $page, filter: $filter) {
     results {
       idnamestatus
@@ -11,6 +12,8 @@ test('prettify', () => {
   }
 }
 ;`;
-  const result = prettifyEditor(input);
-  expect(result).toBe(expected);
+    const result = prettifyEditor(input);
+
+    expect(result).toBe(expected);
+  });
 });

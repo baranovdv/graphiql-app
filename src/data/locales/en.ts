@@ -1,7 +1,7 @@
 import { StringsTypes } from '../../types/types';
 
 const enStrings: Record<StringsTypes, string> = {
-  welcome_page_title_1: 'Welcome to GraphQL Application by',
+  welcome_page_title_1: 'Welcome to GraphiQL Application by',
   welcome_page_title_2: 'Team!',
   welcome_page_subtitle: 'Hello! Please register or login:',
   welcome_page_subtitle_logged: 'Hello! Please proceed to the main page:',

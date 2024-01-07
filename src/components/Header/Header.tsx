@@ -54,7 +54,7 @@ export default function Header() {
           alt="logo"
         />
       </div>
-      <h2 className={classes.headerTitle}>GraphQL App</h2>
+      <h2 className={classes.headerTitle}>GraphiQL App</h2>
       <div className={classes.headerButtons}>
         {loading ? (
           <div className="loadingDiv">

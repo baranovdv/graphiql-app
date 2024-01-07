@@ -1,0 +1,25 @@
+.section {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 5%;
+  margin: 1rem auto;
+  padding: 1rem 0;
+}
+
+.title {
+  text-align: center;
+  letter-spacing: 0.15rem;
+  color: var(--text-color-primary);
+}
+
+.form {
+  margin: 0 auto;
+  width: 50%;
+  min-width: 300px;
+  height: 100%;
+}
+
+.noAcc {
+  text-align: end;
+}

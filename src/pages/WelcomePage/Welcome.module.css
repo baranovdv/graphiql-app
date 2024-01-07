@@ -1,0 +1,168 @@
+.welcomeSection {
+  font-family: 'Roboto', sans-serif;
+  color: var(--text-color-primary);
+}
+
+.nav {
+  display: flex;
+  gap: 2%;
+  flex-direction: column;
+  align-items: center;
+  color: var(--text-color-primary-bright);
+  background-image: url('../../assets/img/background.JPG');
+  background-size: cover;
+  background-clip: border-box;
+  padding: 0 1rem;
+  padding-bottom: 5rem;
+}
+
+.navTitle {
+  margin-top: 2%;
+  margin-bottom: 2%;
+  text-align: center;
+  width: fit-content;
+  font-size: 3rem;
+  line-height: 150%;
+}
+
+.navGuest {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 5%;
+  row-gap: 2rem;
+}
+
+.navLogged {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2%;
+}
+
+.navSubtitle {
+  width: 100%;
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+.navSubtitleLogged {
+  font-size: 1.5rem;
+}
+
+.section {
+  display: flex;
+  justify-content: space-around;
+  gap: 5%;
+  flex-wrap: wrap;
+  padding: 0 1rem;
+  margin: 1rem 0;
+}
+
+.sectionTitle {
+  width: 100%;
+  text-align: left;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 1rem 0;
+  padding-left: 2rem;
+  text-transform: uppercase;
+}
+
+.aboutText {
+  text-align: justify;
+  line-height: 1.3rem;
+  padding: 0 1rem;
+}
+
+.loading {
+  height: 2rem;
+  margin-top: 2rem;
+  margin-left: auto;
+  margin-right: 1rem;
+}
+
+@media (max-width: 768px) {
+  .navTitle {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 500px) {
+  .welcomeSection {
+    margin: 0;
+  }
+  .navTitle {
+    font-size: 1.5rem;
+  }
+  .navSubtitle {
+    font-size: 1rem;
+  }
+  .navSubtitleLogged {
+    font-size: 1rem;
+  }
+  .section {
+    padding: 0;
+    margin: 2rem 0;
+  }
+  .navLogged {
+    flex-wrap: wrap;
+    row-gap: 1rem;
+  }
+  .navSubtitleLogged {
+    text-align: center;
+  }
+  .aboutText {
+    padding: 0 1rem;
+  }
+}
+
+.gradient {
+  background: linear-gradient(261deg, #0288d1, #fff);
+  background-size: 400% 400%;
+
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+
+  -webkit-animation: AnimationName 5s ease infinite;
+  -moz-animation: AnimationName 5s ease infinite;
+  animation: AnimationName 5s ease infinite;
+}
+
+@-webkit-keyframes AnimationName {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+@-moz-keyframes AnimationName {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+@keyframes AnimationName {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}

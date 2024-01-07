@@ -1,0 +1,28 @@
+.container {
+  position: relative;
+  display: grid;
+  height: 100%;
+  gap: 1%;
+  padding: 0.5rem 1rem;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto 1fr auto;
+  grid-template-areas:
+    'navbar navbar'
+    'editor viewer'
+    'vars viewer';
+}
+
+@media (max-width: 768px) {
+  .container {
+    display: grid;
+    height: auto;
+    padding: 1rem;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr auto 1fr;
+    grid-template-areas:
+      'navbar'
+      'editor'
+      'vars'
+      'viewer';
+  }
+}

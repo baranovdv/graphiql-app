@@ -1,0 +1,21 @@
+.aside {
+  width: 40%;
+  min-width: 320px;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.9);
+  position: absolute;
+  z-index: 10;
+  top: 0;
+  right: -100%;
+  visibility: hidden;
+  opacity: 0;
+  padding: 1.5rem;
+  overflow: scroll;
+  transition: all 0.5s;
+}
+
+.open {
+  right: 0;
+  visibility: visible;
+  opacity: 1;
+}

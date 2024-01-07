@@ -1,0 +1,52 @@
+.footer {
+  margin: 0 auto;
+  width: 100%;
+  height: 70px;
+  padding: 0 3rem;
+  background-color: var(--footer-bg-color);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.link {
+  display: flex;
+  align-items: center;
+}
+
+.footerGithubLink {
+  width: 40px;
+  background-color: black;
+  border-radius: 50%;
+}
+
+.footerYear {
+  font-size: 16px;
+  font-family: sans-serif;
+  font-weight: 700;
+  color: var(--text-color-secondary);
+  line-height: 1.3;
+}
+
+.footerYear:before {
+  content: '© ';
+}
+
+.footerRssLink {
+  width: 120px;
+}
+
+@media (max-width: 768px) {
+  .footer {
+    padding: 0 1rem;
+  }
+
+  .footerGithubLink {
+    width: 30px;
+  }
+
+  .footerRssLink {
+    width: 100px;
+  }
+}

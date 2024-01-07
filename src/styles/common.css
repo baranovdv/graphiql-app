@@ -1,0 +1,10 @@
+:root {
+  --main-bg-color: rgba(203, 213, 225, 1);
+  --footer-bg-color: rgba(47, 79, 79, 0.8);
+  --header-bg-color: rgba(47, 79, 79, 0.8);
+  --header-bg-color-active: rgba(47, 79, 79, 0.5);
+  --text-color-primary: #555;
+  --text-color-primary-bright: #eee;
+  --text-color-secondary: rgba(255, 255, 255, 0.8);
+  --graphql-color: #e535ab;
+}

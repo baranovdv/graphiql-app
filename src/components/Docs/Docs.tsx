@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable consistent-return */
 import { Button } from '@mui/material';
 import { IntrospectionObjectType, IntrospectionType } from 'graphql';

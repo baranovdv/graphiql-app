@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 /* eslint-disable import/no-extraneous-dependencies */
 /// <reference types="vitest" />
 /// <reference types="vite/client" />

@@ -79,6 +79,6 @@ describe('<Header>', () => {
 
     const title = await screen.findByRole('heading', { level: 1 });
 
-    expect(title).toHaveTextContent('Welcome to GraphQL Application by');
+    expect(title).toHaveTextContent('Welcome to GraphiQL Application by');
   });
 });
